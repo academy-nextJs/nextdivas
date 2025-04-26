@@ -31,11 +31,11 @@ const Header = () => {
 
   return (
     <div
-      className={`absolute top-3 left-3 w-[98%] bg-gray rounded-2xl grid grid-cols-2 
+      className={`absolute z-10 top-3 left-3 w-[98%] bg-gray rounded-2xl grid grid-cols-2 
         max-lg:left-1 max-md:grid-cols-4 max-md:items-start ${menu === true ? "max-md:h-68" : "max-md:h-14" } transition-all duration-400
-        max-sm:grid-cols-3 
+        max-sm:grid-cols-3 mainshadow
       `}
-      style={{ boxShadow: "0px 8px 12px rgba(0, 0, 0, 0.25), inset 0px 8px 12px rgba(255, 255, 255, 0.12) " }}
+      
     >
       {/* left */}
       <div className="ml-4 max-sm:ml-1 py-1 col-span-1 max-md:col-span-3 max-sm:col-span-2 text-white grid grid-cols-2 max-md:flex max-md:gap-1">
@@ -53,7 +53,7 @@ const Header = () => {
         <ButtonComponent
           text="!فروشنده شو"
           icon={microphon}
-          style="bg-secondary text-white flex justify-self-end "
+          style="bg-secondary text-white flex justify-self-end my-1"
         />
       </div>
 
