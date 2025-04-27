@@ -2,29 +2,25 @@ import React from "react";
 
 const navigation = {
   solutions: [
-    { name: "Marketing", href: "#" },
-    { name: "Analytics", href: "#" },
-    { name: "Commerce", href: "#" },
-    { name: "Insights", href: "#" },
+    { name: "راهنمای رزرو اقامتگاه", href: "#" },
+    // { name: "Analytics", href: "#" },
+    // { name: "Commerce", href: "#" },
+    // { name: "Insights", href: "#" },
   ],
   support: [
-    { name: "Pricing", href: "#" },
-    { name: "Documentation", href: "#" },
-    { name: "Guides", href: "#" },
-    { name: "API Status", href: "#" },
+    { name: "پرسش های متداول مهمان ", href: "#" },
+    { name: "پرسش های متداول میزبان", href: "#" },
+    { name: "چطور اقامتگاه ثبت کنم ؟", href: "#" },
+    { name: "حریم شخصی کاربران", href: "#" },
   ],
   company: [
-    { name: "About", href: "#" },
-    { name: "Blog", href: "#" },
-    { name: "Jobs", href: "#" },
-    { name: "Press", href: "#" },
-    { name: "Partners", href: "#" },
+    { name: "09229167194 - 098541612310", href: "#" },
+    { name: "Delta@gmail.com", href: "#" },
+    { name: "گیلان ، رشت ، میدان آزادی ، جنب چهار راه عظیمی زاده", href: "#" },
+    // { name: "Press", href: "#" },
+    // { name: "Partners", href: "#" },
   ],
-  legal: [
-    { name: "Claim", href: "#" },
-    { name: "Privacy", href: "#" },
-    { name: "Terms", href: "#" },
-  ],
+
   social: [
     {
       name: "Facebook",
@@ -70,39 +66,26 @@ const navigation = {
 
 export default function Footer() {
   return (
-    <footer className="bg-white" aria-labelledby="footer-heading">
-      <h2 id="footer-heading" className="sr-only">
-        Footer
-      </h2>
-      <div className="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32">
+    <footer className="bg-white p-14" aria-labelledby="footer-heading">
+      <div className="bg-gray shadow-md rounded-2xl mx-auto max-w-7xl px-6 pb-8  sm:pt-24 lg:px-8 ">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div className="space-y-8">
             <img
-              className="h-7"
+              className="h-7 text-amber-50"
               src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-              alt="Company name"
+              alt="پلتفرم دلتا"
             />
-            <p className="text-sm leading-6 text-gray-600">
-              Making the world a better place through constructing elegant
-              hierarchies.
+            <p className="text-sm leading-6 text-amber-50">
+              لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
+              استفاده از طراحان گرافیک است.لورم ایپسوم متن ساختگی با تولید سادگی
+              نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.لورم ایپسوم
+              متن ساختگی با تولید سادگی نامفهوم از صنعت ..
             </p>
-            <div className="flex space-x-6">
-              {navigation.social.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-gray-400 hover:text-gray-500"
-                >
-                  <span className="sr-only">{item.name}</span>
-                  <item.icon className="h-6 w-6" aria-hidden="true" />
-                </a>
-              ))}
-            </div>
           </div>
           <div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <h3 className="text-sm font-semibold leading-6 text-gray-900">
+                <h3 className="text-sm font-semibold leading-6 text-amber-50">
                   نحوه رزرو اقامتگاه
                 </h3>
                 <ul role="list" className="mt-6 space-y-4">
@@ -110,7 +93,7 @@ export default function Footer() {
                     <li key={item.name}>
                       <a
                         href={item.href}
-                        className="text-sm leading-6 text-gray-600 hover:text-gray-900"
+                        className="text-sm leading-6 text-amber-50 hover:text-amber-200"
                       >
                         {item.name}
                       </a>
@@ -119,7 +102,7 @@ export default function Footer() {
                 </ul>
               </div>
               <div className="mt-10 md:mt-0">
-                <h3 className="text-sm font-semibold leading-6 text-gray-900">
+                <h3 className="text-sm font-semibold leading-6 text-amber-50">
                   خدمات مشتریان
                 </h3>
                 <ul role="list" className="mt-6 space-y-4">
@@ -127,7 +110,7 @@ export default function Footer() {
                     <li key={item.name}>
                       <a
                         href={item.href}
-                        className="text-sm leading-6 text-gray-600 hover:text-gray-900"
+                        className="text-sm leading-6 text-amber-50 hover:text-amber-200"
                       >
                         {item.name}
                       </a>
@@ -138,7 +121,7 @@ export default function Footer() {
             </div>
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <h3 className="text-sm font-semibold leading-6 text-gray-900">
+                <h3 className="text-sm font-semibold leading-6 text-amber-50">
                   راه های ارتباطی
                 </h3>
                 <ul role="list" className="mt-6 space-y-4">
@@ -146,24 +129,7 @@ export default function Footer() {
                     <li key={item.name}>
                       <a
                         href={item.href}
-                        className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                      >
-                        {item.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="mt-10 md:mt-0">
-                <h3 className="text-sm font-semibold leading-6 text-gray-900">
-                  Legal
-                </h3>
-                <ul role="list" className="mt-6 space-y-4">
-                  {navigation.legal.map((item) => (
-                    <li key={item.name}>
-                      <a
-                        href={item.href}
-                        className="text-sm leading-6 text-gray-600 hover:text-gray-900"
+                        className="text-sm leading-6 text-amber-50 hover:text-amber-200"
                       >
                         {item.name}
                       </a>
@@ -174,10 +140,22 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="mt-16 border-t border-gray-900/10 pt-8 sm:mt-20 lg:mt-24">
-          <p className="text-xs leading-5 text-gray-500">
-            &copy; 2020 Your Company, Inc. All rights reserved.
+        <div className="flex mt-16 border-t border-amber-50 pt-8 sm:mt-20 lg:mt-24 justify-between">
+          <p className=" text-xs leading-5 text-amber-50">
+            &copy; تمام حقوق مادی و معنوی این اثر برای دلتا محفوظ است .
           </p>
+          <div className="flex space-x-6 justify-end ">
+            {navigation.social.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className="text-amber-50 hover:text-amber-200"
+              >
+                <span className="sr-only">{item.name}</span>
+                <item.icon className="h-6 w-6" aria-hidden="true" />
+              </a>
+            ))}
+          </div>
         </div>
       </div>{" "}
     </footer>
