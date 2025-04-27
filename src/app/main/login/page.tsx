@@ -1,4 +1,6 @@
 "use client";
+import myPhoto from "../../assets/image/login.png";
+import myPhoto2 from "../../assets/image/login2.png";
 
 export default function Login() {
   return (
@@ -6,55 +8,32 @@ export default function Login() {
       <div className="flex min-h-full">
         <div className="flex flex-1 flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
           <div className="mx-auto w-full max-w-sm lg:w-96">
-            <div>
-              <img
-                className="h-12 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                alt="Your Company"
-              />
-              <h2 className="mt-6 text-3xl font-bold tracking-tight text-gray-900">
-                Sign in to your account
-              </h2>
-              <p className="mt-2 text-sm text-gray-600">
-                Or{" "}
-                <a
-                  href="#"
-                  className="font-medium text-indigo-600 hover:text-indigo-500"
-                >
-                  start your 14-day free trial
-                </a>
-              </p>
-            </div>
-
             <div className="mt-8">
               <div>
                 <div>
                   <p className="text-sm font-medium text-gray-700">
-                    Sign in with
+                    به خانواده دلتا خوش اومدی
                   </p>
+                  <p className="text-sm font-light text-gray-600">
+                    با وارد کردن اطلاعات خود به راحتی وارد پنل خودتون بشید و از
+                    پروژه هاتون خبر بگیرید !
+                  </p>
+                  <div className="flex ">
+                    <button
+                      type="button"
+                      className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    >
+                      Button text
+                    </button>
+                    <button
+                      type="button"
+                      className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    >
+                      Button text
+                    </button>
+                  </div>
 
                   <div className="mt-1 grid grid-cols-3 gap-3">
-                    <div>
-                      <a
-                        href="#"
-                        className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
-                      >
-                        <span className="sr-only">Sign in with Facebook</span>
-                        <svg
-                          className="h-5 w-5"
-                          aria-hidden="true"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M20 10c0-5.523-4.477-10-10-10S0 4.477 0 10c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V10h2.54V7.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V10h2.773l-.443 2.89h-2.33v6.988C16.343 19.128 20 14.991 20 10z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      </a>
-                    </div>
-
                     <div>
                       <a
                         href="#"
@@ -104,74 +83,63 @@ export default function Login() {
                   </div>
                   <div className="relative flex justify-center text-sm">
                     <span className="bg-white px-2 text-gray-500">
-                      Or continue with
+                      یا میتونید
                     </span>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-6">
-                <form action="#" method="POST" className="space-y-6">
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      Email address
-                    </label>
-                    <div className="mt-1">
-                      <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        autoComplete="email"
-                        required
-                        className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                      />
+              <div className="mt-6 ">
+                <form action="#" method="POST" className="space-y-6 ">
+                  <div className="flex">
+                    <div>
+                      <label
+                        htmlFor="email"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Email address
+                      </label>
+                      <div className="mt-1">
+                        <input
+                          id="email"
+                          name="email"
+                          type="email"
+                          autoComplete="email"
+                          required
+                          className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                        />
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="space-y-1">
-                    <label
-                      htmlFor="password"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      Password
-                    </label>
-                    <div className="mt-1">
-                      <input
-                        id="password"
-                        name="password"
-                        type="password"
-                        autoComplete="current-password"
-                        required
-                        className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                      />
+                    <div className="space-y-1">
+                      <label
+                        htmlFor="password"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Password
+                      </label>
+                      <div className="mt-1">
+                        <input
+                          id="password"
+                          name="password"
+                          type="password"
+                          autoComplete="current-password"
+                          required
+                          className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                        />
+                      </div>
                     </div>
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center">
-                      <input
-                        id="remember-me"
-                        name="remember-me"
-                        type="checkbox"
-                        className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                      />
-                      <label
-                        htmlFor="remember-me"
-                        className="ml-2 block text-sm text-gray-900"
-                      >
-                        Remember me
-                      </label>
-                    </div>
+                    <div className="flex items-center"></div>
 
                     <div className="text-sm">
                       <a
                         href="#"
                         className="font-medium text-indigo-600 hover:text-indigo-500"
                       >
-                        Forgot your password?
+                        رمز عبور خود را فراموش کردم
                       </a>
                     </div>
                   </div>
@@ -181,7 +149,7 @@ export default function Login() {
                       type="submit"
                       className="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                     >
-                      Sign in
+                      ورود به حساب کاربری
                     </button>
                   </div>
                 </form>
@@ -190,67 +158,56 @@ export default function Login() {
           </div>
         </div>
         <div className="relative hidden w-0 flex-1 lg:block">
-          <img
-            className="absolute inset-0 h-full w-full object-cover"
-            src="https://images.unsplash.com/photo-1505904267569-f02eaeb45a4c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1908&q=80"
-            alt=""
-          />
+          <img src={myPhoto2.src} alt="عکس من" />
         </div>
       </div>
       {/* بخش جدید */}
       <div className="relative bg-white dark:bg-dark py-16 sm:py-24">
         <div className=" lg:grid lg:max-w-7xl lg:grid-cols-2 lg:items-start lg:gap-24 lg:px-8">
-          <div className=" sm:py-16 lg:py-0">
-            <div className=" mx-auto max-w-md px-6 sm:max-w-3xl lg:max-w-none lg:px-0 lg:py-20">
-              {/* Testimonial card*/}
-              <div className=" relative bg-amber-400	  rounded-2xl   shadow-xl">
-                {/* <img
-                className="  pt-10 pb-10  h-full w-full object-cover -mr-10"
-                src={image}
-                alt=""
-              /> */}
-                اینحا عکسه
-              </div>
-            </div>
-          </div>
-          <div className="relative  max-w-md px-6 sm:max-w-3xl lg:px-0">
+          <div className="relative max-w-md px-6 sm:max-w-3xl lg:px-0">
             {/* Content area */}
-            <div className="pt-12 sm:pt-16 lg:pt-20">
+            <div className="pt-12 sm:pt-16 lg:pt-20 space-y-6">
               <h2 className="text-3xl font-bold tracking-tight dark:text-white text-gray-900 sm:text-4xl">
-                ما اینحایه فرم داریم{" "}
+                ما اینحایه فرم داریم
               </h2>
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Email
-                </label>
-                <div className="mt-1">
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                    placeholder="you@example.com"
-                  />
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <div className="w-full sm:w-1/2">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm  font-medium text-gray-700"
+                  >
+                    Email
+                  </label>
+                  <div className="mt-1">
+                    <input
+                      type="email"
+                      name="email"
+                      id="email"
+                      className="block w-full rounded-md h-12 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      placeholder="you@example.com"
+                    />
+                  </div>
+                </div>
+                <div className="w-full sm:w-1/2">
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Name
+                  </label>
+                  <div className="mt-1">
+                    <input
+                      type="text"
+                      name="name"
+                      id="name"
+                      className="block w-full rounded-md h-12 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      placeholder="Jane Smith"
+                    />
+                  </div>
                 </div>
               </div>
-              <div className="rounded-md border border-gray-300 px-3 py-2 shadow-sm focus-within:border-indigo-600 focus-within:ring-1 focus-within:ring-indigo-600">
-                <label
-                  htmlFor="name"
-                  className="block text-xs font-medium text-gray-900"
-                >
-                  Name
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  id="name"
-                  className="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
-                  placeholder="Jane Smith"
-                />
-              </div>
+
               <div>
                 <label
                   htmlFor="comment"
@@ -268,6 +225,22 @@ export default function Login() {
                   />
                 </div>
               </div>
+
+              {/* دکمه‌ی ارسال */}
+              <div>
+                <button
+                  type="submit"
+                  className="inline-flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                >
+                  ارسال فرم
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center justify-center sm:py-16 lg:py-0">
+            <div className="relative w-72 h-72 rounded-2xl overflow-hidden">
+              <img src={myPhoto.src} alt="عکس من" className=" " />
             </div>
           </div>
         </div>
