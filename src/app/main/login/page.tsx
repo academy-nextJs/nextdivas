@@ -11,29 +11,29 @@ export default function Login() {
             <div className="mt-8">
               <div>
                 <div>
-                  <p className="text-sm font-medium text-gray-700">
+                  <p className="text-sm leading-12 font-medium text-gray-700">
                     به خانواده دلتا خوش اومدی
                   </p>
-                  <p className="text-sm font-light text-gray-600">
+                  <p className="text-sm leading-8 font-light text-gray-600">
                     با وارد کردن اطلاعات خود به راحتی وارد پنل خودتون بشید و از
                     پروژه هاتون خبر بگیرید !
                   </p>
-                  <div className="flex ">
+                  <div className="flex bg-[#303030] my-6 py-2.5 rounded-2xl ">
                     <button
                       type="button"
-                      className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      className="inline-flex flex-1 items-center justify-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-xl shadow-sm text-white bg-[#8CFF45] hover:bg-[#303030] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
-                      Button text
+                      ورود به حساب کاربری
                     </button>
                     <button
                       type="button"
-                      className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      className="inline-flex flex-1 items-center justify-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-xl shadow-sm text-white bg-[#8CFF45] hover:bg-[#303030] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
-                      Button text
+                      ساخت حساب کاربری
                     </button>
                   </div>
 
-                  <div className="mt-1 grid grid-cols-3 gap-3">
+                  <div className="mt-1 grid grid-cols-2 gap-3">
                     <div>
                       <a
                         href="#"
@@ -91,43 +91,41 @@ export default function Login() {
 
               <div className="mt-6 ">
                 <form action="#" method="POST" className="space-y-6 ">
-                  <div className="flex">
-                    <div>
+                  <div className="flex gap-3">
+                    {/* ایمیل */}
+                    <div className="relative">
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder=" "
+                        required
+                        className="peer block w-full appearance-none rounded-md border border-gray-300 px-3 pt-5 pb-2 text-sm placeholder-transparent shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                      />
                       <label
                         htmlFor="email"
-                        className="block text-sm font-medium text-gray-700"
+                        className="absolute right-3 -top-2.5 bg-white px-1 text-xs text-gray-500 transition-all peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 peer-focus:-top-2.5 peer-focus:text-xs peer-focus:text-indigo-500"
                       >
-                        Email address
+                        ایمیل
                       </label>
-                      <div className="mt-1">
-                        <input
-                          id="email"
-                          name="email"
-                          type="email"
-                          autoComplete="email"
-                          required
-                          className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                        />
-                      </div>
                     </div>
 
-                    <div className="space-y-1">
+                    {/* پسوورد */}
+                    <div className="relative">
+                      <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder=" "
+                        required
+                        className="peer block w-full appearance-none rounded-md border border-gray-300 px-3 pt-5 pb-2 text-sm placeholder-transparent shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                      />
                       <label
                         htmlFor="password"
-                        className="block text-sm font-medium text-gray-700"
+                        className="absolute right-3 -top-2.5 bg-white px-1 text-xs text-gray-500 transition-all peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 peer-focus:-top-2.5 peer-focus:text-xs peer-focus:text-indigo-500"
                       >
-                        Password
+                        پسوورد
                       </label>
-                      <div className="mt-1">
-                        <input
-                          id="password"
-                          name="password"
-                          type="password"
-                          autoComplete="current-password"
-                          required
-                          className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                        />
-                      </div>
                     </div>
                   </div>
 
@@ -157,16 +155,16 @@ export default function Login() {
             </div>
           </div>
         </div>
-        <div className="relative hidden w-0 flex-1 lg:block">
+        <div className="relative hidden w-0 flex-1 lg:block items-start mr-40 mt-10">
           <img src={myPhoto2.src} alt="عکس من" />
         </div>
       </div>
       {/* بخش جدید */}
-      <div className="relative bg-white dark:bg-dark py-16 sm:py-24">
-        <div className=" lg:grid lg:max-w-7xl lg:grid-cols-2 lg:items-start lg:gap-24 lg:px-8">
-          <div className="relative max-w-md px-6 sm:max-w-3xl lg:px-0">
+      <div className="relative bg-white dark:bg-dark py-16 sm:py-24 ">
+        <div className=" lg:grid lg:max-w-7xl lg:grid-cols-2 lg:items-start lg:gap-24 lg:px-8 ">
+          <div className="relative max-w-md px-6 sm:max-w-3xl lg:px-0 lg:mr-10">
             {/* Content area */}
-            <div className="pt-12 sm:pt-16 lg:pt-20 space-y-6">
+            <div className="pt-12 sm:pt-16 lg:pt-20 space-y-6 ">
               <h2 className="text-3xl font-bold tracking-tight dark:text-white text-gray-900 sm:text-4xl">
                 ما اینحایه فرم داریم
               </h2>
@@ -239,7 +237,7 @@ export default function Login() {
           </div>
 
           <div className="flex items-center justify-center sm:py-16 lg:py-0">
-            <div className="relative w-72 h-72 rounded-2xl overflow-hidden">
+            <div className="relative hidden w-0 flex-1 lg:block items-start mr-40 mt-10">
               <img src={myPhoto.src} alt="عکس من" className=" " />
             </div>
           </div>
