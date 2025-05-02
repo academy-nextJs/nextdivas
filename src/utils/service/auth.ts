@@ -1,11 +1,29 @@
 // src/utils/service/auth.ts
 
-// import axiosInstance from "./axiosInstance";
+import axiosInstance from "./interceptor/axiosInstance";
+import {
+  LoginPayload,
+  StartRegistrationPayload,
+  VerifyEmailPayload,
+  CompleteRegistrationPayload,
+} from "@/types/auth.types";
 
-// export const login = (data: { email: string; password: string }) => {
-//   return axiosInstance.post("/login", data);
-// };
+// لاگین
+export const login = (data: LoginPayload) => {
+  return axiosInstance.post("/auth/login", data);
+};
 
-// export const registerStepOne = (data: { email: string }) => {
-//   return axiosInstance.post("/register/step-one", data);
-// };
+// مرحله اول ثبت‌نام: ارسال ایمیل
+export const startRegistration = (data: StartRegistrationPayload) => {
+  return axiosInstance.post("/auth/start-registration", data);
+};
+
+// مرحله دوم: تأیید ایمیل با کد
+export const verifyEmail = (data: VerifyEmailPayload) => {
+  return axiosInstance.post("/auth/verify-email", data);
+};
+
+// مرحله سوم: ثبت شماره تماس و رمز عبور
+export const completeRegistration = (data: CompleteRegistrationPayload) => {
+  return axiosInstance.post("/auth/complete-registration", data);
+};
