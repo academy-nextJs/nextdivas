@@ -27,7 +27,7 @@ const HeroFillter = () => {
     },
   ];
   return (
-    <div className=" mx-auto mt-6 w-[70%] max-sm:w-[85%] text-lg max-md:text-sm max-sm:text-xs">    
+    <div className=" mx-auto pt-6 w-[70%] max-sm:w-[85%] text-lg max-md:text-sm max-sm:text-xs">    
       <div className="flex justify-end items-center gap-4 max-sm:gap-2 mt-10 ">
         {fillter.map((item) => (
           <div

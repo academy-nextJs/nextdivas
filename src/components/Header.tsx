@@ -67,7 +67,7 @@ const Header = () => {
         {/* menu */}
         <ul
           className={`flex gap-3 text-neutral-300 
-          max-lg:gap-1 ${menu === true ? "max-md:grid" : "max-md:hidden"} transition-all duration-700 max-md:justify-center 
+          max-lg:gap-1 ${menu === true ? "max-md:grid" : "max-md:hidden"} transition-all duration-800 max-md:justify-center 
          `}
         >
           {list.map((item, index) => (
