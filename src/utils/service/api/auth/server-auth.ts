@@ -4,7 +4,7 @@ import {
   VerifyEmailPayload,
   CompleteRegistrationPayload,
 } from "@/types/auth.types";
-import { customFetch } from "./interceptor/server-interceptor";
+import { customFetch } from "../../interceptor/server-interceptor";
 
 // لاگین
 export const serverLogin = (data: LoginPayload) => {

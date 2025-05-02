@@ -1,6 +1,6 @@
 // src/utils/service/auth.ts
 
-import axiosInstance from "./interceptor/axiosInstance";
+import axiosInstance from "../../interceptor/axiosInstance";
 import {
   LoginPayload,
   StartRegistrationPayload,
