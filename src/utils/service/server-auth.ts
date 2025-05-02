@@ -1,5 +1,3 @@
-// src/utils/service/server-auth.ts
-
 import {
   LoginPayload,
   StartRegistrationPayload,
@@ -13,9 +11,6 @@ export const serverLogin = (data: LoginPayload) => {
   return customFetch("/auth/login", {
     method: "POST",
     body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json",
-    },
   });
 };
 
@@ -24,9 +19,6 @@ export const serverStartRegistration = (data: StartRegistrationPayload) => {
   return customFetch("/auth/start-registration", {
     method: "POST",
     body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json",
-    },
   });
 };
 
@@ -35,9 +27,6 @@ export const serverVerifyEmail = (data: VerifyEmailPayload) => {
   return customFetch("/auth/verify-email", {
     method: "POST",
     body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json",
-    },
   });
 };
 
@@ -48,8 +37,5 @@ export const serverCompleteRegistration = (
   return customFetch("/auth/complete-registration", {
     method: "POST",
     body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json",
-    },
   });
 };
