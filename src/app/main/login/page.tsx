@@ -45,10 +45,10 @@ export default function Login() {
         <div className="flex flex-1 flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
           <div className="mx-auto w-full max-w-sm lg:w-96">
             <div className="mt-8">
-              <p className="text-sm leading-12 font-medium text-white">
+              <p className="text-sm text-right leading-12 font-medium text-white">
                 به خانواده دلتا خوش اومدی
               </p>
-              <p className="text-sm leading-8 font-light text-lime-100">
+              <p className="text-sm leading-8 text-right font-light text-lime-100">
                 با وارد کردن اطلاعات خود به راحتی وارد پنل خودتون بشید و از
                 پروژه‌هاتون خبر بگیرید!
               </p>
@@ -289,32 +289,15 @@ export default function Login() {
           </div>
           <div className="relative max-w-md px-6 sm:max-w-3xl lg:px-0 lg:ml-10">
             <div className="pt-12 sm:pt-16 lg:pt-20 space-y-6">
-              <p className="text-sm leading-12 font-medium text-lime-50">
+              <p className="text-sm leading-12 font-medium text-right text-lime-50">
                 24 ساعت روز و 7 روز هفته در اختیار شماییم !
               </p>
-              <p className="text-sm leading-8 font-light text-lime-100">
+              <p className="text-sm leading-8 font-light text-right text-lime-100">
                 تیم دلتا با ارائه بهترین نیرو های خدماتی و سرویس های املاکی سعی
                 دارد تا بتواند در تمام لحظات کنار شما باشد .
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <div className="w-full sm:w-1/2">
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium  text-lime-100"
-                  >
-                    Email
-                  </label>
-                  <div className="mt-1">
-                    <input
-                      type="email"
-                      name="email"
-                      id="email"
-                      className="block w-full px-3 rounded-md h-12 bg-[#303030] text-white border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                      placeholder="you@example.com"
-                    />
-                  </div>
-                </div>
                 <div className="w-full sm:w-1/2">
                   <label
                     htmlFor="name"
@@ -329,6 +312,23 @@ export default function Login() {
                       id="name"
                       className="block w-full px-3 text-white rounded-md h-12 bg-[#303030] border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       placeholder="Jane Smith"
+                    />
+                  </div>
+                </div>
+                <div className="w-full sm:w-1/2">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium  text-lime-100"
+                  >
+                    Email
+                  </label>
+                  <div className="mt-1">
+                    <input
+                      type="email"
+                      name="email"
+                      id="email"
+                      className="block w-full px-3 rounded-md h-12 bg-[#303030] text-white border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      placeholder="you@example.com"
                     />
                   </div>
                 </div>
