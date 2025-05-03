@@ -1,3 +1,4 @@
+// File: app/components/Login.tsx
 "use client";
 import { useState } from "react";
 import myPhoto from "../../assets/image/login.png";
@@ -7,7 +8,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 export default function Login() {
-  const [mode, setMode] = useState<"login" | "register">("login"); // مقدار اولیه "login"
+  const [mode, setMode] = useState<"login" | "register">("login");
   const [step, setStep] = useState(1);
 
   const nextStep = () => setStep((s) => s + 1);
@@ -86,7 +87,7 @@ export default function Login() {
                     fill="currentColor"
                     viewBox="0 0 24 24"
                   >
-                    <path d="..."></path>
+                    <path d="..." />
                   </svg>
                   ورود با حساب اپل
                 </button>
@@ -280,13 +281,12 @@ export default function Login() {
         </div>
       </div>
 
-      {/* فرم ساده پایین صفحه */}
       <div className="relative bg-[#232323] dark:bg-dark py-16 sm:py-24">
         <div className="lg:grid lg:max-w-7xl lg:grid-cols-2 lg:items-start lg:gap-24 lg:px-8">
           <div className="relative max-w-md px-6 sm:max-w-3xl lg:px-0 lg:mr-10">
             <div className="pt-12 sm:pt-16 lg:pt-20 space-y-6">
               <p className="text-sm leading-12 font-medium text-lime-50">
-                24 ساعت روز و 7 روز هفته در اختیار شماییم !{" "}
+                24 ساعت روز و 7 روز هفته در اختیار شماییم !
               </p>
               <p className="text-sm leading-8 font-light text-lime-100">
                 تیم دلتا با ارائه بهترین نیرو های خدماتی و سرویس های املاکی سعی
@@ -294,7 +294,7 @@ export default function Login() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <div className="w-full sm:w-1/2  ">
+                <div className="w-full sm:w-1/2">
                   <label
                     htmlFor="email"
                     className="block text-sm font-medium  text-lime-100"
@@ -306,7 +306,7 @@ export default function Login() {
                       type="email"
                       name="email"
                       id="email"
-                      className="block w-full px-3 rounded-md h-12 bg-[#303030] text-white  border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      className="block w-full px-3 rounded-md h-12 bg-[#303030] text-white border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       placeholder="you@example.com"
                     />
                   </div>
@@ -342,7 +342,7 @@ export default function Login() {
                     rows={4}
                     name="comment"
                     id="comment"
-                    className="block w-full px-3  text-white rounded-md bg-[#303030] border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    className="block w-full px-3 text-white rounded-md bg-[#303030] border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                     defaultValue={""}
                   />
                 </div>

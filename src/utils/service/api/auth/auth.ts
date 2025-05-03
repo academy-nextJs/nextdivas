@@ -1,4 +1,4 @@
-// src/utils/service/auth.ts
+// src/utils/service/api/auth/auth.ts
 
 import axiosInstance from "../../interceptor/axiosInstance";
 import {
