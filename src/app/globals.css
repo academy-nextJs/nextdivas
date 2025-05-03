@@ -2,10 +2,10 @@
 
 :root {
 }
-body {
+/* body {
   direction: rtl;
   text-align: right;
-}
+} */
 
 @theme {
   --color-primary: rgba(140, 255, 69, 1);

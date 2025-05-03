@@ -39,6 +39,9 @@ export default function Login() {
   return (
     <>
       <div className="flex min-h-full bg-[#232323]">
+        <div className="relative hidden w-0 flex-1 lg:block items-start mr-40 mt-10">
+          <img src={myPhoto2.src} alt="عکس من" />
+        </div>
         <div className="flex flex-1 flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
           <div className="mx-auto w-full max-w-sm lg:w-96">
             <div className="mt-8">
@@ -275,15 +278,16 @@ export default function Login() {
             </div>
           </div>
         </div>
-
-        <div className="relative hidden w-0 flex-1 lg:block items-start mr-40 mt-10">
-          <img src={myPhoto2.src} alt="عکس من" />
-        </div>
       </div>
 
       <div className="relative bg-[#232323] dark:bg-dark py-16 sm:py-24">
         <div className="lg:grid lg:max-w-7xl lg:grid-cols-2 lg:items-start lg:gap-24 lg:px-8">
-          <div className="relative max-w-md px-6 sm:max-w-3xl lg:px-0 lg:mr-10">
+          <div className="flex items-center justify-center sm:py-16 lg:py-0">
+            <div className="relative hidden w-0 flex-1 lg:block items-start mr-40 mt-10">
+              <img src={myPhoto.src} alt="عکس من" />
+            </div>
+          </div>
+          <div className="relative max-w-md px-6 sm:max-w-3xl lg:px-0 lg:ml-10">
             <div className="pt-12 sm:pt-16 lg:pt-20 space-y-6">
               <p className="text-sm leading-12 font-medium text-lime-50">
                 24 ساعت روز و 7 روز هفته در اختیار شماییم !
@@ -356,12 +360,6 @@ export default function Login() {
                   ارسال فرم
                 </button>
               </div>
-            </div>
-          </div>
-
-          <div className="flex items-center justify-center sm:py-16 lg:py-0">
-            <div className="relative hidden w-0 flex-1 lg:block items-start mr-40 mt-10">
-              <img src={myPhoto.src} alt="عکس من" />
             </div>
           </div>
         </div>
