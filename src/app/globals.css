@@ -1,8 +1,4 @@
 @import "tailwindcss";
-body {
-  direction: rtl;
-  text-align: right;
-}
 
 :root {
   background-color: rgba(35, 35, 35, 1);

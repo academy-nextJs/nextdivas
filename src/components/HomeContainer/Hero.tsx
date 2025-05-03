@@ -11,12 +11,12 @@ import HeroFillter from "./HeroFillter";
 
 const Hero = () => {
   return (
-    <div className="pb-8">
+    <div className="relative pb-8 border border-red-950">
       
       <Image
         src={hero}
         alt="hero"
-        className="absolute top-0 -z-10 w-full h-[860px] max-xl:h-[700px] max-lg:h-[650px] max-sm:h-[400px] "
+        className="absolute top-0 -z-10 w-full h-[850px] max-xl:h-[650px] max-lg:h-[640px] max-sm:h-[390px] "
       />
 
       <div className=" mt-[400px] max-xl:mt-[300px] max-lg:mt-[280px] max-sm:mt-[180px]">

@@ -8,8 +8,8 @@ import UserComments from "@/components/HomeContainer/UserComments";
 
 export default function Home() {
   return (
-    <div className="">
-      <main>
+    <div className="grid">
+      <main className="justify-self-center">
         <Hero />
         <Category />
         <Offer />
@@ -18,9 +18,6 @@ export default function Home() {
         <BuyIntertain />
         <UserComments />
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <p>this is footer</p>
-      </footer>
     </div>
   );
 }

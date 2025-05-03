@@ -11,7 +11,7 @@ import vectors from "../../../public/icons/whiteflash.png";
 
 const BuyHouse = () => {
   return (
-    <div className="mx-16 py-12 max-sm:mx-2 ">
+    <div className="mx-16 py-12 max-sm:mx-2">
       {/* title-part */}
       <div className="grid justify-items-end z-10 gap-4 text-white">
         <div className="text-primary flex gap-1 items-center justify-center ">
