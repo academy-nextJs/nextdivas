@@ -31,12 +31,11 @@ const Header = () => {
 
   return (
     <div
-      className={`absolute top-3 left-3 w-[98%] bg-gray shadow-md rounded-2xl grid grid-cols-2  shadow-black
+      className={`absolute z-10 top-3 left-3 w-[98%] bg-gray rounded-2xl grid grid-cols-2 
         max-lg:left-1 max-md:grid-cols-4 max-md:items-start ${menu === true ? "max-md:h-68" : "max-md:h-14" } transition-all duration-400
-        max-sm:grid-cols-3 
-       
+        max-sm:grid-cols-3 mainshadow
       `}
-      style={{ boxShadow: "0px 8px 12px rgba(255, 255, 255, 0.1) inset" }}
+      
     >
       {/* left */}
       <div className="ml-4 max-sm:ml-1 py-1 col-span-1 max-md:col-span-3 max-sm:col-span-2 text-white grid grid-cols-2 max-md:flex max-md:gap-1">
@@ -54,12 +53,12 @@ const Header = () => {
         <ButtonComponent
           text="!فروشنده شو"
           icon={microphon}
-          style="bg-secondary text-white flex justify-self-end "
+          style="bg-secondary text-white flex justify-self-end my-1"
         />
       </div>
 
       {/* right */}
-      <div className="col-span-1 flex flex-row-reverse items-center justify-start max-md:flex-col max-md:justify-center">
+      <div className="col-span-1 flex flex-row-reverse  justify-start max-md:flex-col max-md:justify-center">
         {/* logo */}
         <div className="flex flex-row-reverse pl-6 max-xl:pl-0 max-md:border-none border-l-2 border-gray-500 m-2">
           <Image src={logo} alt="Logo" className="w-14 h-10" />
@@ -68,18 +67,18 @@ const Header = () => {
         {/* menu */}
         <ul
           className={`flex gap-3 text-neutral-300 
-          max-lg:gap-1 ${menu === true ? "max-md:grid" : "max-md:hidden"} transition-all duration-700 max-md:justify-center 
+          max-lg:gap-1 ${menu === true ? "max-md:grid" : "max-md:hidden"} transition-all duration-800 max-md:justify-center 
          `}
         >
           {list.map((item, index) => (
             <li
               key={index}
-              className="text-sm pb-3 px-5 max-2xl:pb-4 max-2xl:px-2 hover:text-primary border-3 border-gray/5 hover:border-b-primary
+              className="text-sm pt-3 px-5 max-2xl:px-2 hover:text-primary border-3 border-gray/5 hover:border-b-primary
                transition duration-500 cursor-pointer flex
-               max-xl:text-xs max-md:text-md text-center
+               max-xl:text-xs max-md:text-md
                "
             >
-              <Link href={item.link} className="flex mx-auto">
+              <Link href={item.link} className="flex mx-auto ">
                 {item.icon} {item.title}
               </Link>
             </li>
