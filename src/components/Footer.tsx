@@ -86,8 +86,8 @@ export default function Footer() {
           />
         </svg>
         <div className="relative z-10 p-14">
-          <div className="lg:grid lg:max-w-7xl lg:grid-cols-2 lg:items-start lg:gap-24 lg:px-8">
-            <div className="flex items-center justify-center sm:py-16 lg:py-0">
+          <div className="lg:grid  lg:grid-cols-2 lg:items-start lg:gap-6 lg:px-8">
+            <div className="flex items-center justify-center ">
               <div className="relative hidden w-0 flex-1 lg:block items-start mr-40 mt-10">
                 <img src={myPhoto.src} alt="عکس من" />
               </div>
@@ -171,62 +171,13 @@ export default function Footer() {
         </div>
         <div className="bg-gray relative z-20 shadow-md rounded-2xl mx-auto max-w-7xl px-6 pb-8  sm:pt-24 lg:px-8 ">
           <div className="xl:grid xl:grid-cols-3 xl:gap-8">
-            <div className="space-y-8">
-              <img
-                className="h-7 text-amber-50"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                alt="پلتفرم دلتا"
-              />
-              <p className="text-sm leading-6 text-amber-50">
-                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
-                استفاده از طراحان گرافیک است.لورم ایپسوم متن ساختگی با تولید
-                سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.لورم
-                ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت ..
-              </p>
-            </div>
             <div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
               <div className="md:grid md:grid-cols-2 md:gap-8">
                 <div>
-                  <h3 className="text-sm font-semibold leading-6 text-amber-50">
-                    نحوه رزرو اقامتگاه
-                  </h3>
-                  <ul role="list" className="mt-6 space-y-4">
-                    {navigation.solutions.map((item) => (
-                      <li key={item.name}>
-                        <a
-                          href={item.href}
-                          className="text-sm leading-6 text-amber-50 hover:text-amber-200"
-                        >
-                          {item.name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="mt-10 md:mt-0">
-                  <h3 className="text-sm font-semibold leading-6 text-amber-50">
-                    خدمات مشتریان
-                  </h3>
-                  <ul role="list" className="mt-6 space-y-4">
-                    {navigation.support.map((item) => (
-                      <li key={item.name}>
-                        <a
-                          href={item.href}
-                          className="text-sm leading-6 text-amber-50 hover:text-amber-200"
-                        >
-                          {item.name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-              <div className="md:grid md:grid-cols-2 md:gap-8">
-                <div>
-                  <h3 className="text-sm font-semibold leading-6 text-amber-50">
+                  <h3 className="text-sm text-right font-semibold leading-6 text-amber-50">
                     راه های ارتباطی
                   </h3>
-                  <ul role="list" className="mt-6 space-y-4">
+                  <ul role="list" className="mt-6 text-right space-y-4">
                     {navigation.company.map((item) => (
                       <li key={item.name}>
                         <a
@@ -240,12 +191,58 @@ export default function Footer() {
                   </ul>
                 </div>
               </div>
+              <div className="md:grid md:grid-cols-2 md:gap-8">
+                <div className="mt-10 md:mt-0">
+                  <h3 className="text-sm font-semibold leading-6 text-right text-amber-50">
+                    خدمات مشتریان
+                  </h3>
+                  <ul role="list" className="mt-6 text-right space-y-4">
+                    {navigation.support.map((item) => (
+                      <li key={item.name}>
+                        <a
+                          href={item.href}
+                          className="text-sm leading-6 text-amber-50 hover:text-amber-200"
+                        >
+                          {item.name}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="text-sm font-semibold leading-6 text-right text-amber-50">
+                    نحوه رزرو اقامتگاه
+                  </h3>
+                  <ul role="list" className="mt-6 text-right space-y-4">
+                    {navigation.solutions.map((item) => (
+                      <li key={item.name}>
+                        <a
+                          href={item.href}
+                          className="text-sm leading-6 text-amber-50 hover:text-amber-200"
+                        >
+                          {item.name}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div className="space-y-8">
+              <img
+                className="h-7 text-right text-amber-50"
+                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                alt="پلتفرم دلتا"
+              />
+              <p className="text-sm leading-6 text-right text-amber-50">
+                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
+                استفاده از طراحان گرافیک است.لورم ایپسوم متن ساختگی با تولید
+                سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.لورم
+                ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت ..
+              </p>
             </div>
           </div>
           <div className="flex mt-16 border-t border-amber-50 pt-8 sm:mt-20 lg:mt-24 justify-between">
-            <p className=" text-xs leading-5 text-amber-50">
-              &copy; تمام حقوق مادی و معنوی این اثر برای دلتا محفوظ است .
-            </p>
             <div className="flex space-x-6 justify-end ">
               {navigation.social.map((item) => (
                 <a
@@ -258,6 +255,9 @@ export default function Footer() {
                 </a>
               ))}
             </div>
+            <p className=" text-xs text-right leading-5 text-amber-50">
+              &copy; تمام حقوق مادی و معنوی این اثر برای دلتا محفوظ است .
+            </p>
           </div>
         </div>{" "}
       </div>
