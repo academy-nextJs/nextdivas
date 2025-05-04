@@ -1,7 +1,6 @@
 // File: app/components/Login.tsx
 "use client";
 import { useState } from "react";
-import myPhoto from "../../assets/image/login.png";
 import myPhoto2 from "../../assets/image/login2.png";
 import search from "../../assets/image/search.png";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -274,91 +273,6 @@ export default function Login() {
                     </Form>
                   )}
                 </Formik>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="relative bg-[#232323] dark:bg-dark py-16 sm:py-24">
-        <div className="lg:grid lg:max-w-7xl lg:grid-cols-2 lg:items-start lg:gap-24 lg:px-8">
-          <div className="flex items-center justify-center sm:py-16 lg:py-0">
-            <div className="relative hidden w-0 flex-1 lg:block items-start mr-40 mt-10">
-              <img src={myPhoto.src} alt="عکس من" />
-            </div>
-          </div>
-          <div className="relative max-w-md px-6 sm:max-w-3xl lg:px-0 lg:ml-10">
-            <div className="pt-12 sm:pt-16 lg:pt-20 space-y-6">
-              <p className="text-sm leading-12 font-medium text-right text-lime-50">
-                24 ساعت روز و 7 روز هفته در اختیار شماییم !
-              </p>
-              <p className="text-sm leading-8 font-light text-right text-lime-100">
-                تیم دلتا با ارائه بهترین نیرو های خدماتی و سرویس های املاکی سعی
-                دارد تا بتواند در تمام لحظات کنار شما باشد .
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4">
-                <div className="w-full sm:w-1/2">
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-medium text-lime-100"
-                  >
-                    Name
-                  </label>
-                  <div className="mt-1">
-                    <input
-                      type="text"
-                      name="name"
-                      id="name"
-                      className="block w-full px-3 text-white rounded-md h-12 bg-[#303030] border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                      placeholder="Jane Smith"
-                    />
-                  </div>
-                </div>
-                <div className="w-full sm:w-1/2">
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium  text-lime-100"
-                  >
-                    Email
-                  </label>
-                  <div className="mt-1">
-                    <input
-                      type="email"
-                      name="email"
-                      id="email"
-                      className="block w-full px-3 rounded-md h-12 bg-[#303030] text-white border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                      placeholder="you@example.com"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <label
-                  htmlFor="comment"
-                  className="block text-sm font-medium text-lime-100"
-                >
-                  Add your comment
-                </label>
-                <div className="mt-1">
-                  <textarea
-                    rows={4}
-                    name="comment"
-                    id="comment"
-                    className="block w-full px-3 text-white rounded-md bg-[#303030] border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                    defaultValue={""}
-                  />
-                </div>
-              </div>
-
-              <div>
-                <button
-                  type="submit"
-                  className="inline-flex w-full justify-center rounded-md border border-transparent bg-[#8CFF45] py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                >
-                  ارسال فرم
-                </button>
               </div>
             </div>
           </div>
