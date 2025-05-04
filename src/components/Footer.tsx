@@ -106,9 +106,9 @@ export default function Footer() {
                   <div className="w-full sm:w-1/2">
                     <label
                       htmlFor="name"
-                      className="block text-sm font-medium text-lime-100"
+                      className="block text-sm font-medium text-right text-black"
                     >
-                      Name
+                      نام
                     </label>
                     <div className="mt-1">
                       <input
@@ -123,9 +123,9 @@ export default function Footer() {
                   <div className="w-full sm:w-1/2">
                     <label
                       htmlFor="email"
-                      className="block text-sm font-medium  text-lime-100"
+                      className="block text-sm font-medium text-right  text-black"
                     >
-                      Email
+                      ایمیل
                     </label>
                     <div className="mt-1">
                       <input
@@ -142,9 +142,9 @@ export default function Footer() {
                 <div>
                   <label
                     htmlFor="comment"
-                    className="block text-sm font-medium text-lime-100"
+                    className="block text-sm text-right font-medium text-black"
                   >
-                    Add your comment
+                    متن خود را وارد کنید
                   </label>
                   <div className="mt-1">
                     <textarea
@@ -160,7 +160,7 @@ export default function Footer() {
                 <div>
                   <button
                     type="submit"
-                    className="inline-flex w-full justify-center rounded-md border border-transparent bg-[#8CFF45] py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    className="inline-flex w-full justify-center rounded-md border border-transparent bg-[#303030] py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                   >
                     ارسال فرم
                   </button>

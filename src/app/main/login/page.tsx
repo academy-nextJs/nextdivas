@@ -38,7 +38,7 @@ export default function Login() {
   return (
     <>
       <div className="flex min-h-full bg-[#232323]">
-        <div className="relative hidden w-0 flex-1 lg:block items-start mr-40 mt-10">
+        <div className="relative hidden w-0 flex-1 lg:block items-start mr-40 mt-20">
           <img src={myPhoto2.src} alt="عکس من" />
         </div>
         <div className="flex flex-1 flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
