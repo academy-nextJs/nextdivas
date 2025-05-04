@@ -7,26 +7,26 @@ function classNames(...classes: (string | false | null | undefined)[]) {
 }
 
 const tabs = [
-  { name: "My Account", value: "account" },
-  { name: "Company", value: "company" },
-  { name: "Team Members", value: "team" },
-  { name: "Billing", value: "billing" },
+  { name: "حساب من", value: "account" },
+  { name: "شرکت", value: "company" },
+  { name: "اعضای تیم", value: "team" },
+  { name: "صورتحساب", value: "billing" },
 ];
 
 export default function SettingsTabs() {
   const [activeTab, setActiveTab] = useState("account");
 
   return (
-    <div>
+    <div className="text-right">
       {/* Mobile select */}
       <div className="sm:hidden">
         <label htmlFor="tabs" className="sr-only">
-          Select a tab
+          انتخاب تب
         </label>
         <select
           id="tabs"
           name="tabs"
-          className="block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
+          className="block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 text-right"
           value={activeTab}
           onChange={(e) => setActiveTab(e.target.value)}
         >
@@ -40,15 +40,18 @@ export default function SettingsTabs() {
 
       {/* Desktop tabs */}
       <div className="hidden sm:block">
-        <nav className="flex space-x-4 border-b pb-2 mb-4" aria-label="Tabs">
+        <nav
+          className="flex flex-row-reverse space-x-reverse space-x-4 border-2 rounded-2xl bg-[#393939] pb-2 px-2.5 mx-3.5 mb-4"
+          aria-label="Tabs"
+        >
           {tabs.map((tab) => (
             <button
               key={tab.value}
               onClick={() => setActiveTab(tab.value)}
               className={classNames(
                 activeTab === tab.value
-                  ? "bg-indigo-100 text-indigo-700"
-                  : "text-gray-600 hover:text-gray-800 hover:bg-gray-100",
+                  ? "bg-[#8CFF45] text-[#393939]"
+                  : "text-white hover:text-gray-800 hover:bg-gray-100",
                 "px-3 py-2 text-sm font-medium rounded-md transition-colors"
               )}
             >
@@ -60,10 +63,10 @@ export default function SettingsTabs() {
 
       {/* Tab content */}
       <div className="mt-4">
-        {activeTab === "account" && <p>My Account Content</p>}
-        {activeTab === "company" && <p>Company Settings Content</p>}
-        {activeTab === "team" && <p>Team Members List</p>}
-        {activeTab === "billing" && <p>Billing Information</p>}
+        {activeTab === "account" && <p>محتوای حساب من</p>}
+        {activeTab === "company" && <p>تنظیمات شرکت</p>}
+        {activeTab === "team" && <p>لیست اعضای تیم</p>}
+        {activeTab === "billing" && <p>اطلاعات صورتحساب</p>}
       </div>
     </div>
   );

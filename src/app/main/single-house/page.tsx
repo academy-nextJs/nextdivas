@@ -96,11 +96,16 @@ function SingleHouse() {
             </div>
           </div>
         </div>
+
         <div className="flex items-center justify-between mt-4 text-sm text-gray-600">
-          {/* آدرس */}
-          <div className="flex items-center gap-1">
-            <HiOutlineLocationMarker className="text-lg text-green-500" />
-            <span>گیلان، رشت، جاده دریا</span>
+          {/* لایک و اشتراک‌گذاری */}
+          <div className="flex items-center gap-3">
+            <button className="text-gray-500 hover:text-red-500 transition">
+              ❤️ <span className="ml-1">12</span>
+            </button>
+            <button className="text-gray-500 hover:text-blue-500 transition">
+              🔗 اشتراک‌گذاری
+            </button>
           </div>
 
           {/* تگ‌ها */}
@@ -115,15 +120,12 @@ function SingleHouse() {
               #فروش
             </span>
           </div>
-
-          {/* لایک و اشتراک‌گذاری */}
-          <div className="flex items-center gap-3">
-            <button className="text-gray-500 hover:text-red-500 transition">
-              ❤️ <span className="ml-1">12</span>
-            </button>
-            <button className="text-gray-500 hover:text-blue-500 transition">
-              🔗 اشتراک‌گذاری
-            </button>
+        </div>
+        <div className="flex pt-3.5 flex-wrap gap-2 justify-end w-full">
+          {/* آدرس */}
+          <div className="flex items-center gap-1">
+            <HiOutlineLocationMarker className="text-lg text-green-500" />
+            <span>گیلان، رشت، جاده دریا</span>
           </div>
         </div>
 
