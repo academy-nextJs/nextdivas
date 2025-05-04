@@ -94,12 +94,12 @@ export default function Footer() {
             </div>
             <div className="relative max-w-md px-6 sm:max-w-3xl lg:px-0 lg:ml-10">
               <div className="pt-12 sm:pt-16 lg:pt-20 space-y-6">
-                <p className="text-sm leading-12 font-medium text-right text-lime-50">
-                  24 ساعت روز و 7 روز هفته در اختیار شماییم !
+                <p className="text-sm leading-12 font-bold text-right text-black">
+                  ! 24 ساعت روز و 7 روز هفته در اختیار شماییم
                 </p>
-                <p className="text-sm leading-8 font-light text-right text-lime-100">
-                  تیم دلتا با ارائه بهترین نیرو های خدماتی و سرویس های املاکی
-                  سعی دارد تا بتواند در تمام لحظات کنار شما باشد .
+                <p className="text-sm leading-8 font-medium text-right text-black">
+                  تیم دلتا با ارائه بهترین نیرو های خدماتی و سرویس های املاکی.
+                  سعی دارد تا بتواند در تمام لحظات کنار شما باشد
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4">
