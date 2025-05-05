@@ -5,6 +5,8 @@ import myPhoto2 from "../../assets/image/login2.png";
 import search from "../../assets/image/search.png";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { registerAction } from "@/app/actions/authActions";
+import { loginAction } from "@/app/actions/loginAction";
 
 export default function Login() {
   const [mode, setMode] = useState<"login" | "register">("login");
@@ -49,7 +51,7 @@ export default function Login() {
               </p>
               <p className="text-sm leading-8 text-right font-light text-lime-100">
                 با وارد کردن اطلاعات خود به راحتی وارد پنل خودتون بشید و از
-                پروژه‌هاتون خبر بگیرید!
+                پروژه‌هاتون خبر بگیرید
               </p>
 
               <div className="flex bg-[#303030] my-6 py-1.5 rounded-2xl">
@@ -117,8 +119,58 @@ export default function Login() {
                   validationSchema={
                     mode === "login" ? loginSchema : registerSchemas[step - 1]
                   }
-                  onSubmit={(values) => {
-                    console.log("ارسال شد", values);
+                  onSubmit={async (
+                    values,
+                    { setSubmitting, setFieldError }
+                  ) => {
+                    setSubmitting(true);
+
+                    if (mode === "login") {
+                      try {
+                        const res = await loginAction(values); // باید جداگانه بنویسی
+                        if (!res.success) {
+                          setFieldError("email", res.message || "خطا در ورود");
+                        }
+                      } catch (err: any) {
+                        setFieldError(
+                          "email",
+                          err.message || "خطایی رخ داده است"
+                        );
+                      } finally {
+                        setSubmitting(false);
+                      }
+                    } else {
+                      // ثبت‌نام مرحله‌ای
+                      const result = await registerAction(step, values);
+
+                      if (result.success) {
+                        if (step === 1) {
+                          // ایمیل رو نگه دار برای مرحله ۳
+                          values.email = values.email;
+                        }
+
+                        if (step < 3) {
+                          nextStep();
+                        } else {
+                          // نهایی‌سازی
+                          console.log("ثبت‌نام کامل شد:", result);
+                        }
+                      } else {
+                        // نمایش خطای سمت سرور
+                        const errorField =
+                          step === 1
+                            ? "email"
+                            : step === 2
+                            ? "code"
+                            : "password";
+                        setFieldError(
+                          errorField,
+                          result.message || "خطا در ثبت‌نام"
+                        );
+                      }
+
+                      setSubmitting(false);
+                    }
                   }}
                 >
                   {({ isSubmitting }) => (

@@ -1,61 +1,44 @@
 "use server";
 
-import * as Yup from "yup";
+import {
+  serverCompleteRegistration,
+  serverStartRegistration,
+  serverVerifyEmail,
+} from "@/utils/service/api/auth/server-auth";
+import {
+  step1Schema,
+  step2Schema,
+  step3Schema,
+} from "@/validations/auth.validation";
 
-// ✏️ تعریف اسکیمای yup برای login
-const loginSchema = Yup.object({
-  email: Yup.string().email().required(),
-  password: Yup.string().required(),
-});
-
-// ✏️ تعریف اسکیمای yup برای register
-const registerSchema = Yup.object({
-  email: Yup.string().email().required(),
-  code: Yup.string().length(6).required(),
-  phone: Yup.string()
-    .matches(/^09\d{9}$/)
-    .required(),
-  password: Yup.string().min(6).required(),
-});
-
-// ✅ لاگین
-export async function loginAction(formData: {
-  email: string;
-  password: string;
-}) {
+// registerAction
+export async function registerAction(step: number, formData: any) {
   try {
-    const values = await loginSchema.validate(formData);
+    let response;
 
-    const res = await fetch("https://api.example.com/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(values),
-    });
+    if (step === 1) {
+      const values = await step1Schema.validate(formData);
+      response = await serverStartRegistration(values);
+    } else if (step === 2) {
+      const values = await step2Schema.validate(formData);
+      response = await serverVerifyEmail(values);
+    } else if (step === 3) {
+      const values = await step3Schema.validate(formData);
 
-    const data = await res.json();
-    return data;
-  } catch (err: any) {
-    return { success: false, message: err.message };
-  }
-}
+      // ✨ اطمینان از ارسال email در مرحله سوم
+      if (!formData.email) {
+        throw new Error("Email is required for the final step.");
+      }
 
-// ✅ ثبت‌نام
-export async function registerAction(formData: {
-  email: string;
-  code: string;
-  phone: string;
-  password: string;
-}) {
-  try {
-    const values = await registerSchema.validate(formData);
+      const finalValues = {
+        ...values,
+        email: formData.email,
+      };
 
-    const res = await fetch("https://api.example.com/register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(values),
-    });
+      response = await serverCompleteRegistration(finalValues);
+    }
 
-    const data = await res.json();
+    const data = await response.json();
     return data;
   } catch (err: any) {
     return { success: false, message: err.message };
