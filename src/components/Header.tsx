@@ -31,7 +31,7 @@ const Header = () => {
 
   return (
     <div
-      className={`absolute z-10 top-3 left-3 w-[98%] bg-gray rounded-2xl grid grid-cols-2 
+      className={`absolute z-50 top-3 left-3 w-[98%] bg-gray rounded-2xl grid grid-cols-2 
         max-lg:left-1 max-md:grid-cols-4 max-md:items-start ${menu === true ? "max-md:h-68" : "max-md:h-14" } transition-all duration-400
         max-sm:grid-cols-3 mainshadow
       `}
