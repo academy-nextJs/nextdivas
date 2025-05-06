@@ -22,14 +22,14 @@ const facilities: Facility[] = [
 
 export default function AccommodationFacilities() {
   return (
-    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 mt-4">
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 mt-6">
       {facilities.map((item, index) => (
         <div
           key={index}
-          className="bg-[#1F1F1F] rounded-lg p-3 flex flex-col justify-between items-center h-[80px] text-sm text-white"
+          className="bg-[#1F1F1F] rounded-xl p-4 flex flex-col justify-between items-center text-center min-h-[90px] text-sm text-white shadow-sm hover:shadow-md transition-shadow"
         >
-          <span>{item.title}</span>
-          <span className="text-white bg-[#6F52FF] px-12 py-2 mt-1.5 rounded-xl font-medium">
+          <span className="font-semibold">{item.title}</span>
+          <span className="text-white bg-[#6F52FF] px-4 py-1.5 mt-2 rounded-lg text-xs sm:text-sm font-medium">
             {item.value}
           </span>
         </div>
