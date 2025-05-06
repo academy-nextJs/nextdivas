@@ -1,20 +1,22 @@
 "use client";
 
 import { useState } from "react";
+import UserComments from "../HomeContainer/UserComments";
+import AccommodationFacilities from "./facilities";
+import AboutHouse from "./aboutHouse";
 
 function classNames(...classes: (string | false | null | undefined)[]) {
   return classes.filter(Boolean).join(" ");
 }
 
 const tabs = [
-  { name: "حساب من", value: "account" },
-  { name: "شرکت", value: "company" },
-  { name: "اعضای تیم", value: "team" },
-  { name: "صورتحساب", value: "billing" },
+  { name: " درباره ی ملک ", value: "about" },
+  { name: "امکانات اقامتگاه ", value: "facility" },
+  { name: " نظرات کاربران", value: "Comments " },
 ];
 
 export default function SettingsTabs() {
-  const [activeTab, setActiveTab] = useState("account");
+  const [activeTab, setActiveTab] = useState("about");
 
   return (
     <div className="text-right">
@@ -63,10 +65,9 @@ export default function SettingsTabs() {
 
       {/* Tab content */}
       <div className="mt-4">
-        {activeTab === "account" && <p>محتوای حساب من</p>}
-        {activeTab === "company" && <p>تنظیمات شرکت</p>}
-        {activeTab === "team" && <p>لیست اعضای تیم</p>}
-        {activeTab === "billing" && <p>اطلاعات صورتحساب</p>}
+        {activeTab === "about" && <AboutHouse />}
+        {activeTab === "facility" && <AccommodationFacilities />}
+        {activeTab === "Comments " && <UserComments />}
       </div>
     </div>
   );

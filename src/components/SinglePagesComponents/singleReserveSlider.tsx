@@ -1,17 +1,13 @@
-'use client';
+"use client";
 
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Autoplay } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import Image from "next/image";
+import myPhoto2 from "../../app/assets/image/login2.png";
 
-import Image from 'next/image';
-
-const images = [
-  '/images/hero1.jpg',
-  '/images/hero2.jpg',
-  '/images/hero3.jpg',
-];
+const images = [myPhoto2, myPhoto2, myPhoto2];
 
 const ImageSlider = () => {
   return (
