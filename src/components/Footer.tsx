@@ -18,8 +18,6 @@ const navigation = {
     { name: "09229167194 - 098541612310", href: "#" },
     { name: "Delta@gmail.com", href: "#" },
     { name: "گیلان ، رشت ، میدان آزادی ، جنب چهار راه عظیمی زاده", href: "#" },
-    // { name: "Press", href: "#" },
-    // { name: "Partners", href: "#" },
   ],
 
   social: [
@@ -69,7 +67,7 @@ export default function Footer() {
   return (
     <div className=" relative  p-14 w-full" aria-labelledby="footer-heading">
       <div
-        className="relative py-28 w-full bg-[#232323] dark:bg-dark overflow-hidden"
+        className="relative py-14 w-full  dark:bg-dark overflow-hidden"
         aria-labelledby="footer-heading"
       >
         {/* پس‌زمینه SVG */}
@@ -169,7 +167,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="bg-gray relative z-20 shadow-md rounded-2xl mx-auto max-w-7xl px-6 pb-8  sm:pt-24 lg:px-8 ">
+        <div className="bg-gray relative z-20 shadow-md rounded-2xl mx-auto max-w-5xl px-6 pb-4  sm:pt-24 lg:px-8 ">
           <div className="xl:grid xl:grid-cols-3 xl:gap-8">
             <div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
               <div className="md:grid md:grid-cols-2 md:gap-8">

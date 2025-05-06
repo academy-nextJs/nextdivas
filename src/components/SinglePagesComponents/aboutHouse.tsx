@@ -15,7 +15,7 @@ function AboutHouse() {
         ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت.....
       </p>
 
-      <div className="  flex justify-end items-end">
+      <div className="  flex  justify-start items-start w-80 ">
         <img src={Photo1.src} alt="عکس من" />
         <img src={Photo2.src} alt="عکس من" />
       </div>

@@ -3,7 +3,7 @@ import ReserveBox from "@/components/SinglePagesComponents/reserveInfo";
 import ImageSlider from "@/components/SinglePagesComponents/singleReserveSlider";
 import SettingsTabs from "@/components/SinglePagesComponents/tab";
 import React from "react";
-import GridComponent from "./grid";
+import GridComponent from "../../../components/SinglePagesComponents/grid";
 
 function SingleReserve() {
   return (
