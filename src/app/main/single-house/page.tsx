@@ -125,6 +125,11 @@ function SingleHouse() {
       </div>
 
       <SettingsTabs />
+      <div className="flex justify-between items-center bg-[#393939] px-5 mx-5 rounded-lg">
+        <p className="text-white leading-10">مشاهده همه</p>
+        <p className="text-white leading-10">آگهی های مشابه</p>
+      </div>
+
       <CardList />
     </div>
   );

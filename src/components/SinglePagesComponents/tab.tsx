@@ -43,7 +43,7 @@ export default function SettingsTabs() {
       {/* Desktop tabs */}
       <div className="hidden sm:block">
         <nav
-          className="flex flex-row-reverse space-x-reverse space-x-4 border-2 rounded-2xl bg-[#393939] pb-2 px-2.5 mx-3.5 mb-4"
+          className="flex flex-row-reverse space-x-reverse space-x-4 rounded-lg bg-[#393939] pb-2 px-2.5 mx-3.5 mb-4"
           aria-label="Tabs"
         >
           {tabs.map((tab) => (
@@ -54,7 +54,7 @@ export default function SettingsTabs() {
                 activeTab === tab.value
                   ? "bg-[#8CFF45] text-[#393939]"
                   : "text-white hover:text-gray-800 hover:bg-gray-100",
-                "px-3 py-2 text-sm font-medium rounded-md transition-colors"
+                "px-3 mt-2 py-1 text-sm font-medium rounded-md transition-colors"
               )}
             >
               {tab.name}
