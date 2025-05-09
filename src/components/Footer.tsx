@@ -28,12 +28,15 @@ export default function Footer() {
   return (
     <div className="relative p-14 w-full" aria-labelledby="footer-heading">
       <div className="relative py-14 w-full dark:bg-dark overflow-hidden">
-        {/* پس‌زمینه SVG */}
+        {/* Mobile background rectangle */}
+        <div className="absolute inset-0 bg-[#8CFF45] rounded-2xl lg:hidden"></div>
+
+        {/* SVG background on desktop and above */}
         <svg
           viewBox="0 0 1376 800"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="absolute inset-0 w-full h-full z-0"
+          className="absolute inset-0 w-full h-full z-0 hidden lg:block"
           preserveAspectRatio="none"
         >
           <path
@@ -49,29 +52,32 @@ export default function Footer() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-6 lg:px-8">
-            <div className="flex justify-end mt-32" dir="rtl">
+          <div className="flex flex-col-reverse items-center gap-8 lg:grid lg:grid-cols-2 lg:items-start lg:gap-6 lg:px-8">
+            <div
+              className="flex justify-center lg:justify-end mt-8 lg:mt-32"
+              dir="rtl"
+            >
               <img
                 src={myPhoto2.src}
                 alt="عکس من"
-                className="rounded-xl w-[20rem]"
+                className="rounded-xl w-64 sm:w-72 lg:w-[20rem]"
               />
             </div>
 
             <motion.div
-              className="relative max-w-md px-6 sm:max-w-3xl lg:px-0 lg:ml-10"
+              className="relative w-full max-w-md px-4 sm:px-6 sm:max-w-3xl lg:px-0 lg:ml-10"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true }}
             >
               <div className="pt-12 sm:pt-16 lg:pt-20 space-y-6">
-                <p className="text-sm leading-12 font-bold text-right text-black">
+                <p className="text-sm font-bold text-right text-black">
                   ! 24 ساعت روز و 7 روز هفته در اختیار شماییم
                 </p>
                 <p className="text-sm leading-8 font-medium text-right text-black">
-                  تیم دلتا با ارائه بهترین نیرو های خدماتی و سرویس های املاکی،
-                  سعی دارد تا بتواند در تمام لحظات کنار شما باشد.
+                  تیم دلتا با ارائه بهترین نیروهای خدماتی و سرویس‌های املاکی،
+                  سعی دارد تا در تمام لحظات کنار شما باشد.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4">
@@ -86,7 +92,7 @@ export default function Footer() {
                       type="text"
                       name="name"
                       id="name"
-                      className="mt-1 block w-full px-3 text-white rounded-md h-12 bg-[#303030] border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      className="mt-1 block w-full px-3 h-12 rounded-md bg-[#303030] text-white border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       placeholder="نام شما"
                     />
                   </div>
@@ -101,7 +107,7 @@ export default function Footer() {
                       type="email"
                       name="email"
                       id="email"
-                      className="mt-1 block w-full px-3 text-white rounded-md h-12 bg-[#303030] border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      className="mt-1 block w-full px-3 h-12 rounded-md bg-[#303030] text-white border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       placeholder="you@example.com"
                     />
                   </div>
@@ -110,7 +116,7 @@ export default function Footer() {
                 <div>
                   <label
                     htmlFor="comment"
-                    className="block text-sm text-right font-medium text-black"
+                    className="block text-sm font-medium text-right text-black"
                   >
                     متن خود را وارد کنید
                   </label>
@@ -118,7 +124,7 @@ export default function Footer() {
                     rows={4}
                     name="comment"
                     id="comment"
-                    className="mt-1 block w-full px-3 text-white rounded-md bg-[#303030] border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    className="mt-1 block w-full px-3 rounded-md bg-[#303030] text-white border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                     placeholder="پیام شما..."
                   />
                 </div>
@@ -126,7 +132,7 @@ export default function Footer() {
                 <div>
                   <button
                     type="submit"
-                    className="inline-flex w-full justify-center rounded-md border border-transparent bg-[#303030] py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    className="w-full inline-flex justify-center rounded-md border border-transparent bg-[#303030] py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                   >
                     ارسال فرم
                   </button>
@@ -204,7 +210,7 @@ export default function Footer() {
 
             <div className="space-y-8">
               <img
-                className="h-7 text-right text-amber-50"
+                className="h-7"
                 src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                 alt="پلتفرم دلتا"
               />
@@ -215,8 +221,8 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="flex mt-16 border-t border-amber-50 pt-8 sm:mt-20 lg:mt-24 justify-between">
-            <div className="flex space-x-6 justify-end">
+          <div className="flex flex-col sm:flex-row justify-between mt-16 border-t border-amber-50 pt-8 sm:mt-20 lg:mt-24">
+            <div className="flex justify-center sm:justify-end space-x-6 rtl:space-x-reverse">
               {navigation.social.map((item) => (
                 <a
                   key={item.name}
