@@ -5,7 +5,7 @@ import axios from "axios";
 
 const axiosInstance = axios.create({
   baseURL: API_BASE_URL,
-  withCredentials: true, // اگه نیاز به ارسال کوکی یا session داری
+  // withCredentials: true, // اگه نیاز به ارسال کوکی یا session داری
 });
 
 // Request Interceptor
