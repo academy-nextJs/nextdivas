@@ -5,9 +5,11 @@ import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import Image from "next/image";
-import myPhoto2 from "../../app/assets/image/login2.png";
+import slider1 from "../../app/assets/image/slider1.png";
+import slider2 from "../../app/assets/image/slider2.jpg";
+import slider3 from "../../app/assets/image/slider3.jpg";
 
-const images = [myPhoto2, myPhoto2, myPhoto2];
+const images = [slider1, slider2, slider3];
 
 const ImageSlider = () => {
   return (
