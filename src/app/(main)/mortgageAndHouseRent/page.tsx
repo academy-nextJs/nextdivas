@@ -379,7 +379,7 @@ export default function MortgageAndHouseRent() {
 
             {/* بخش کارت‌ها با گرید ریسپانسیو */}
             <div className="w-full p-3 md:pt-28 ">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="flex flex-wrap h-auto gap-6">
                 <CardWrapper cardsData={currentCards} />
               </div>
 

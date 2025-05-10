@@ -49,14 +49,14 @@ const NewInternainment = () => {
         />
       </svg>
 
-      <div className="max-2xl:mt-9 max-xl:bg-[#232323] p-4 rounded-[55px]">
+      <div className="max-2xl:mt-9 max-xl:bg-[#232323] p-4 rounded-[55px] px-12 maxl-xl:px-4">
         {/* title-part */}
-        <div className="grid justify-items-end z-10 gap-4 text-white">
+        <div className="grid justify-items-end z-10 gap-4 text-white px-6">
           <div className="text-primary flex gap-1 items-center justify-center ">
             <BiSolidRightArrow className="text-[9px] opacity-50" />
             <BiSolidRightArrow className="text-[11px] opacity-80" />
             <BiSolidRightArrow className="text-sm" />
-            <h1 className="mx-2"> بهترین تخفیف</h1>
+            <h1 className="mx-2"> جدید ترین نقاط </h1>
           </div>
           <div className="grid grid-cols-2 w-full">
             <ButtonComponent
@@ -65,16 +65,16 @@ const NewInternainment = () => {
               style="border-2 border-white bg-none flex-row-reverse pb-2 hover:border-primary hover:bg-primary/20 justify-self-start"
             />
             <h1 className=" font-bold text-2xl max-sm:text-lg justify-self-end">
-              پیشنهاد ویژه دلتا
+              جدید ترین مناقط تفریحی
             </h1>
           </div>
         </div>
 
         {/* card-part */}
-        <div className="grid justify-items-center gap-5 mt-8 z-10">
+        <div className="grid justify-items-center gap-5 mt-8 z-10 px-4">
           <Swiper
             pagination={{ clickable: true }}
-            className="mySwiper grid text-white w-[98%]"
+            className="mySwiper grid text-white w-[98%] "
             modules={[Pagination]}
             breakpoints={{
               420: { slidesPerView: 1 },
@@ -86,14 +86,14 @@ const NewInternainment = () => {
           >
             {deltaInternainment.map((item: House) => (
               <SwiperSlide key={item.id} className="mb-12 text-right">
-                <div className="group grid justify-items-center justify-self-center text-white cursor-pointer border border-blue-500">
+                <div className="group grid justify-items-center justify-self-center text-white cursor-pointer ">
                   <CardComponent rate={item.rate} photos={item.photos} />
-                  <div className="grid grid-cols-2 w-full border border-amber-500">
-                    <p className="text-neutral-500 flex">
+                  <div className="grid grid-cols-2 w-full ">
+                    <p className="text-neutral-500 flex text-rigth">
                       {" "}
-                      {item.capacity}مورد
+                      ({item.capacity}مورد)
                     </p>
-                    <h3 className="text-white w-full text-left text-lg font-bold justify-self-end border-2">
+                    <h3 className="text-white w-full text-left text-lg font-bold justify-self-end">
                       {" "}
                       {item.title}{" "}
                     </h3>
