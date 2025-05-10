@@ -210,9 +210,9 @@ export default function Footer() {
 
             <div className="space-y-8">
               <img
-                className="h-7"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                className="h-7 text-right text-white"
                 alt="پلتفرم دلتا"
+                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
               />
               <p className="text-sm leading-6 text-right text-amber-50">
                 لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با

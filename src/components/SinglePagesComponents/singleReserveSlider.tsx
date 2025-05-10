@@ -19,7 +19,7 @@ const ImageSlider = () => {
       loop={true}
       autoplay={{ delay: 3000 }}
       pagination={{ clickable: true }}
-      className="w-full h-[400px] rounded-xl overflow-hidden"
+      className="w-2/3 md:w-full h-[200px] sm:h-[250px] md:h-[300px] lg:h-[400px] rounded-xl overflow-hidden"
     >
       {images.map((src, index) => (
         <SwiperSlide key={index}>
