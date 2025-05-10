@@ -3,7 +3,7 @@ import React from "react";
 import hero from "../../../public/landing/hero.png";
 import arrow from "../../../public/icons/whiteflash.png";
 import arrow2 from "../../../public/icons/flash.png";
-import AAA from "../../../public/icons/AAA.png"; 
+import AAA from "../../../public/icons/AAA.png";
 import vectors from "../../../public/landing/vector.png";
 import ButtonComponent from "../common/button";
 import { PiStarFourFill } from "react-icons/pi";
@@ -11,18 +11,19 @@ import HeroFillter from "./HeroFillter";
 
 const Hero = () => {
   return (
-    <div className="relative pb-8 border border-red-950">
-      
-      <Image
-        src={hero}
-        alt="hero"
-        className="absolute top-0 -z-10 w-full h-[850px] max-xl:h-[650px] max-lg:h-[640px] max-sm:h-[390px] "
-      />
+    <div className=" pb-8 ">
+      <div className="relative grid">
+        <Image
+          src={hero}
+          alt="hero"
+          className="absolute top-0 -z-10 w-[100%] h-[850px] max-xl:h-[650px] max-lg:h-[640px] max-sm:h-[390px] "
+        />
+      </div>
 
       <div className=" mt-[400px] max-xl:mt-[300px] max-lg:mt-[280px] max-sm:mt-[180px]">
         <div className="grid grid-cols-2 max-sm:grid-cols-1 max-sm:justify-items-center">
           {/* left  */}
-          <div className="text-white ml-18 max-lg:ml-4  w-1/2 max-lg:w-2/3 text-right">
+          <div className="text-white ml-20 max-lg:ml-4  w-1/2 max-lg:w-2/3 text-right">
             <h1 className="relative flex text-lg max-xl:text-md max-lg:text-sm max-sm:hidden">
               <PiStarFourFill className="text-white text-[13px] absolute -right-5 top-3" />
               رزور، رهن، اجاره و حتی خرید و فروش ملک مورد نظرتون مثل آب خوردن
@@ -56,14 +57,14 @@ const Hero = () => {
           </div>
 
           {/* right  */}
-          <div className="text-white  w-1/2 text-right grid justify-items-end justify-self-end mx-8 max-lg:text-sm max-sm:hidden">
+          <div className="text-white w-1/2 text-right grid justify-items-end justify-self-end mx-8 max-lg:text-sm max-sm:hidden">
             <Image src={vectors} alt="vectors" />
             <h3 className="text-xl font-bold">بیش از +7000 </h3>
-            <h3 className="flex flex-row-reverse "> رضایت مشتریانی که به دلتا اعتماد کردند 
-            <Image src={AAA} alt="vectors" className="mt-3" />
-
+            <h3 className="flex flex-row-reverse ">
+              {" "}
+              رضایت مشتریانی که به دلتا اعتماد کردند
+              <Image src={AAA} alt="vectors" className="mt-3 h-auto w-auto" />
             </h3>
-            
           </div>
         </div>
 

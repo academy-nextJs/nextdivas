@@ -1,7 +1,20 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Segoe UI";
+  src: local("Segoe UI"), url("/fonts/segoe-ui.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
+  --swiper-pagination-bullet-size: 15px;
+  --swiper-pagination-bullet-inactive-color: #ffffff;
+  --swiper-pagination-bullet-inactive-opacity: 0.75;
+  --swiper-pagination-color: none;
+
   background-color: rgba(35, 35, 35, 1);
+  ffont-family: "Segoe UI";
 }
 
 .mainshadow {
@@ -14,4 +27,17 @@
   --color-secondary: rgba(117, 105, 255, 1);
   --color-danger: rgba(255, 85, 85, 1);
   --color-gray: rgba(54, 54, 54, 1);
+}
+
+.swiper-pagination-bullet-active {
+  width: 0px;
+  height: 0px;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 14px solid #8cff45;
+  background: none;
+  opacity: 1;
+  margin: 0 6px;
+  padding: 0.5px;
+  transition: all 0.3s;
 }

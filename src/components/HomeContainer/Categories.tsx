@@ -1,18 +1,18 @@
 import React from "react";
-import { BiSolidRightArrow } from "react-icons/bi";
+// import { BiSolidRightArrow } from "react-icons/bi";
 import { GoArrowLeft } from "react-icons/go";
 import LandingTitle from "../common/LandingTitle";
+import { getCategories } from "@/utils/service/api/landing/server-landing";
 
-const Categories = () => {
-  const list = [
-    // { id: 1, title: "home" },
-    { id: 2, title: "home" },
-    { id: 3, title: "home" },
-    { id: 4, title: "home" },
-    { id: 5, title: "home" },
-  ];
+import { categoryType } from "@/types/landing.types";
+import Image from "next/image";
+import cottage from "../../../public/landing/cottage.png";
+
+const Categories = async () => {
+  const categories = await getCategories();
+
   return (
-    <div className="mt-5 py-36">
+    <div className="mt-5 py-44">
       <div
         className="absolute w-40 h-60 blur-3xl opacity-20 rounded-r-full
         bg-primary
@@ -30,10 +30,14 @@ const Categories = () => {
 
       {/* categories */}
       <div className="flex max-lg:flex-wrap justify-center mt-10">
-        {list.map((items) => (
+        {categories.map((items: categoryType) => (
           <div key={items.id} className="group relative">
             <GoArrowLeft className="absolute top-5 left-7 text-white/50 text-xl" />
-            <div className=" absolute right-10 -top-3 rounded-xl bg-neutral-700/80 shadow-2xl w-14 h-14"></div>
+            <Image
+              className=" absolute right-10 -top-3 rounded-xl bg-neutral-700/80 shadow-2xl p-2 w-14 h-14"
+              src={cottage}
+              alt="cottage "
+            />
             <svg
               width="260"
               height="137"
@@ -47,7 +51,7 @@ const Categories = () => {
               </g>
             </svg>
             <h3 className="absolute top-14 w-full text-center text-white group-hover:text-black">
-              {items.title}kkkkkk
+              {items.name}
             </h3>
           </div>
         ))}

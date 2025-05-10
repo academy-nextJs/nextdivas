@@ -9,8 +9,8 @@ type Props = {
 
 const LandingTitle = ({title , mainTitle , details}: Props) => {
   return (
-    <div className="grid gap-5">
-         <div className="font-bold text-primary flex gap-1 items-center justify-center">
+    <div className="grid gap-4">
+         <div className="font-semibold text-primary flex gap-1 items-center justify-center">
            <BiSolidRightArrow className="text-[10px] opacity-50" />
            <BiSolidRightArrow className="text-xs opacity-90" />
            <BiSolidRightArrow />
@@ -19,7 +19,7 @@ const LandingTitle = ({title , mainTitle , details}: Props) => {
            <BiSolidRightArrow className="text-xs rotate-180 opacity-90" />
            <BiSolidRightArrow className="text-[10px] rotate-180 opacity-50" />
          </div>
-         <h1 className="text-2xl font-semibold text-center text-white">
+         <h1 className="text-[30px] max-sm:text-xl font-medium text-center text-white">
            {" "}
           {mainTitle}
          </h1>

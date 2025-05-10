@@ -1,13 +1,41 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import { BiBuildingHouse, BiSolidRightArrow } from "react-icons/bi";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import CardComponent from "../common/CardComponent";
 import ButtonComponent from "../common/button";
 import vectors from "../../../public/icons/whiteflash.png";
+import { House } from "@/types/landing.types";
+import { getOffers } from "@/utils/service/api/landing/landing";
+
+//slider imports
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { Pagination, Navigation } from "swiper/modules";
+import SwiperCore from "swiper";
+import "swiper/swiper-bundle.css";
+SwiperCore.use([Navigation, Pagination]);
 
 const NewInternainment = () => {
+  const [deltaInternainment, setdeltaInternainment] = useState<House[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getOffers();
+        setdeltaInternainment(data);
+      } catch (err) {
+        console.log(" errore : ", err);
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
-    <div className="relative grid justify-items-center py-6 mx-4 pb-28">
+    <div className="relative grid  py-6 mx-4 pb-28">
       <svg
         height="551"
         viewBox="0 0 1376 551"
@@ -43,38 +71,37 @@ const NewInternainment = () => {
         </div>
 
         {/* card-part */}
-        <div className="grid grid-cols-4 gap-5 mt-10 z-10 max-md:grid-cols-1">
-          <div className="group text-white cursor-pointer">
-            <CardComponent />
-            <div className="flex items-end gap-2 justify-end px-8 pt-2 ">
-              <p className="text-neutral-500"> {"(56 مورد)"} </p>
-              <h3 className="text-white"> اجاره ی ویلا در بندر انزلی</h3>
-            </div>
-          </div>
-
-          <div className="group text-white cursor-pointer">
-            <CardComponent />
-            <div className="flex items-end gap-2 justify-end px-8 pt-2 ">
-              <p className="text-neutral-500"> {"(56 مورد)"} </p>
-              <h3 className="text-white"> اجاره ی ویلا در بندر انزلی</h3>
-            </div>
-          </div>
-
-          <div className="group text-white cursor-pointer">
-            <CardComponent />
-            <div className="flex items-end gap-2 justify-end px-8 pt-2 ">
-              <p className="text-neutral-500"> {"(56 مورد)"} </p>
-              <h3 className="text-white"> اجاره ی ویلا در بندر انزلی</h3>
-            </div>
-          </div>
-
-          <div className="group text-white cursor-pointer">
-            <CardComponent />
-            <div className="flex items-end gap-2 justify-end px-8 pt-2 ">
-              <p className="text-neutral-500"> {"(56 مورد)"} </p>
-              <h3 className="text-white"> اجاره ی ویلا در بندر انزلی</h3>
-            </div>
-          </div>
+        <div className="grid justify-items-center gap-5 mt-8 z-10">
+          <Swiper
+            pagination={{ clickable: true }}
+            className="mySwiper grid text-white w-[98%]"
+            modules={[Pagination]}
+            breakpoints={{
+              420: { slidesPerView: 1 },
+              640: { slidesPerView: 2 },
+              768: { slidesPerView: 3 },
+              1024: { slidesPerView: 4 },
+            }}
+            spaceBetween={30}
+          >
+            {deltaInternainment.map((item: House) => (
+              <SwiperSlide key={item.id} className="mb-12 text-right">
+                <div className="group grid justify-items-center justify-self-center text-white cursor-pointer border border-blue-500">
+                  <CardComponent rate={item.rate} photos={item.photos} />
+                  <div className="grid grid-cols-2 w-full border border-amber-500">
+                    <p className="text-neutral-500 flex">
+                      {" "}
+                      {item.capacity}مورد
+                    </p>
+                    <h3 className="text-white w-full text-left text-lg font-bold justify-self-end border-2">
+                      {" "}
+                      {item.title}{" "}
+                    </h3>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </div>
     </div>
