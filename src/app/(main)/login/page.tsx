@@ -1,369 +1,340 @@
-// File: app/components/Login.tsx
 "use client";
-import { useState } from "react";
-import myPhoto from "../../assets/image/login.png";
+
+import React, { useState, useTransition, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { motion, AnimatePresence } from "framer-motion";
 import myPhoto2 from "../../assets/image/login2.png";
 import search from "../../assets/image/search.png";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
+import {
+  serverLogin,
+  serverStartRegistration,
+  serverVerifyEmail,
+  serverCompleteRegistration,
+} from "../../../utils/service/api/auth/server-auth";
+import FullPageSkeleton from "../../../components/skeletons/LoginSkeleton";
 
 export default function Login() {
   const [mode, setMode] = useState<"login" | "register">("login");
   const [step, setStep] = useState(1);
+  const [error, setError] = useState("");
+  const [isPending, startTransition] = useTransition();
+  const [showSkeleton, setShowSkeleton] = useState(false);
 
-  const nextStep = () => setStep((s) => s + 1);
-  const prevStep = () => setStep((s) => s - 1);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const loginSchema = Yup.object({
-    email: Yup.string().email("ایمیل نامعتبر است").required("ایمیل الزامی است"),
-    password: Yup.string().required("رمز عبور الزامی است"),
-  });
+  useEffect(() => {
+    const timer = setTimeout(() => setShowSkeleton(true), 500);
+    return () => clearTimeout(timer);
+  }, []);
 
-  const registerSchemas = [
-    Yup.object({
-      email: Yup.string()
-        .email("ایمیل نامعتبر است")
-        .required("ایمیل الزامی است"),
-    }),
-    Yup.object({
-      code: Yup.string().required("کد تأیید الزامی است"),
-    }),
-    Yup.object({
-      phone: Yup.string().required("شماره تماس الزامی است"),
-      password: Yup.string()
-        .min(6, "رمز باید حداقل 6 کاراکتر باشد")
-        .required("رمز عبور الزامی است"),
-    }),
-  ];
+  const onSubmit = (data: any) => {
+    setError("");
+    startTransition(async () => {
+      try {
+        if (mode === "login") {
+          await new Promise((r) => setTimeout(r, 500));
+          await serverLogin({
+            email: data.loginEmail,
+            password: data.loginPassword,
+          });
+        } else if (step === 1) {
+          await new Promise((r) => setTimeout(r, 500));
+          await serverStartRegistration({ email: data.regEmail });
+          setStep(2);
+        } else if (step === 2) {
+          await new Promise((r) => setTimeout(r, 500));
+          await serverVerifyEmail({ email: data.regEmail, code: data.regCode });
+          setStep(3);
+        } else {
+          await new Promise((r) => setTimeout(r, 500));
+          await serverCompleteRegistration({
+            email: data.regEmail,
+            phone: data.regPhone,
+            password: data.regPassword,
+          });
+        }
+      } catch (err: any) {
+        setError(err.message || "خطا در عملیات");
+      }
+    });
+  };
+
+  if (!showSkeleton || isPending) {
+    return (
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <FullPageSkeleton />
+      </motion.div>
+    );
+  }
 
   return (
-    <>
-      <div className="flex min-h-full bg-[#232323]">
-        <div className="relative hidden w-0 flex-1 lg:block items-start mr-40 mt-10">
-          <img src={myPhoto2.src} alt="عکس من" />
-        </div>
-        <div className="flex flex-1 flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
-          <div className="mx-auto w-full max-w-sm lg:w-96">
-            <div className="mt-8">
-              <p className="text-sm text-right leading-12 font-medium text-white">
+    <div className="flex min-h-full bg-[#232323]">
+      <div className="relative hidden w-0 flex-1 lg:block items-start mr-40 mt-20">
+        <motion.img
+          key={mode}
+          src={myPhoto2.src}
+          alt="عکس من"
+          loading="lazy"
+          initial={{ x: -50, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.6 }}
+        />
+      </div>
+
+      <div className="flex flex-1 flex-col justify-center py-12 px-4 sm:px-6 lg:px-20 xl:px-24">
+        <div className="mx-auto w-full max-w-sm lg:w-96">
+          <div className="mt-8 space-y-4">
+            {/* Header Text */}
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.4 }}
+            >
+              <p className="text-sm text-right font-medium text-white">
                 به خانواده دلتا خوش اومدی
               </p>
-              <p className="text-sm leading-8 text-right font-light text-lime-100">
+              <p className="text-sm text-right font-light text-lime-100">
                 با وارد کردن اطلاعات خود به راحتی وارد پنل خودتون بشید و از
-                پروژه‌هاتون خبر بگیرید!
+                پروژه‌هاتون خبر بگیرید
               </p>
+            </motion.div>
 
-              <div className="flex bg-[#303030] my-6 py-1.5 rounded-2xl">
-                <button
-                  onClick={() => setMode("login")}
-                  className={`flex-1 px-3 py-1.5 text-xs font-medium rounded-xl ${
-                    mode === "login"
-                      ? "text-white bg-[#8CFF45]"
-                      : "text-white hover:bg-[#8CFF45]"
-                  }`}
+            {/* Mode Toggle */}
+            <motion.div className="flex bg-[#303030] rounded-2xl py-1.5" layout>
+              <motion.button
+                onClick={() => {
+                  setMode("login");
+                  setStep(1);
+                }}
+                className={`flex-1 px-3 py-1.5 text-xs font-medium rounded-xl ${
+                  mode === "login"
+                    ? "text-white bg-[#8CFF45]"
+                    : "text-white hover:bg-[#8CFF45]"
+                }`}
+                whileTap={{ scale: 0.95 }}
+              >
+                ورود به حساب کاربری
+              </motion.button>
+              <motion.button
+                onClick={() => {
+                  setMode("register");
+                  setStep(1);
+                }}
+                className={`flex-1 px-3 py-1.5 text-xs font-medium rounded-xl ${
+                  mode === "register"
+                    ? "text-white bg-[#8CFF45]"
+                    : "text-white hover:bg-[#8CFF45]"
+                }`}
+                whileTap={{ scale: 0.95 }}
+              >
+                ساخت حساب کاربری
+              </motion.button>
+            </motion.div>
+
+            {/* Social Buttons */}
+            <motion.div
+              className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.4 }}
+            >
+              <motion.button
+                className="inline-flex w-full justify-center items-center gap-2 rounded-2xl border bg-white py-2 px-4 text-sm font-medium shadow-sm transition"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+              >
+                <img src={search.src} alt="Google" loading="lazy" /> ورود با
+                گوگل {/* lazy load برای این تصویر */}
+              </motion.button>
+              <motion.button
+                className="inline-flex w-full justify-center items-center gap-2 rounded-2xl border bg-white py-2 px-4 text-sm font-medium shadow-sm transition"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+              >
+                <svg
+                  className="h-5 w-5"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
                 >
-                  ورود به حساب کاربری
-                </button>
-                <button
-                  onClick={() => {
-                    setMode("register");
-                    setStep(1);
-                  }}
-                  className={`flex-1 px-3 py-1.5 text-xs font-medium rounded-xl ${
-                    mode === "register"
-                      ? "text-white bg-[#8CFF45]"
-                      : "text-white hover:bg-[#8CFF45]"
-                  }`}
-                >
-                  ساخت حساب کاربری
-                </button>
+                  <path d="..." />
+                </svg>{" "}
+                ورود با اپل
+              </motion.button>
+            </motion.div>
+
+            {/* Divider */}
+            <motion.div
+              className="relative mt-6"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.4 }}
+            >
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-gray-300" />
               </div>
-
-              <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <button className="inline-flex w-full justify-center items-center gap-2 rounded-2xl border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 transition">
-                  <img src={search.src} alt="Google" />
-                  ورود با حساب گوگل
-                </button>
-                <button className="inline-flex w-full justify-center items-center gap-2 rounded-2xl border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 transition">
-                  <svg
-                    className="h-5 w-5"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="..." />
-                  </svg>
-                  ورود با حساب اپل
-                </button>
+              <div className="relative flex justify-center text-sm">
+                <span className="bg-[#232323] px-2 text-white">
+                  یا می‌تونید
+                </span>
               </div>
+            </motion.div>
 
-              <div className="relative mt-6">
-                <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-gray-300" />
-                </div>
-                <div className="relative flex justify-center text-sm">
-                  <span className=" bg-[#232323] px-2 text-white">
-                    یا می‌تونید
-                  </span>
-                </div>
-              </div>
-
-              <div className="mt-6">
-                <Formik
-                  initialValues={{
-                    email: "",
-                    password: "",
-                    code: "",
-                    phone: "",
-                  }}
-                  validationSchema={
-                    mode === "login" ? loginSchema : registerSchemas[step - 1]
-                  }
-                  onSubmit={(values) => {
-                    console.log("ارسال شد", values);
-                  }}
-                >
-                  {({ isSubmitting }) => (
-                    <Form className="space-y-6">
-                      {mode === "login" && (
-                        <div className="flex gap-3">
-                          <div className="relative w-full">
-                            <Field
-                              type="email"
-                              name="email"
-                              placeholder=" "
-                              className="peer block w-full rounded-md border border-gray-300 px-3 pt-5 pb-2 text-sm placeholder-transparent shadow-sm"
-                            />
-                            <label className="absolute right-3 -top-2.5 bg-[#232323] px-1 text-xs text-gray-500">
-                              ایمیل
-                            </label>
-                            <ErrorMessage
-                              name="email"
-                              component="div"
-                              className="text-red-500 text-xs mt-1"
-                            />
-                          </div>
-                          <div className="relative w-full">
-                            <Field
-                              type="password"
-                              name="password"
-                              placeholder=" "
-                              className="peer block w-full rounded-md border border-gray-300 px-3 pt-5 pb-2 text-sm placeholder-transparent shadow-sm"
-                            />
-                            <label className="absolute right-3 -top-2.5 bg-[#232323] px-1 text-xs text-gray-500">
-                              پسوورد
-                            </label>
-                            <ErrorMessage
-                              name="password"
-                              component="div"
-                              className="text-red-500 text-xs mt-1"
-                            />
-                          </div>
-                        </div>
-                      )}
-
-                      {mode === "register" && (
-                        <>
-                          {step === 1 && (
-                            <div className="relative">
-                              <Field
-                                type="email"
-                                name="email"
-                                placeholder=" "
-                                className="peer block w-full rounded-md border border-gray-300 px-3 pt-5 pb-2 text-sm placeholder-transparent shadow-sm"
-                              />
-                              <label className="absolute right-3 -top-2.5 bg-white px-1 text-xs text-gray-500">
-                                ایمیل
-                              </label>
-                              <ErrorMessage
-                                name="email"
-                                component="div"
-                                className="text-red-500 text-xs mt-1"
-                              />
-                            </div>
-                          )}
-                          {step === 2 && (
-                            <div className="relative">
-                              <Field
-                                type="text"
-                                name="code"
-                                placeholder=" "
-                                className="peer block w-full rounded-md border border-gray-300 px-3 pt-5 pb-2 text-sm placeholder-transparent shadow-sm"
-                              />
-                              <label className="absolute right-3 -top-2.5 bg-white px-1 text-xs text-gray-500">
-                                کد تایید
-                              </label>
-                              <ErrorMessage
-                                name="code"
-                                component="div"
-                                className="text-red-500 text-xs mt-1"
-                              />
-                            </div>
-                          )}
-                          {step === 3 && (
-                            <div className="flex gap-3">
-                              <div className="relative w-full">
-                                <Field
-                                  type="tel"
-                                  name="phone"
-                                  placeholder=" "
-                                  className="peer block w-full rounded-md border border-gray-300 px-3 pt-5 pb-2 text-sm placeholder-transparent shadow-sm"
-                                />
-                                <label className="absolute right-3 -top-2.5 bg-white px-1 text-xs text-gray-500">
-                                  شماره تماس
-                                </label>
-                                <ErrorMessage
-                                  name="phone"
-                                  component="div"
-                                  className="text-red-500 text-xs mt-1"
-                                />
-                              </div>
-                              <div className="relative w-full">
-                                <Field
-                                  type="password"
-                                  name="password"
-                                  placeholder=" "
-                                  className="peer block w-full rounded-md border border-gray-300 px-3 pt-5 pb-2 text-sm placeholder-transparent shadow-sm"
-                                />
-                                <label className="absolute right-3 -top-2.5 bg-white px-1 text-xs text-gray-500">
-                                  رمز عبور
-                                </label>
-                                <ErrorMessage
-                                  name="password"
-                                  component="div"
-                                  className="text-red-500 text-xs mt-1"
-                                />
-                              </div>
-                            </div>
-                          )}
-                        </>
-                      )}
-
-                      <div className="flex justify-between">
-                        <button
-                          type="button"
-                          onClick={() => {
-                            if (mode === "register" && step > 1) {
-                              prevStep();
-                            } else {
-                              setMode("login");
-                            }
-                          }}
-                          className="text-sm text-gray-500"
+            {/* Form */}
+            <AnimatePresence mode="wait">
+              <motion.form
+                key={`${mode}-${step}`}
+                className="space-y-6 mt-6"
+                onSubmit={handleSubmit(onSubmit)}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.4 }}
+              >
+                {mode === "login" ? (
+                  <>
+                    <div className="flex gap-3">
+                      <motion.div
+                        className="relative w-full"
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <input
+                          type="email"
+                          {...register("loginEmail", { required: true })}
+                          placeholder=" "
+                          className="peer block w-full rounded-md border border-gray-300 px-3 pt-5 pb-2 text-sm placeholder-transparent shadow-sm"
+                        />
+                        <label className="absolute right-3 -top-2.5 bg-[#232323] px-1 text-xs text-gray-500">
+                          ایمیل
+                        </label>
+                      </motion.div>
+                      <motion.div
+                        className="relative w-full"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <input
+                          type="password"
+                          {...register("loginPassword", { required: true })}
+                          placeholder=" "
+                          className="peer block w-full rounded-md border border-gray-300 px-3 pt-5 pb-2 text-sm placeholder-transparent shadow-sm"
+                        />
+                        <label className="absolute right-3 -top-2.5 bg-[#232323] px-1 text-xs text-gray-500">
+                          پسورد
+                        </label>
+                      </motion.div>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    {" "}
+                    {/* Register Steps */}
+                    {step === 1 && (
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.3 }}
+                        className="relative"
+                      >
+                        <input
+                          type="email"
+                          {...register("regEmail", { required: true })}
+                          placeholder=" "
+                          className="peer block w-full rounded-md border border-gray-300 px-3 pt-5 pb-2 text-sm placeholder-transparent shadow-sm"
+                        />
+                        <label className="absolute right-3 -top-2.5 bg-[#232323] px-1 text-xs text-gray-500">
+                          ایمیل
+                        </label>
+                      </motion.div>
+                    )}
+                    {step === 2 && (
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.3 }}
+                        className="relative"
+                      >
+                        <input
+                          type="text"
+                          {...register("regCode", { required: true })}
+                          placeholder=" "
+                          className="peer block w-full rounded-md border border-gray-300 px-3 pt-5 pb-2 text-sm placeholder-transparent shadow-sm"
+                        />
+                        <label className="absolute right-3 -top-2.5 bg-[#232323] px-1 text-xs text-gray-500">
+                          کد تایید
+                        </label>
+                      </motion.div>
+                    )}
+                    {step === 3 && (
+                      <div className="flex gap-3">
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ duration: 0.3 }}
+                          className="relative w-full"
                         >
-                          بازگشت
-                        </button>
-
-                        {mode === "register" && step < 3 ? (
-                          <button
-                            type="button"
-                            onClick={nextStep}
-                            className="bg-[#8CFF45] text-white px-4 py-2 rounded"
-                          >
-                            مرحله بعد
-                          </button>
-                        ) : (
-                          <button
-                            type="submit"
-                            className="bg-[#8CFF45] text-white px-4 py-2 rounded"
-                            disabled={isSubmitting}
-                          >
-                            {mode === "login" ? "ورود" : "ثبت‌نام"}
-                          </button>
-                        )}
+                          <input
+                            type="text"
+                            {...register("regPhone", { required: true })}
+                            placeholder=" "
+                            className="peer block w-full rounded-md border border-gray-300 px-3 pt-5 pb-2 text-sm placeholder-transparent shadow-sm"
+                          />
+                          <label className="absolute right-3 -top-2.5 bg-[#232323] px-1 text-xs text-gray-500">
+                            شماره تماس
+                          </label>
+                        </motion.div>
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ duration: 0.3 }}
+                          className="relative w-full"
+                        >
+                          <input
+                            type="password"
+                            {...register("regPassword", { required: true })}
+                            placeholder=" "
+                            className="peer block w-full rounded-md border border-gray-300 px-3 pt-5 pb-2 text-sm placeholder-transparent shadow-sm"
+                          />
+                          <label className="absolute right-3 -top-2.5 bg-[#232323] px-1 text-xs text-gray-500">
+                            پسورد
+                          </label>
+                        </motion.div>
                       </div>
-                    </Form>
-                  )}
-                </Formik>
-              </div>
-            </div>
+                    )}
+                  </>
+                )}
+
+                {error && (
+                  <p className="text-red-500 text-xs font-bold text-center mt-3">
+                    {error}
+                  </p>
+                )}
+
+                <div className="mt-4 flex gap-4">
+                  <motion.button
+                    type="submit"
+                    className="w-full rounded-xl bg-[#8CFF45] py-3 text-white font-medium text-sm"
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    {mode === "login" ? "ورود" : "ثبت نام"}
+                  </motion.button>
+                </div>
+              </motion.form>
+            </AnimatePresence>
           </div>
         </div>
       </div>
-
-      <div className="relative bg-[#232323] dark:bg-dark py-16 sm:py-24">
-        <div className="lg:grid lg:max-w-7xl lg:grid-cols-2 lg:items-start lg:gap-24 lg:px-8">
-          <div className="flex items-center justify-center sm:py-16 lg:py-0">
-            <div className="relative hidden w-0 flex-1 lg:block items-start mr-40 mt-10">
-              <img src={myPhoto.src} alt="عکس من" />
-            </div>
-          </div>
-          <div className="relative max-w-md px-6 sm:max-w-3xl lg:px-0 lg:ml-10">
-            <div className="pt-12 sm:pt-16 lg:pt-20 space-y-6">
-              <p className="text-sm leading-12 font-medium text-right text-lime-50">
-                24 ساعت روز و 7 روز هفته در اختیار شماییم !
-              </p>
-              <p className="text-sm leading-8 font-light text-right text-lime-100">
-                تیم دلتا با ارائه بهترین نیرو های خدماتی و سرویس های املاکی سعی
-                دارد تا بتواند در تمام لحظات کنار شما باشد .
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4">
-                <div className="w-full sm:w-1/2">
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-medium text-lime-100"
-                  >
-                    Name
-                  </label>
-                  <div className="mt-1">
-                    <input
-                      type="text"
-                      name="name"
-                      id="name"
-                      className="block w-full px-3 text-white rounded-md h-12 bg-[#303030] border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                      placeholder="Jane Smith"
-                    />
-                  </div>
-                </div>
-                <div className="w-full sm:w-1/2">
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium  text-lime-100"
-                  >
-                    Email
-                  </label>
-                  <div className="mt-1">
-                    <input
-                      type="email"
-                      name="email"
-                      id="email"
-                      className="block w-full px-3 rounded-md h-12 bg-[#303030] text-white border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                      placeholder="you@example.com"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <label
-                  htmlFor="comment"
-                  className="block text-sm font-medium text-lime-100"
-                >
-                  Add your comment
-                </label>
-                <div className="mt-1">
-                  <textarea
-                    rows={4}
-                    name="comment"
-                    id="comment"
-                    className="block w-full px-3 text-white rounded-md bg-[#303030] border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                    defaultValue={""}
-                  />
-                </div>
-              </div>
-
-              <div>
-                <button
-                  type="submit"
-                  className="inline-flex w-full justify-center rounded-md border border-transparent bg-[#8CFF45] py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                >
-                  ارسال فرم
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
+    </div>
   );
 }
