@@ -1,13 +1,45 @@
-import { BiBuildingHouse, BiSolidRightArrow } from "react-icons/bi";
+"use client";
 import CardComponent from "../common/CardComponent";
-import { LuClock8 } from "react-icons/lu";
 import ButtonComponent from "../common/button";
+import Time from "../common/Time";
+
+import { House } from "@/types/landing.types";
+import { getOffers } from "@/utils/service/api/landing/landing";
+
+import { BiBuildingHouse, BiSolidRightArrow } from "react-icons/bi";
+import { LuClock8 } from "react-icons/lu";
 import vectors from "../../../public/icons/whiteflash.png";
-import { HiOutlineLocationMarker } from "react-icons/hi";
+
+//slider imports
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { Pagination, Navigation } from "swiper/modules";
+import SwiperCore from "swiper";
+import "swiper/swiper-bundle.css";
+import { useEffect, useState } from "react";
+import CardBody from "../common/CardBody";
+SwiperCore.use([Navigation, Pagination]);
 
 const Offer = () => {
+  const [deltaOffers, setdeltaOffers] = useState<House[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getOffers();
+        setdeltaOffers(data);
+      } catch (err) {
+        console.log(" errore : ", err);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
-    <div className="relative max-xl:bg-[#2D2D2D] grid justify-items-center py-6 mx-4 pb-28">
+    <div className="relative max-xl:bg-[#2D2D2D] grid py-6 pb-28">
       {/* background ui */}
       <div
         className="absolute right-0 w-40 h-60 blur-3xl opacity-20 rounded-l-full
@@ -30,12 +62,14 @@ const Offer = () => {
         />
       </svg>
 
-      <div className="max-2xl:mt-9">
+      <div className="max-2xl:mt-9 mx-24 max-2xl:mx-8 ">
         {/* title-part */}
         <div className="grid justify-items-end z-10 gap-4 text-white">
           <div className=" bg-danger py-2 px-4 flex gap-2 items-center rounded-2xl ">
             <LuClock8 className=" text-md" />
-            <p className="pb-1">ساعت الان</p>
+            <p className="pb-1">
+              <Time />
+            </p>
           </div>
 
           <div className="text-primary flex gap-1 items-center justify-center ">
@@ -57,130 +91,38 @@ const Offer = () => {
         </div>
 
         {/* card-part */}
-        <div className="grid grid-cols-4 gap-5 mt-12 z-10 max-md:grid-cols-1">
-          <div className="group text-white cursor-pointer">
-            <CardComponent />
-            <div className="mx-7 grid gap-2 ">
-              <div className="flex flex-row-reverse justify-between gap-2 max-xl:flex-col">
-                <h2 className="font-bold text-xl max-2xl:text-lg max-xl:text-center">
-                  {" "}
-                  آپارتمان لوکس زعفورانیه
-                </h2>
-                <p className="bg-danger pt-1 pb-2 px-3 rounded-xl max-xl:text-center">
-                  {" "}
-                  15%{" "}
-                </p>
-              </div>
-
-              <div className="flex gap-2 justify-end opacity-55">
-                {" "}
-                location
-                <HiOutlineLocationMarker className="text-lg" />
-              </div>
-              <div className="flex gap-2 justify-end opacity-55">
-                {" "}
-                detail
-                <BiBuildingHouse className="text-lg mt-1" />
-              </div>
-              <div className="bg-[#393939] transition-all duration-500 group-hover:bg-primary group-hover:text-black px-3 py-1 rounded-lg text-center">
-                {" "}
-                ت8000 | 5000ت / هرشب
-              </div>
-            </div>
-          </div>
-
-          <div className="group text-white cursor-pointer">
-            <CardComponent />
-            <div className="mx-7 grid gap-2">
-              <div className="flex flex-row-reverse justify-between gap-2 max-xl:flex-col">
-                <h2 className="font-bold text-xl max-2xl:text-lg max-xl:text-center">
-                  {" "}
-                  آپارتمان لوکس زعفورانیه
-                </h2>
-                <p className="bg-danger pt-1 pb-2 px-3 rounded-xl max-xl:text-center">
-                  {" "}
-                  15%{" "}
-                </p>
-              </div>
-
-              <div className="flex gap-2 justify-end opacity-55">
-                {" "}
-                location
-                <HiOutlineLocationMarker className="text-lg" />
-              </div>
-              <div className="flex gap-2 justify-end opacity-55">
-                {" "}
-                detail
-                <BiBuildingHouse className="text-lg mt-1" />
-              </div>
-              <div className="bg-[#393939] transition-all duration-500 group-hover:bg-primary group-hover:text-black px-3 py-1 rounded-lg text-center">
-                {" "}
-                ت8000 | 5000ت / هرشب
-              </div>
-            </div>
-          </div>
-
-          <div className="group text-white cursor-pointer">
-            <CardComponent />
-            <div className="mx-7 grid gap-2">
-              <div className="flex flex-row-reverse justify-between gap-2 max-xl:flex-col">
-                <h2 className="font-bold text-xl max-2xl:text-lg max-xl:text-center">
-                  {" "}
-                  آپارتمان لوکس زعفورانیه
-                </h2>
-                <p className="bg-danger pt-1 pb-2 px-3 rounded-xl max-xl:text-center">
-                  {" "}
-                  15%{" "}
-                </p>
-              </div>
-
-              <div className="flex gap-2 justify-end opacity-55">
-                {" "}
-                location
-                <HiOutlineLocationMarker className="text-lg" />
-              </div>
-              <div className="flex gap-2 justify-end opacity-55">
-                {" "}
-                detail
-                <BiBuildingHouse className="text-lg mt-1" />
-              </div>
-              <div className="bg-[#393939] transition-all duration-500 group-hover:bg-primary group-hover:text-black px-3 py-1 rounded-lg text-center">
-                {" "}
-                ت8000 | 5000ت / هرشب
-              </div>
-            </div>
-          </div>
-
-          <div className="group text-white cursor-pointer">
-            <CardComponent />
-            <div className="mx-7 grid gap-2">
-              <div className="flex flex-row-reverse justify-between gap-2 max-xl:flex-col">
-                <h2 className="font-bold text-xl max-2xl:text-lg max-xl:text-center">
-                  {" "}
-                  آپارتمان لوکس زعفورانیه
-                </h2>
-                <p className="bg-danger pt-1 pb-2 px-3 rounded-xl max-xl:text-center">
-                  {" "}
-                  15%{" "}
-                </p>
-              </div>
-
-              <div className="flex gap-2 justify-end opacity-55">
-                {" "}
-                location
-                <HiOutlineLocationMarker className="text-lg" />
-              </div>
-              <div className="flex gap-2 justify-end opacity-55">
-                {" "}
-                detail
-                <BiBuildingHouse className="text-lg mt-1" />
-              </div>
-              <div className="bg-[#393939] transition-all duration-500 group-hover:bg-primary group-hover:text-black px-3 py-1 rounded-lg text-center">
-                {" "}
-                ت8000 | 5000ت / هرشب
-              </div>
-            </div>
-          </div>
+        <div className="grid justify-items-center gap-5 mt-8 z-10 ">
+          <Swiper
+            pagination={{ clickable: true }}
+            className="mySwiper grid text-white w-[98%]"
+            modules={[Pagination]}
+            breakpoints={{
+              420: { slidesPerView: 1 },
+              640: { slidesPerView: 2 },
+              768: { slidesPerView: 3 },
+              1024: { slidesPerView: 4 },
+            }}
+            spaceBetween={30}
+          >
+            {deltaOffers.map((item: House) => (
+              <SwiperSlide key={item.id} className="mb-12 text-right">
+                <div className="group text-white cursor-pointer">
+                  <CardComponent rate={item.rate} photos={item.photos} />
+                  <CardBody
+                    icon1={<BiBuildingHouse className="mt-1.5 w-4 h-4 ml-1.5" />}
+                    title={`${item.title}`}
+                    address={`${item.address}`}
+                    rooms={`${item.rooms} ,`}
+                    parking={`${item.parking} ,`}
+                    bathrooms={`${item.bathrooms} ,`}
+                    yard_type={`${item.yard_type}`}
+                    price={`${item.price}`}
+                  />
+                  
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </div>
     </div>

@@ -9,7 +9,7 @@ import UserComments from "@/components/HomeContainer/UserComments";
 export default function Home() {
   return (
     <div className="grid">
-      <main className="justify-self-center border border-amber-50">
+      <main className="justify-self-center">
         <Hero />
         <Category />
         <Offer />

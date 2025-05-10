@@ -1,8 +1,37 @@
+"use client";
 import CardComponent from "@/components/common/CardComponent";
 import LandingTitle from "@/components/common/LandingTitle";
-import React from "react";
+import { House } from "@/types/landing.types";
+import { getHouseRent } from "@/utils/service/api/landing/landing";
+import React, { useEffect, useState } from "react";
+
+// //slider imports
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import "swiper/css";
+// import "swiper/css/navigation";
+// import "swiper/css/pagination";
+// import { Pagination, Navigation } from "swiper/modules";
+// import SwiperCore from "swiper";
+// import "swiper/swiper-bundle.css";
+// import { useEffect, useState } from "react";
+// SwiperCore.use([Navigation, Pagination]);
 
 const DreamRent = () => {
+  const [deltaHouseRent, setdeltaHouseRent] = useState<House[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getHouseRent();
+        setdeltaHouseRent(data);
+      } catch (err) {
+        console.log(" errore : ", err);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="pb-20">
       <div className="absolute w-40 z-20 h-60 blur-3xl opacity-20 rounded-r-full bg-primary">
@@ -16,36 +45,17 @@ const DreamRent = () => {
         details="!در این جا میتوانید محبوب ترین مقصد هارا از بین انتخاب کاربران مشاهده کنید و بررسی کنید"
       />
 
-      <div className="grid grid-cols-4 gap-6 mt-12 mx-16 z-10 max-md:grid-cols-1">
-        <div className="col-span-1 cursor-pointer group">
-          <CardComponent />
-          <div className="flex items-end gap-2 justify-end px-8 pt-2 ">
-            <p className="text-neutral-500"> {"(56 مورد)"} </p>
-            <h3 className="text-white"> اجاره ی ویلا در بندر انزلی</h3>
-          </div>
+        <div className="grid grid-cols-4 gap-5 mt-12 z-10 max-md:grid-cols-1">
+          {deltaHouseRent.map((item) => (
+            <div key={item.id} className="group text-white cursor-pointer">
+              <CardComponent rate={item.rate} photos={item.photos} />
+              <div className="grid grid-cols-2 w-full border border-amber-500">
+                <p className="text-neutral-500 flex"> {item.capacity}مورد</p>
+                <h3 className="text-white w-full text-left text-lg font-bold justify-self-end border-2"> {item.title} </h3>
+              </div>
+            </div>
+          ))}
         </div>
-        <div className="col-span-1 cursor-pointer group">
-          <CardComponent />
-          <div className="flex items-end gap-2 justify-end px-8 pt-2 ">
-            <p className="text-neutral-500"> {"(56 مورد)"} </p>
-            <h3 className="text-white"> اجاره ی ویلا در بندر انزلی</h3>
-          </div>
-        </div>
-        <div className="col-span-1 cursor-pointer group">
-          <CardComponent />
-          <div className="flex items-end gap-2 justify-end px-8 pt-2 ">
-            <p className="text-neutral-500"> {"(56 مورد)"} </p>
-            <h3 className="text-white"> اجاره ی ویلا در بندر انزلی</h3>
-          </div>
-        </div>
-        <div className="col-span-1 cursor-pointer group">
-          <CardComponent />
-          <div className="flex items-end gap-2 justify-end px-8 pt-2 ">
-            <p className="text-neutral-500"> {"(56 مورد)"} </p>
-            <h3 className="text-white"> اجاره ی ویلا در بندر انزلی</h3>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };

@@ -1,15 +1,37 @@
+"use client";
 import ButtonComponent from "@/components/common/button";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BiSolidRightArrow } from "react-icons/bi";
 import vectors from "../../../../public/icons/whiteflash.png";
-import { HiOutlineLocationMarker } from "react-icons/hi";
 import CardComponent from "@/components/common/CardComponent";
+
+import { House } from "@/types/landing.types";
+import { getHouseRent } from "@/utils/service/api/landing/landing";
+import CardBody from "@/components/common/CardBody";
+
+
 import { RiHotelBedLine } from "react-icons/ri";
 import { LiaCarSideSolid } from "react-icons/lia";
 import { MdOutlineBathtub } from "react-icons/md";
 import { LuTreePine } from "react-icons/lu";
 
 const HouseRent = () => {
+
+  // اجاره رو گذاشتیم و رهن مونده
+  const [deltaHouseRent, setdeltaHouseRent] = useState<House[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getHouseRent();
+        setdeltaHouseRent(data);
+      } catch (err) {
+        console.log(" errore : ", err);
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
     <div className="mx-16 py-12 max-sm:mx-2 ">
       <div
@@ -53,46 +75,13 @@ const HouseRent = () => {
 
       {/* cart  */}
       <div className="grid grid-cols-4 gap-5 mt-12 z-10 max-md:grid-cols-1">
-        <div className="group text-white cursor-pointer">
-          <CardComponent />
-          <div className="mx-7 grid gap-2 mt-2">
-            <h2 className="font-bold text-xl max-2xl:text-lg max-xl:text-center text-right">
-              آپارتمان لوکس زعفورانیه
-            </h2>
-
-            <div className="flex gap-2 justify-end opacity-55">
-              location
-              <HiOutlineLocationMarker className="text-lg" />
-            </div>
-            <div className="flex gap-2 justify-end text-sm opacity-55">
-              <div className="flex gap-1 items-center">
-                4 خوابه
-                <RiHotelBedLine />
-              </div>
-              <div className="flex gap-1 items-center border-l-2">
-                1 پارکینگ
-                <LiaCarSideSolid />
-              </div>
-              <div className="flex gap-1 items-center border-l-2">
-                2حمام
-                <MdOutlineBathtub />
-              </div>
-              <div className="flex gap-1 items-center border-l-2">
-                حیاط
-                <LuTreePine />
-              </div>
-            </div>
-
-            <div className="bg-[#393939] flex gap-8 justify-center text-[14px] font-semibold transition-all duration-500 group-hover:bg-primary group-hover:text-black px-3 py-2 rounded-lg text-center">
-              <p className="flex">
-                <span className="opacity-55"> هر ماه / </span>
-                5000000ت
-              </p>
-
-              <p className="opacity-55 "> :اجاره ی ماهیانه </p>
-            </div>
+        {deltaHouseRent.map((item) => (
+          <div key={item.id} className="group text-white cursor-pointer">
+            <CardComponent rate={item.rate} photos={item.photos} />
+            <CardBody title={`${item.title} |`} address={`${item.address} |`} rooms={`${item.rooms} |`}
+             parking={`${item.parking} |`} bathrooms={`${item.bathrooms} |`} yard_type={`${item.yard_type} |`} price={`${item.price} |`}/>
           </div>
-        </div>
+        ))}
       </div>
     </div>
   );

@@ -17,12 +17,12 @@ const HeroFillter = () => {
     },
     {
       id: 2,
-      title: "رهن و اجاره",
+      title: "| رهن و اجاره",
       icon: rent,
     },
     {
       id: 3,
-      title: "رزرو ملک",
+      title: "| رزرو ملک",
       icon: booking,
     },
   ];
@@ -33,7 +33,7 @@ const HeroFillter = () => {
           <div
             key={item.id}
             onClick={() => setSearchIN(item.title)}
-            className={`flex items-center gap-2 max-sm:gap-1 border-l-3 px-4 max-sm:px-1 pb-2 hover:text-white cursor-pointer transition-all duration-300 ease-in-out
+            className={`flex items-center gap-2 max-sm:gap-1 px-4 max-sm:px-1 pb-2 font-semibold hover:text-white cursor-pointer transition-all duration-300 ease-in-out
             ${searchIN === item.title ? "text-white" : "text-[#8C8C8C]"}
         `}
           >
