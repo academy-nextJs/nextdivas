@@ -102,13 +102,13 @@ export default function MortgageAndHouseRent() {
         <div className="md:h-auto h-[200vh] bg-[#232323] text-white flex items-start md:items-center justify-center">
           <div className="w-[95.5%] h-full flex flex-wrap content-start">
             {/* بخش فیلترهای اولیه */}
-            <div className="w-full mt-44 h-[85px] bg-[#303030] flex rounded-3xl">
-              <div className="w-[15%] h-full flex justify-center items-center">
+            <div className="w-full mt-44 h-auto md:h-[85px] bg-[#303030] flex flex-wrap md:flex-nowrap rounded-3xl">
+              <div className="w-full md:w-[15%] h-auto md:h-full flex justify-center items-center">
                 <div className="w-[170px] rounded-2xl h-[55px] border border-white flex items-center justify-center gap-2">
                   <p>{advertisementCount}</p> <span>: تعداد آگهی</span>
                 </div>
               </div>
-              <div className="w-[85%] h-full p-3 flex gap-4 items-center">
+              <div className="w-full sm:w-[85%] h-auto md:h-full p-3 flex flex-col sm:flex-wrap gap-4 items-center">
                 {/* اینپوت جستجو */}
                 <div className="relative rounded-2xl border text-white border-gray-300 flex justify-center gap-2.5 items-center w-[335px]">
                   <Image src={SearchIcon} alt="SearchIcon" />
@@ -292,92 +292,93 @@ export default function MortgageAndHouseRent() {
             )}
 
             {/* بخش فیلترهای عددی (زیر کادر اصلی) */}
-            <div className="w-full mt-6 rounded-3xl p-3 flex justify-end gap-4 items-center">
-              <div className="relative w-[156px]">
-                <input
-                  type="number"
-                  name="minArea"
-                  placeholder=" "
-                  value={filters.minArea}
-                  onChange={handleFilterChange}
-                  className="peer block w-full h-[52px] rounded-2xl border border-gray-300 px-3 pt-5 pb-2 text-sm text-right shadow-sm bg-transparent text-white placeholder-transparent"
-                />
-                <label className="absolute right-3 -top-2.5 bg-[#232323] px-1 text-xs text-white">
-                  : حداقل متراژ
-                </label>
-              </div>
-              <div className="relative w-[156px]">
-                <input
-                  type="number"
-                  name="maxArea"
-                  placeholder=" "
-                  value={filters.maxArea}
-                  onChange={handleFilterChange}
-                  className="peer block w-full h-[52px] rounded-2xl border border-gray-300 px-3 pt-5 pb-2 text-sm text-right shadow-sm bg-transparent text-white placeholder-transparent"
-                />
-                <label className="absolute right-3 -top-2.5 bg-[#232323] px-1 text-xs text-white">
-                  : حداکثر متراژ
-                </label>
-              </div>
-              <span>|</span>
-              <div className="relative w-[156px]">
-                <input
-                  type="number"
-                  name="minRooms"
-                  placeholder=" "
-                  value={filters.minRooms}
-                  onChange={handleFilterChange}
-                  className="peer block w-full h-[52px] rounded-2xl border border-gray-300 px-3 pt-5 pb-2 text-sm text-right shadow-sm bg-transparent text-white placeholder-transparent"
-                />
-                <label className="absolute right-3 -top-2.5 bg-[#232323] px-1 text-xs text-white">
-                  : حداقل اتاق‌ها
-                </label>
-              </div>
-              <div className="relative w-[156px]">
-                <input
-                  type="number"
-                  name="maxRooms"
-                  placeholder=" "
-                  value={filters.maxRooms}
-                  onChange={handleFilterChange}
-                  className="peer block w-full h-[52px] rounded-2xl border border-gray-300 px-3 pt-5 pb-2 text-sm text-right shadow-sm bg-transparent text-white placeholder-transparent"
-                />
-                <label className="absolute right-3 -top-2.5 bg-[#232323] px-1 text-xs text-white">
-                  : حداکثر اتاق‌ها
-                </label>
-              </div>
-              <span>|</span>
-              <div className="relative w-[156px]">
-                <input
-                  type="number"
-                  name="minMortgage"
-                  placeholder=" "
-                  value={filters.minMortgage}
-                  onChange={handleFilterChange}
-                  className="peer block w-full h-[52px] rounded-2xl border border-gray-300 px-3 pt-5 pb-2 text-sm text-right shadow-sm bg-transparent text-white placeholder-transparent"
-                />
-                <label className="absolute right-3 -top-2.5 bg-[#232323] px-1 text-xs text-white">
-                  : حداقل رهن
-                </label>
-              </div>
-              <div className="relative w-[156px]">
-                <input
-                  type="number"
-                  name="maxPrice"
-                  placeholder=" "
-                  value={filters.maxPrice}
-                  onChange={handleFilterChange}
-                  className="peer block w-full h-[52px] rounded-2xl border border-gray-300 px-3 pt-5 pb-2 text-sm text-right shadow-sm bg-transparent text-white placeholder-transparent"
-                />
-                <label className="absolute right-3 -top-2.5 bg-[#232323] px-1 text-xs text-white">
-                  : حداکثر قیمت
-                </label>
-              </div>
-            </div>
+            <div className="w-full mt-6 h-auto rounded-3xl p-3 flex flex-wrap md:flex-nowrap justify-end gap-4 items-center">
+  <div className="relative w-full md:w-[156px]">
+    <input
+      type="number"
+      name="minArea"
+      placeholder=" "
+      value={filters.minArea}
+      onChange={handleFilterChange}
+      className="peer block w-full h-[52px] rounded-2xl border border-gray-300 px-3 pt-5 pb-2 text-sm text-right shadow-sm bg-transparent text-white placeholder-transparent"
+    />
+    <label className="absolute right-3 -top-2.5 bg-[#232323] px-1 text-xs text-white">
+      : حداقل متراژ
+    </label>
+  </div>
+  <div className="relative w-full md:w-[156px]">
+    <input
+      type="number"
+      name="maxArea"
+      placeholder=" "
+      value={filters.maxArea}
+      onChange={handleFilterChange}
+      className="peer block w-full h-[52px] rounded-2xl border border-gray-300 px-3 pt-5 pb-2 text-sm text-right shadow-sm bg-transparent text-white placeholder-transparent"
+    />
+    <label className="absolute right-3 -top-2.5 bg-[#232323] px-1 text-xs text-white">
+      : حداکثر متراژ
+    </label>
+  </div>
+  <span className="hidden md:inline">|</span>
+  <div className="relative w-full md:w-[156px]">
+    <input
+      type="number"
+      name="minRooms"
+      placeholder=" "
+      value={filters.minRooms}
+      onChange={handleFilterChange}
+      className="peer block w-full h-[52px] rounded-2xl border border-gray-300 px-3 pt-5 pb-2 text-sm text-right shadow-sm bg-transparent text-white placeholder-transparent"
+    />
+    <label className="absolute right-3 -top-2.5 bg-[#232323] px-1 text-xs text-white">
+      : حداقل اتاق‌ها
+    </label>
+  </div>
+  <div className="relative w-full md:w-[156px]">
+    <input
+      type="number"
+      name="maxRooms"
+      placeholder=" "
+      value={filters.maxRooms}
+      onChange={handleFilterChange}
+      className="peer block w-full h-[52px] rounded-2xl border border-gray-300 px-3 pt-5 pb-2 text-sm text-right shadow-sm bg-transparent text-white placeholder-transparent"
+    />
+    <label className="absolute right-3 -top-2.5 bg-[#232323] px-1 text-xs text-white">
+      : حداکثر اتاق‌ها
+    </label>
+  </div>
+  <span className="hidden md:inline">|</span>
+  <div className="relative w-full md:w-[156px]">
+    <input
+      type="number"
+      name="minMortgage"
+      placeholder=" "
+      value={filters.minMortgage}
+      onChange={handleFilterChange}
+      className="peer block w-full h-[52px] rounded-2xl border border-gray-300 px-3 pt-5 pb-2 text-sm text-right shadow-sm bg-transparent text-white placeholder-transparent"
+    />
+    <label className="absolute right-3 -top-2.5 bg-[#232323] px-1 text-xs text-white">
+      : حداقل رهن
+    </label>
+  </div>
+  <div className="relative w-full md:w-[156px]">
+    <input
+      type="number"
+      name="maxPrice"
+      placeholder=" "
+      value={filters.maxPrice}
+      onChange={handleFilterChange}
+      className="peer block w-full h-[52px] rounded-2xl border border-gray-300 px-3 pt-5 pb-2 text-sm text-right shadow-sm bg-transparent text-white placeholder-transparent"
+    />
+    <label className="absolute right-3 -top-2.5 bg-[#232323] px-1 text-xs text-white">
+      : حداکثر قیمت
+    </label>
+  </div>
+</div>
+
             <span className="mt-6 w-full h-[0.2px] border border-[#4E4E4E]"></span>
 
             {/* بخش کارت‌ها با گرید ریسپانسیو */}
-            <div className="w-full p-3 pt-28 mb-16">
+            <div className="w-full p-3 md:pt-28 ">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 <CardWrapper cardsData={currentCards} />
               </div>
