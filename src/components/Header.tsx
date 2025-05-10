@@ -18,7 +18,7 @@ const Header = () => {
     {
       title: "رهن و اجاره",
       icon: <IoIosArrowDown className="mt-2 mr-2" />,
-      link: "#",
+      link: "mortgageAndHouseRent",
     },
     {
       title: "رزرو سریع",
