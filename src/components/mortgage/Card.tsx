@@ -33,7 +33,7 @@ const Card: React.FC<CardProps> = ({ data }) => {
   return (
 <div
   dir="rtl"
-  className="relative w-full items-center md:w-[678px] h-auto md:h-[198px] hover:shadow-2xl transition-all hover:cursor-pointer shadow-[#8CFF451F] rounded-[16px] flex  md:flex-nowrap justify-between p-4 md:p-5 text-white"
+  className="relative mb-10 w-full items-center md:w-[678px] h-auto md:h-[198px] hover:shadow-2xl transition-all hover:cursor-pointer shadow-[#8CFF451F] rounded-[16px] flex  md:flex-nowrap justify-between p-4 md:p-5 text-white"
 >
 <svg
         height="240"

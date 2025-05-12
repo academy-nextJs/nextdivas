@@ -52,6 +52,7 @@ const HouseRent = () => {
         </div>
         <div className="grid grid-cols-2 w-full  max-md:grid-cols-1 max-md:justify-items-center">
           <ButtonComponent
+            linke="mortgageAndHouseRent"
             icon={vectors}
             text="مشاهده همه"
             style="border-2 border-white bg-none flex-row-reverse pb-2 m-1 hover:border-primary hover:bg-primary/20 justify-self-start max-md:justify-self-end"
@@ -74,11 +75,11 @@ const HouseRent = () => {
       </div>
 
       {/* cart  */}
-      <div className="grid grid-cols-4 gap-5 mt-12 z-10 max-md:grid-cols-1">
+      <div className="grid grid-cols-4 gap-5 mt-12 z-10 max-md:grid-cols-1 ">
         {deltaHouseRent.map((item) => (
-          <div key={item.id} className="group text-white cursor-pointer">
+          <div key={item.id} className="group text-white cursor-pointer ">
             <CardComponent rate={item.rate} photos={item.photos} />
-            <CardBody title={`${item.title} |`} address={`${item.address} |`} rooms={`${item.rooms} |`}
+            <CardBody title={`${item.title}`} address={`${item.address}`} rooms={`${item.rooms} |`}
              parking={`${item.parking} |`} bathrooms={`${item.bathrooms} |`} yard_type={`${item.yard_type} |`} price={`${item.price} |`}/>
           </div>
         ))}
