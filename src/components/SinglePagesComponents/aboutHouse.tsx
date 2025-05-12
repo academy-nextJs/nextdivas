@@ -1,6 +1,6 @@
 import React from "react";
-import Photo1 from "../../app/assets/image/Rectangle1.png";
-import Photo2 from "../../app/assets/image/Rectangle2.png";
+import Photo1 from "../../assets/image/Rectangle1.png";
+import Photo2 from "../../assets/image/Rectangle2.png";
 
 function AboutHouse() {
   return (
