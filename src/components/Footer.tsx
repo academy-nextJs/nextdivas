@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { FaInstagram, FaTelegram, FaTwitter } from "react-icons/fa";
-import myPhoto2 from "../app/assets/image/login.png";
+import myPhoto2 from "../assets/image/login.png";
 
 const navigation = {
   company: [
