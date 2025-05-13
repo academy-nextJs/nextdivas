@@ -4,8 +4,8 @@ import NewInternainment from "./NewInternainment";
 
 const BuyIntertain = () => {
   return (
-    <div className="relative bg-[#2D2D2D] grid gap-14 rounded-b-[55px] -mt-10 py-20 -z-50">
-      <div className="absolute w-40 z-20 h-60 blur-3xl opacity-20 rounded-r-full bg-primary">
+    <div className="relative bg-[#2D2D2D] grid gap-14 rounded-b-[55px] -mt-10 py-20 ">
+      <div className="absolute w-40 h-60 blur-3xl opacity-20 rounded-r-full bg-primary">
         {" "}
       </div>
       <BuyHouse />
