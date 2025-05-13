@@ -9,14 +9,13 @@ import { House } from "@/types/landing.types";
 import { getHouseRent } from "@/utils/service/api/landing/landing";
 import CardBody from "@/components/common/CardBody";
 
-
 import { RiHotelBedLine } from "react-icons/ri";
 import { LiaCarSideSolid } from "react-icons/lia";
 import { MdOutlineBathtub } from "react-icons/md";
 import { LuTreePine } from "react-icons/lu";
+import Link from "next/link";
 
 const HouseRent = () => {
-
   // اجاره رو گذاشتیم و رهن مونده
   const [deltaHouseRent, setdeltaHouseRent] = useState<House[]>([]);
 
@@ -77,11 +76,22 @@ const HouseRent = () => {
       {/* cart  */}
       <div className="grid grid-cols-4 gap-5 mt-12 z-10 max-md:grid-cols-1 ">
         {deltaHouseRent.map((item) => (
-          <div key={item.id} className="group text-white cursor-pointer ">
+          <Link
+            href="single-house"
+            key={item.id}
+            className="group text-white cursor-pointer "
+          >
             <CardComponent rate={item.rate} photos={item.photos} />
-            <CardBody title={`${item.title}`} address={`${item.address}`} rooms={`${item.rooms} |`}
-             parking={`${item.parking} |`} bathrooms={`${item.bathrooms} |`} yard_type={`${item.yard_type} |`} price={`${item.price} |`}/>
-          </div>
+            <CardBody
+              title={`${item.title}`}
+              address={`${item.address}`}
+              rooms={`${item.rooms} |`}
+              parking={`${item.parking} |`}
+              bathrooms={`${item.bathrooms} |`}
+              yard_type={`${item.yard_type} |`}
+              price={`${item.price} |`}
+            />
+          </Link>
         ))}
       </div>
     </div>

@@ -32,11 +32,13 @@ const Hero = () => {
             </h1>
             <div className="flex gap-6 max-lg:gap-2 mt-12 max-xl:mt-4 max-md:flex-col items-end max-sm:items-center max-sm:justify-center justify-end">
               <ButtonComponent
+                linke="mortgageAndHouseRent"
                 text="رهن و اجاره ملک"
                 icon={arrow}
                 style="bg-gray mainshadow text-sm flex-row-reverse pb-3"
               />
               <ButtonComponent
+                linke="reserveHouse"
                 text="آسون رزرو کن"
                 icon={arrow2}
                 style="bg-white text-black text-sm flex-row-reverse pb-3"

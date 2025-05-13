@@ -84,7 +84,7 @@ const FileContainer: FC<FileContainerProps> = ({
 
   return (
     <div
-      className={`h-fit relative z-30 ${classNames?.base}`}
+      className={`h-fit relative z-30  ${classNames?.base}`}
       style={{
         width: width,
         height: height,
@@ -107,7 +107,7 @@ const FileContainer: FC<FileContainerProps> = ({
         }}
       >
         <div className={`relative z-40 w-full p-4 ${classNames?.innerLabel}`}>
-          {label}
+          {label} 
         </div>
         {size == "lg" ? <HollowSizeLG /> : <HollowSizeMD />}
       </div>
@@ -121,7 +121,7 @@ const FileContainer: FC<FileContainerProps> = ({
           pointerEvents: "none",
         }}
       >
-        {tag}
+        {tag} 
       </div>
       {children}
     </div>

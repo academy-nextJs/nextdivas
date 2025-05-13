@@ -5,16 +5,15 @@ import { House } from "@/types/landing.types";
 import { getHouseRent } from "@/utils/service/api/landing/landing";
 import React, { useEffect, useState } from "react";
 
-// //slider imports
-// import { Swiper, SwiperSlide } from "swiper/react";
-// import "swiper/css";
-// import "swiper/css/navigation";
-// import "swiper/css/pagination";
-// import { Pagination, Navigation } from "swiper/modules";
-// import SwiperCore from "swiper";
-// import "swiper/swiper-bundle.css";
-// import { useEffect, useState } from "react";
-// SwiperCore.use([Navigation, Pagination]);
+//slider imports
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { Pagination, Navigation } from "swiper/modules";
+import SwiperCore from "swiper";
+import "swiper/swiper-bundle.css";
+SwiperCore.use([Navigation, Pagination]);
 
 const DreamRent = () => {
   const [deltaHouseRent, setdeltaHouseRent] = useState<House[]>([]);
@@ -45,17 +44,32 @@ const DreamRent = () => {
         details="!در این جا میتوانید محبوب ترین مقصد هارا از بین انتخاب کاربران مشاهده کنید و بررسی کنید"
       />
 
-        <div className="grid grid-cols-4 gap-5 mt-12 z-10 max-md:grid-cols-1 ">
-          {deltaHouseRent.map((item) => (
-            <div key={item.id} className="group text-white cursor-pointer px-12">
+      <Swiper
+        pagination={{ clickable: true }}
+        className="mySwiper grid text-white w-[98%]"
+        modules={[Pagination]}
+        breakpoints={{
+          500: { slidesPerView: 1, spaceBetween: 10 },
+          711: { slidesPerView: 2, spaceBetween: 30 },
+          1024: { slidesPerView: 3, spaceBetween: 15 },
+          1395: { slidesPerView: 4, spaceBetween: 30 },
+        }}
+      >
+        {deltaHouseRent.map((item) => (
+          <SwiperSlide key={item.id}>
+            <div className="group text-white cursor-pointer px-12">
               <CardComponent rate={item.rate} photos={item.photos} />
               <div className="grid grid-cols-2 w-full ">
                 <p className="text-neutral-500 flex"> {item.capacity}مورد</p>
-                <h3 className="text-white w-full text-left text-lg font-bold justify-self-end "> {item.title} </h3>
+                <h3 className="text-white w-full text-left text-lg font-bold justify-self-end ">
+                  {" "}
+                  {item.title}{" "}
+                </h3>
               </div>
             </div>
-          ))}
-        </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </div>
   );
 };

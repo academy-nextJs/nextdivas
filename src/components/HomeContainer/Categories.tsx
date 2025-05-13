@@ -1,5 +1,5 @@
 import React from "react";
-// import { BiSolidRightArrow } from "react-icons/bi";
+import { PiStarFourFill } from "react-icons/pi";
 import { GoArrowLeft } from "react-icons/go";
 import LandingTitle from "../common/LandingTitle";
 import { getCategories } from "@/utils/service/api/landing/server-landing";
@@ -7,6 +7,7 @@ import { getCategories } from "@/utils/service/api/landing/server-landing";
 import { categoryType } from "@/types/landing.types";
 import Image from "next/image";
 import cottage from "../../../public/landing/cottage.png";
+import FileContainer from "../common/FileContainer";
 
 const Categories = async () => {
   const categories = await getCategories();
@@ -29,31 +30,36 @@ const Categories = async () => {
       />
 
       {/* categories */}
-      <div className="flex max-lg:flex-wrap justify-center mt-10">
+      <div className="flex max-lg:flex-wrap justify-center mt-20">
         {categories.map((items: categoryType) => (
-          <div key={items.id} className="group relative">
-            <GoArrowLeft className="absolute top-5 left-7 text-white/50 text-xl" />
-            <Image
-              className=" absolute right-10 -top-3 rounded-xl bg-neutral-700/80 shadow-2xl p-2 w-14 h-14"
-              src={cottage}
-              alt="cottage "
-            />
-            <svg
-              width="260"
-              height="137"
-              viewBox="0 0 260 137"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className=" fill-neutral-600/30 group-hover:fill-primary group-hover:cursor-pointer text-white"
-            >
-              <g filter="url(#filter0_d_67_169)">
-                <path d="M127.145 39.5C132.011 39.5 136.528 36.9731 139.075 32.8265L145.31 22.6735C147.857 18.5269 152.374 16 157.24 16H222C229.732 16 236 22.268 236 30V91C236 98.732 229.732 105 222 105H38C30.268 105 24 98.732 24 91V53.5C24 45.768 30.268 39.5 38 39.5H127.145Z" />
-              </g>
-            </svg>
-            <h3 className="absolute top-14 w-full text-center text-white group-hover:text-black">
-              {items.name}
-            </h3>
-          </div>
+          <FileContainer
+            key={items.id}
+            background="#393939"
+            radius="sm"
+            size="md"
+            labelHeight="25px"
+            labelWidth="100px"
+            tagHeight="30px"
+            width="210px"
+            classNames={{
+              base: "group h-[70px] mx-2 my-10 p-4 pt-[32px] hover:!bg-primary hover:shadow-[0px_8px_24px_rgba(140,255,69,0.12)]",
+              innerLabel: "!p-3 flex justify-center items-center",
+              wrapperLabel: "group-hover:!bg-primary",
+              coverHollow: "group-hover:!text-primary",
+            }}
+          >
+           
+              <GoArrowLeft className="absolute left-0 -top-6 text-white/50 text-xl" />
+              <Image
+                className="absolute -top-12 right-4 z-50 rounded-xl bg-neutral-700/80 shadow-2xl p-2 w-14 h-14"
+                src={cottage}
+                alt="cottage "
+              />
+              <h3 className="flex justify-center items-center gap-3 w-full  text-white group-hover:text-black">
+                <PiStarFourFill className="font-light"/> {items.name} <PiStarFourFill/> 
+              </h3>
+           
+          </FileContainer>
         ))}
       </div>
     </div>

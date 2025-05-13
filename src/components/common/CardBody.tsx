@@ -18,7 +18,7 @@ const CardBody = ({
   icon4,
 }: CardBodyType) => {
   return (
-    <div className=" grid gap-2 mt-2">
+    <div className=" flex flex-col gap-2 mt-2 w-[300px] max-sm:w-[230px]">
       <h2 className="font-bold text-xl max-2xl:text-lg max-xl:text-center text-right">
         {title}
       </h2>
@@ -51,7 +51,7 @@ const CardBody = ({
         {icon1}
       </div>
 
-      <div className="bg-[#393939] flex gap-8 justify-center ml-14 text-[14px] font-semibold transition-all duration-500 group-hover:bg-primary group-hover:text-black px-3 py-2 rounded-lg text-center">
+      <div className="bg-[#393939] flex gap-8 justify-center text-[14px] font-semibold transition-all duration-500 group-hover:bg-primary group-hover:text-black px-3 py-2 rounded-lg text-center">
         <p className="flex">
           <span className="opacity-55"> هر ماه / </span>
           {price}ت
