@@ -62,14 +62,11 @@ const Header = () => {
         {/* right */}
         <div className="col-span-1 flex flex-row-reverse  justify-start max-md:flex-col max-md:justify-center">
           {/* logo */}
-          <div
-            
-            className="flex flex-row-reverse pl-6 max-xl:pl-0 max-md:border-none border-l-2 border-gray-500 m-2"
-          >
+          <div className="flex flex-row-reverse pl-6 max-xl:pl-0 max-md:border-none border-l-2 border-gray-500 m-2">
             <Link href={"/"}>
               <Image src={logo} alt="Logo" className="w-14 h-10" />
             </Link>
-            
+
             <CgMenuHotdog
               className="hidden max-md:block text-primary text-2xl m-2 cursor-pointer max-sm:min-w-4"
               onClick={() => setMenu(!menu)}
@@ -86,7 +83,7 @@ const Header = () => {
             {list.map((item, index) => (
               <li
                 key={index}
-                className="text-sm pt-3 px-5 max-2xl:px-2 hover:text-primary border-3 border-gray/5 hover:border-b-primary
+                className="text-sm pt-3 px-5 max-2xl:px-2 hover:text-primary  hover:border-b-primary
                transition duration-500 cursor-pointer flex
                max-xl:text-xs max-md:text-md
                "

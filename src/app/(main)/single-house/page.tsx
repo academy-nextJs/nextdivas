@@ -1,12 +1,38 @@
 import CardComponent from "@/components/common/CardComponent";
 import CardList from "@/components/common/cardList";
+import UserComments from "@/components/HomeContainer/UserComments";
+import AboutHouse from "@/components/SinglePagesComponents/aboutHouse";
 import ContactInfo from "@/components/SinglePagesComponents/ContactInfo";
+import AccommodationFacilities from "@/components/SinglePagesComponents/facilities";
+import LocationMap from "@/components/SinglePagesComponents/location";
+import LocationTabContent from "@/components/SinglePagesComponents/locationTabContent";
 import SettingsTabs from "@/components/SinglePagesComponents/tab";
 import React from "react";
 import { BiBuildingHouse } from "react-icons/bi";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 
 function SingleHouse() {
+  const house = {
+    location: {
+      lat: 37.280833,
+      lng: 49.583889,
+    },
+  };
+
+  const tabs = [
+    { name: "درباره ی ملک", value: "about", content: <AboutHouse /> },
+    {
+      name: "امکانات اقامتگاه",
+      value: "facility",
+      content: <AccommodationFacilities />,
+    },
+    { name: "نظرات کاربران", value: "comments", content: <UserComments /> },
+    {
+      name: "موقعیت ملک",
+      value: "location",
+      content: <LocationTabContent />,
+    },
+  ];
   return (
     <div className="">
       <div className="mx-auto max-w-7xl py-16  sm:py-24 sm:px-6  ">
@@ -124,7 +150,7 @@ function SingleHouse() {
         </div>
       </div>
 
-      <SettingsTabs />
+      <SettingsTabs tabs={tabs} defaultTab="about" />
       <div className="flex justify-between items-center bg-[#393939] px-5 mx-5 rounded-lg">
         <p className="text-white leading-10">مشاهده همه</p>
         <p className="text-white leading-10">آگهی های مشابه</p>
