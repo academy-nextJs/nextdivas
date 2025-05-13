@@ -19,7 +19,7 @@ const LandingTitle = ({title , mainTitle , details}: Props) => {
            <BiSolidRightArrow className="text-xs rotate-180 opacity-90" />
            <BiSolidRightArrow className="text-[10px] rotate-180 opacity-50 max-sm:hidden" />
          </div>
-         <h1 className="text-[30px] max-sm:text-[16px] font-medium text-center text-white">
+         <h1 className="text-[30px] max-sm:text-[12px] font-medium text-center text-white">
            {" "}
           {mainTitle}
          </h1>

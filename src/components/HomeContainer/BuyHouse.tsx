@@ -8,6 +8,16 @@ import { getBuyHouse } from "@/utils/service/api/landing/landing";
 import { House } from "@/types/landing.types";
 import CardBody from "../common/CardBody";
 
+//slider imports
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { Pagination, Navigation } from "swiper/modules";
+import SwiperCore from "swiper";
+import "swiper/swiper-bundle.css";
+SwiperCore.use([Navigation, Pagination]);
+
 const BuyHouse = () => {
   const [deltaBuyHouse, setDeltaBuyHouse] = useState<House[]>([]);
 
@@ -48,10 +58,22 @@ const BuyHouse = () => {
       </div>
 
       {/* cart  */}
-      <div className="grid grid-cols-4 gap-5 mt-12 z-10 max-md:grid-cols-1">
+
+       <Swiper
+        pagination={{ clickable: true }}
+        className="mySwiper grid text-white w-[98%] my-8"
+        modules={[Pagination]}
+        breakpoints={{
+          500: { slidesPerView: 1, spaceBetween: 10 },
+          711: { slidesPerView: 2, spaceBetween: 30 },
+          1024: { slidesPerView: 3, spaceBetween: 15 },
+          1395: { slidesPerView: 4, spaceBetween: 30 },
+        }}
+      >
         {deltaBuyHouse.map((item) => (
-          <div key={item.id} className="group text-white cursor-pointer">
-            <CardComponent rate={item.rate} photos={item.photos} />
+          <SwiperSlide key={item.id}>
+            <div className="group text-white cursor-pointer py-2">
+            <CardComponent detailLink="single-house" rate={item.rate} photos={item.photos} />
             <CardBody
               title={`${item.title} |`}
               address={`${item.address} |`}
@@ -62,8 +84,11 @@ const BuyHouse = () => {
               price={`${item.price}`}
             />
           </div>
+          </SwiperSlide>
+          
         ))}
-      </div>
+      </Swiper>
+    
     </div>
   );
 };

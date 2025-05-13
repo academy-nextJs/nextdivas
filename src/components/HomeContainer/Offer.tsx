@@ -1,10 +1,16 @@
 "use client";
+import { useEffect, useState } from "react";
+
 import CardComponent from "../common/CardComponent";
 import ButtonComponent from "../common/button";
 import Time from "../common/Time";
 
 import { House } from "@/types/landing.types";
 import { getOffers } from "@/utils/service/api/landing/landing";
+import FileContainer from "../common/FileContainer";
+import CardBody from "../common/CardBody";
+
+
 
 import { BiBuildingHouse, BiSolidRightArrow } from "react-icons/bi";
 import { LuClock8 } from "react-icons/lu";
@@ -18,9 +24,6 @@ import "swiper/css/pagination";
 import { Pagination, Navigation } from "swiper/modules";
 import SwiperCore from "swiper";
 import "swiper/swiper-bundle.css";
-import { useEffect, useState } from "react";
-import CardBody from "../common/CardBody";
-import FileContainer from "../common/FileContainer";
 SwiperCore.use([Navigation, Pagination]);
 
 const Offer = () => {

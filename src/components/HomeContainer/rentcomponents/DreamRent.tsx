@@ -46,7 +46,7 @@ const DreamRent = () => {
 
       <Swiper
         pagination={{ clickable: true }}
-        className="mySwiper grid text-white w-[98%]"
+        className="mySwiper grid text-white w-[95%] mx-4 my-5"
         modules={[Pagination]}
         breakpoints={{
           500: { slidesPerView: 1, spaceBetween: 10 },
@@ -57,11 +57,11 @@ const DreamRent = () => {
       >
         {deltaHouseRent.map((item) => (
           <SwiperSlide key={item.id}>
-            <div className="group text-white cursor-pointer px-12">
-              <CardComponent rate={item.rate} photos={item.photos} />
-              <div className="grid grid-cols-2 w-full ">
-                <p className="text-neutral-500 flex"> {item.capacity}مورد</p>
-                <h3 className="text-white w-full text-left text-lg font-bold justify-self-end ">
+            <div className="group text-white cursor-pointer max-w-[300px] max-sm:max-w-[200px] py-2">
+              <CardComponent detailLink="single-house" rate={item.rate} photos={item.photos} />
+              <div className="flex justify-end items-center p-2 gap-2 w-full ">
+                <p className="text-neutral-500 "> ({item.capacity}مورد)</p>
+                <h3 className="text-left text-lg font-bold ">
                   {" "}
                   {item.title}{" "}
                 </h3>

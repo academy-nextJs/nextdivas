@@ -78,11 +78,7 @@ const AboutUs = () => {
             ab, officiis pariatur quo numquam, aliquam alias quos. Lorem ipsum
             dolor sit amet consectetur adipisicing elit. Aliquid dolorem maxime
             maiores! Eos libero incidunt commodi temporibus amet minus laudant
-            ium perspiciatis sed ab, officiis pariatur quo numquam, aliquam
-            alias quos. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Aliquid dolorem maxime maiores! Eos libero incidunt commodi
-            temporibus amet minus laudant ium perspiciatis sed ab, officiis
-            pariatur quo numquam, aliquam alias quos.
+            
           </p>
         </div>
 

@@ -18,7 +18,7 @@ SwiperCore.use([Navigation, Pagination]);
 type CardType = {
   rate?: string;
   photos?: [string];
-  detailLink?: string;
+  detailLink: string;
 };
 
 const CardComponent = ({ rate, photos, detailLink }: CardType) => {

@@ -11,6 +11,7 @@ import "swiper/css/pagination";
 import { Pagination, Navigation } from "swiper/modules";
 import SwiperCore from "swiper";
 import "swiper/swiper-bundle.css";
+import FileContainer from "../common/FileContainer";
 SwiperCore.use([Navigation, Pagination]);
 
 const UserComments = () => {
@@ -60,10 +61,10 @@ const UserComments = () => {
         details="تیم دلتا با ارائه بهترین نیرو های خدماتی و سرویس های املاکی سعی دارد تا بتواند در تمام لحظات کنار شما باشد ."
       />
 
-      <div className="grid my-10 p-20 max-xl:gap-2">
+      <div className="grid my-10 p-20 max-sm:p-2 max-xl:gap-2">
         <Swiper
           pagination={{ clickable: true }}
-          className="mySwiper text-white max-w-[1400px] w-[93%]"
+          className="mySwiper text-white max-w-[1400px] w-[97%]"
           modules={[Pagination]}
           breakpoints={{
             320: { slidesPerView: 1 },
@@ -76,27 +77,31 @@ const UserComments = () => {
           {comment.map((items) => (
             <SwiperSlide
               key={items.id}
-              className="relative mb-8 grid justify-items-center justify-self-center col-span-1 max-sm:bg-[#393939] rounded-2xl"
+              className="relative mb-8 grid rounded-2xl"
             >
-              <svg
-                height="309"
-                viewBox="0 0 698 339"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-[100%]"
+              <FileContainer
+                key={items.id}
+                background="#393939"
+                radius="sm"
+                size="md"
+                labelHeight="25px"
+                labelWidth="100px"
+                tagHeight="30px"
+                width="95%"
+                classNames={{
+                  base: "group h-[70px] mx-2 my-10 p-4 pt-[32px] hover:!bg-primary hover:shadow-[0px_8px_24px_rgba(140,255,69,0.12)]",
+                  innerLabel: "!p-3 flex justify-center items-center",
+                  wrapperLabel: "group-hover:!bg-primary",
+                  coverHollow: "group-hover:!text-primary",
+                }}
               >
-                <path
-                  d="M554.978 27.4183C562.544 27.4183 569.668 23.8499 574.199 17.7897L580.301 9.62861C584.832 3.56845 591.956 0 599.522 0L654 0C667.255 0 678 10.7452 678 24V285C678 298.255 667.255 309 654 309H24C10.7452 309 0 298.255 0 285L0 51.4183C0 38.1635 10.7452 27.4183 24 27.4183L554.978 27.4183Z"
-                  fill="#393939"
-                />
-              </svg>
-
-              <div className="absolute top-4 right-5 text-white grid">
-                <div className="shadow-md shadow-amber-50/20 flex z-20 px-3 py-1 mx-3 h-9 justify-self-end rounded-xl bg-white text-black transition-all duration-500 group-hover:text-white group-hover:bg-[#2D2D2D] ">
+                <div className="absolute -top-4 right-3 shadow-md shadow-amber-50/20 flex z-50 px-3 py-1 h-9 rounded-xl bg-white text-black transition-all duration-500 group-hover:text-white group-hover:bg-[#2D2D2D] ">
                   {" "}
                   <FaStar className="mt-1 mr-2" /> 4.5{" "}
                 </div>
-                <p className="text-right mx-3 my-5 ">{items.text}</p>
+                <p className="text-right group-hover:text-black mx-3 my-5 ">
+                  {items.text}
+                </p>
                 <div className="p-2 rounded-xl bg-neutral-500 m-3 flex justify-end gap-4 text-sm font-semibold">
                   <div>
                     <p className="mb-2"> {items.name} </p>
@@ -109,7 +114,7 @@ const UserComments = () => {
                     {""}
                   </div>
                 </div>
-              </div>
+              </FileContainer>
             </SwiperSlide>
           ))}
         </Swiper>
