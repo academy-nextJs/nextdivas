@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { motion, AnimatePresence } from "framer-motion";
 import searchIcon from "@/assets/image/search.png";
 import { Stepper } from "@/components/auth/stepper";
-import { ModeToggle } from "@/components/auth/mpdeToggle";
+import { ModeToggle } from "@/components/auth/modeToggle";
 import { SocialButton } from "@/components/auth/socialButton";
 import FullPageSkeleton from "@/components/skeletons/LoginSkeleton";
 import { loginAction } from "@/app/actions/login-action";

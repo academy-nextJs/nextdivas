@@ -143,7 +143,7 @@ export default function Footer() {
         </motion.div>
 
         <motion.div
-          className="bg-gray relative z-20 shadow-md rounded-2xl mx-auto max-w-5xl px-6 pb-4 sm:pt-24 lg:px-8"
+          className="bg-[#303030] relative z-20 shadow-md rounded-2xl mx-auto max-w-5xl px-6 pb-4 sm:pt-24 lg:px-8"
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}

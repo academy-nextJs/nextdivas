@@ -74,7 +74,7 @@ const Header = () => {
             {list.map((item, index) => (
               <li
                 key={index}
-                className="text-sm pt-3 px-5 max-2xl:px-2 hover:text-primary border-3 border-gray/5 hover:border-b-primary
+                className="text-sm pt-3 px-5 max-2xl:px-2 hover:text-primary  hover:border-b-primary
                transition duration-500 cursor-pointer flex
                max-xl:text-xs max-md:text-md
                "

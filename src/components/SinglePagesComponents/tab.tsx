@@ -1,26 +1,42 @@
 "use client";
 
 import { useState } from "react";
-import UserComments from "../HomeContainer/UserComments";
-import AccommodationFacilities from "./facilities";
-import AboutHouse from "./aboutHouse";
 
 function classNames(...classes: (string | false | null | undefined)[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-const tabs = [
-  { name: " درباره ی ملک ", value: "about" },
-  { name: "امکانات اقامتگاه ", value: "facility" },
-  { name: " نظرات کاربران", value: "Comments " },
-];
+interface Tab {
+  name: string;
+  value: string;
+  content: React.ReactNode;
+}
 
-export default function SettingsTabs() {
-  const [activeTab, setActiveTab] = useState("about");
+interface SettingsTabsProps {
+  tabs?: Tab[]; // تب‌ها به صورت prop ارسال می‌شن
+  defaultTab?: string; // تب پیش‌فرض
+}
+
+export default function SettingsTabs({
+  tabs = [],
+  defaultTab,
+}: SettingsTabsProps) {
+  // اگر تب پیش‌فرض داده نشده بود، اولین تب موجود انتخاب میشه
+  const initialTab = defaultTab || (tabs.length > 0 ? tabs[0].value : "");
+  const [activeTab, setActiveTab] = useState(initialTab);
+
+  // اگر تب‌ها خالی بودن، پیام مناسب نشون بده
+  if (tabs.length === 0) {
+    return (
+      <div className="text-center text-red-500 py-4">
+        هیچ تبی برای نمایش وجود ندارد.
+      </div>
+    );
+  }
 
   return (
     <div className="text-right">
-      {/* Mobile select */}
+      {/* Mobile dropdown select */}
       <div className="sm:hidden">
         <label htmlFor="tabs" className="sr-only">
           انتخاب تب
@@ -40,7 +56,7 @@ export default function SettingsTabs() {
         </select>
       </div>
 
-      {/* Desktop tabs */}
+      {/* Desktop tab buttons */}
       <div className="hidden sm:block">
         <nav
           className="flex flex-row-reverse space-x-reverse space-x-4 rounded-lg bg-[#393939] pb-2 px-2.5 mx-3.5 mb-4"
@@ -65,9 +81,14 @@ export default function SettingsTabs() {
 
       {/* Tab content */}
       <div className="mt-4">
-        {activeTab === "about" && <AboutHouse />}
-        {activeTab === "facility" && <AccommodationFacilities />}
-        {activeTab === "Comments " && <UserComments />}
+        {tabs.map(
+          (tab) =>
+            tab.value === activeTab && (
+              <div key={tab.value} className="animate-fadeIn">
+                {tab.content}
+              </div>
+            )
+        )}
       </div>
     </div>
   );
