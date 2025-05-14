@@ -33,17 +33,26 @@ export interface House {
   caption: null;
 }
 
-
 export interface CardBodyType {
-  title:string ,
-  address :string,
-  rooms :string,
-  parking :string,
-  bathrooms :string,
-  yard_type :string,
-  price:string,
-  icon1?:any,
-  icon2?:any,
-  icon3?:any,
-  icon4?:any,
+  title: string;
+  address: string;
+  rooms: string;
+  parking: string;
+  bathrooms: string;
+  yard_type: string;
+  price: string;
+  icon1?: any;
+  icon2?: any;
+  icon3?: any;
+  icon4?: any;
 }
+
+export interface commentType {
+  id: number;
+  image: string;
+  name: string;
+  date: string;
+  text: string;
+}
+
+
