@@ -7,7 +7,7 @@ import FilterIcon from "../../../../public/icons/bars-filter (1) 1.png";
 import LocationIcon from "../../../../public/icons/marker 1.png";
 import CardWrapper from "@/components/house-reserve/CardWrapper";
 import dynamic from "next/dynamic";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { getHouseReserveWithFilters } from "@/utils/service/api/HouseReserve";
 
@@ -41,40 +41,38 @@ interface CardData {
   status: string;
   isFavorite: boolean;
   star: string;
+  coordinates?: [number, number]; // Added coordinates
 }
 
-const HouseReserve: React.FC = () => {
+interface HouseReserveProps {
+  searchParams: { [key: string]: string | string[] | undefined };
+}
+
+const HouseReserve: React.FC<HouseReserveProps> = ({ searchParams }) => {
   const router = useRouter();
-  const searchParams = useSearchParams();
 
   const initialFilters: Filters = {
-    search: searchParams.get("search") || "",
-    sortBy: searchParams.get("sortBy") || "",
-    location: searchParams.get("location") || "",
-    minPrice: searchParams.get("minPrice") || "",
-    maxPrice: searchParams.get("maxPrice") || "",
-    rating: searchParams.get("rating") || "",
+    search: searchParams.search || "",
+    sortBy: searchParams.sortBy || "",
+    location: searchParams.location || "",
+    minPrice: searchParams.minPrice || "",
+    maxPrice: searchParams.maxPrice || "",
+    rating: searchParams.rating || "",
   };
 
   const [filters, setFilters] = useState<Filters>(initialFilters);
   const [loading, setLoading] = useState<boolean>(false);
-  const [advertisementCount, setAdvertisementCount] = useState<number>(100);
-  const [filteredCards, setFilteredCards] = useState<CardData[]>([]);
-  const [isShareModalOpen, setIsShareModalOpen] = useState<boolean>(false);
-
+  const [currentUrl, setCurrentUrl] = useState("");
   const cards: CardData[] = [
-    { title: "هتل پارسیان", location: "تهران", price: "۱,۵۰۰,۰۰۰ ت", status: "۴,۰۰۰,۰۰۰", isFavorite: false, star: "4" },
-    { title: "ویلا ساحلی", location: "گیلان", price: "۲,۰۰۰,۰۰۰ ت", status: "۵,۰۰۰,۰۰۰", isFavorite: true, star: "4.8" },
-    { title: "آپارتمان مرکز شهر", location: "مشهد", price: "۱,۲۰۰,۰۰۰ ت", status: "۳,۰۰۰,۰۰۰", isFavorite: false, star: "4.9" },
-    { title: "هتل سنتی", location: "اصفهان", price: "۱,۸۰۰,۰۰۰ ت", status: "۴,۰۰۰,۰۰۰", isFavorite: true, star: "4.2" },
+    { title: "هتل پارسیان", location: "تهران", price: "۱,۵۰۰,۰۰۰ ت", status: "۴,۰۰۰,۰۰۰", isFavorite: false, star: "4", coordinates: [35.6892, 51.389] },
+    { title: "ویلا ساحلی", location: "گیلان", price: "۲,۰۰۰,۰۰۰ ت", status: "۵,۰۰۰,۰۰۰", isFavorite: true, star: "4.8", coordinates: [37.2809, 49.5832] },
+    { title: "آپارتمان مرکز شهر", location: "مشهد", price: "۱,۲۰۰,۰۰۰ ت", status: "۳,۰۰۰,۰۰۰", isFavorite: false, star: "4.9", coordinates: [36.297, 59.6062] },
+    { title: "هتل سنتی", location: "اصفهان", price: "۱,۸۰۰,۰۰۰ ت", status: "۴,۰۰۰,۰۰۰", isFavorite: true, star: "4.2", coordinates: [32.6546, 51.668] },
   ];
-
-  const cityCoordinates: { [key: string]: [number, number] } = {
-    تهران: [35.6892, 51.389],
-    گیلان: [37.2809, 49.5832],
-    مشهد: [36.297, 59.6062],
-    اصفهان: [32.6546, 51.668],
-  };
+  const [advertisementCount, setAdvertisementCount] = useState<number>(cards.length);
+  const [filteredCards, setFilteredCards] = useState<CardData[]>(cards);
+  const [mapCards, setMapCards] = useState<CardData[]>([]);
+  const [isShareModalOpen, setIsShareModalOpen] = useState<boolean>(false);
 
   // تنظیم آیکن‌های Leaflet فقط در کلاینت
   useEffect(() => {
@@ -100,8 +98,9 @@ const HouseReserve: React.FC = () => {
         filters.maxPrice,
         filters.rating
       );
-      setFilteredCards(data || cards); // اگر API داده‌ای برنگرداند، از cards پیش‌فرض استفاده می‌کنیم
-      setAdvertisementCount(data?.length);
+      setFilteredCards(data || cards);
+      setMapCards(data || []);
+      setAdvertisementCount((data || cards).length);
       setLoading(false);
     };
     fetchHouses();
@@ -115,18 +114,21 @@ const HouseReserve: React.FC = () => {
     router.push(`?${params.toString()}`, { scroll: false });
   }, [filters, router]);
 
+  useEffect(() => {
+    setCurrentUrl(window.location.href);
+  }, []);
+
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFilters((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleMarkerClick = (city: string) => {
-    const filtered = cards.filter((card) => card.location === city);
+    const filtered = (mapCards.length > 0 ? mapCards : cards).filter((card) => card.location === city);
     setFilteredCards(filtered);
     setFilters((prev) => ({ ...prev, location: city }));
   };
 
-  const currentUrl = typeof window !== "undefined" ? window.location.href : "";
   const shareToTelegram = () => {
     const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(currentUrl)}`;
     window.open(telegramUrl, "_blank");
@@ -326,35 +328,35 @@ const HouseReserve: React.FC = () => {
                   <CardWrapper cards={filteredCards} />
                 </div>
               </div>
-              <div className="w-full md:w-1/2 p-3 h-auto flex justify-center overflow-hidden rounded-2xl relative bg-gray-700">
+              <div className="w-full md:w-1/2 h-[300px] md:h-full p-3 flex justify-center overflow-hidden rounded-2xl relative">
                 {typeof window !== "undefined" && (
                   <MapContainer
-                    center={[35.6892, 51.389]}
+                    center={[35.6892, 51.389]} // Default center (Tehran), can be dynamic if needed
                     zoom={6}
                     style={{
                       height: "100%",
                       width: "100%",
-                      maxHeight: "500px",
-                      maxWidth: "500px",
                       borderRadius: "1rem",
                     }}
-                    className="w-full h-[300px] sm:h-[400px] md:h-[500px]"
+                    className="w-full h-[300px] z-10 sm:h-[400px] md:h-[500px]"
                   >
                     <TileLayer
                       url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                       attribution='© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     />
-                    {Object.keys(cityCoordinates).map((city) => (
-                      <Marker
-                        key={city}
-                        position={cityCoordinates[city]}
-                        eventHandlers={{
-                          click: () => handleMarkerClick(city),
-                        }}
-                      >
-                        <Popup>{city}</Popup>
-                      </Marker>
-                    ))}
+                    {mapCards
+                      .filter((card) => card.coordinates)
+                      .map((card) => (
+                        <Marker
+                          key={card.title}
+                          position={card.coordinates!}
+                          eventHandlers={{
+                            click: () => handleMarkerClick(card.location),
+                          }}
+                        >
+                          <Popup>{card.location}</Popup>
+                        </Marker>
+                      ))}
                   </MapContainer>
                 )}
               </div>
