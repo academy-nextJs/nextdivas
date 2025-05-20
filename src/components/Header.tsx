@@ -15,7 +15,7 @@ const Header = () => {
     { title: "مقالات ما", link: "#" },
     { title: "درباره دلتا", link: "about" },
     { title: "رهن و اجاره", link: "mortgageAndHouseRent" },
-    { title: "رزرو سریع", link: "reserveHouse" },
+    { title: "رزرو سریع", link: "house-reserve" },
   ];
 
   const [menu, setMenu] = useState(false);
