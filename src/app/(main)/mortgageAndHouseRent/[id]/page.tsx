@@ -1,3 +1,6 @@
+"use client";
+
+import React, { useEffect, useState } from "react";
 import CardComponent from "@/components/common/CardComponent";
 import CardList from "@/components/common/cardList";
 import UserComments from "@/components/HomeContainer/UserComments";
@@ -7,17 +10,70 @@ import AccommodationFacilities from "@/components/SinglePagesComponents/faciliti
 import LocationMap from "@/components/SinglePagesComponents/location";
 import LocationTabContent from "@/components/SinglePagesComponents/locationTabContent";
 import SettingsTabs from "@/components/SinglePagesComponents/tab";
-import React from "react";
 import { BiBuildingHouse } from "react-icons/bi";
 import { HiOutlineLocationMarker } from "react-icons/hi";
+import { getHouseById } from "@/utils/service/api/single-house/houseService";
+import Comment from "@/components/common/comments/Comment";
+import { commentType } from "@/types/landing.types";
+
+export interface type {
+  comment: commentType[];
+  button?: React.ReactElement;
+  reply?: React.ReactElement;
+}
 
 function SingleHouse() {
-  const house = {
-    location: {
-      lat: 37.280833,
-      lng: 49.583889,
+  const [house, setHouse] = useState<any>(null);
+  const comment = [
+    {
+      id: 1,
+      image: "234",
+      name: " محمد رضا ساداتی",
+      date: "1/2/3 شنبه ",
+      text: "” لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ وه از طراحان گرافیک است. چاپگر ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی موردرها و متون بلکه روز استفادمه و مجدلهناز و کاربا نرد.... “ ",
     },
-  };
+    {
+      id: 2,
+      image: "234",
+      name: " محمد رضا ساداتی",
+      date: "1/2/3 شنبه ",
+      text: "” لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ وه از طراحان گرافیک است. چاپگر ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی موردرها و متون بلکه روز استفادمه و مجدلهناز و کاربا نرد.... “ ",
+    },
+    {
+      id: 3,
+      image: "234",
+      name: " محمد رضا ساداتی",
+      date: "1/2/3 شنبه ",
+      text: "” لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ وه از طراحان گرافیک است. چاپگر ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی موردرها و متون بلکه روز استفادمه و مجدلهناز و کاربا نرد.... “ ",
+    },
+    {
+      id: 4,
+      image: "234",
+      name: " محمد رضا ساداتی",
+      date: "1/2/3 شنبه ",
+      text: "” لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ وه از طراحان گرافیک است. چاپگر ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی موردرها و متون بلکه روز استفادمه و مجدلهناز و کاربا نرد.... “ ",
+    },
+    {
+      id: 5,
+      image: "234",
+      name: " محمد رضا ساداتی",
+      date: "1/2/3 شنبه ",
+      text: "” لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ وه از طراحان گرافیک است. چاپگر ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی موردرها و متون بلکه روز استفادمه و مجدلهناز و کاربا نرد.... “ ",
+    },
+  ];
+
+  useEffect(() => {
+    const fetchHouse = async () => {
+      try {
+        const data = await getHouseById("3");
+        setHouse(data);
+      } catch (error) {
+        console.error("Error fetching house:", error);
+      }
+    };
+
+    fetchHouse();
+  }, []);
 
   const tabs = [
     { name: "درباره ی ملک", value: "about", content: <AboutHouse /> },
@@ -26,16 +82,21 @@ function SingleHouse() {
       value: "facility",
       content: <AccommodationFacilities />,
     },
-    { name: "نظرات کاربران", value: "comments", content: <UserComments /> },
+    {
+      name: "نظرات کاربران",
+      value: "comments",
+      content: <Comment comment={comment} />,
+    },
     {
       name: "موقعیت ملک",
       value: "location",
       content: <LocationTabContent />,
     },
   ];
+
   return (
     <div className="">
-      <div className="mx-auto max-w-7xl py-16  sm:py-24 sm:px-6  ">
+      <div className="mx-auto max-w-7xl py-16 sm:py-24 sm:px-6">
         {/* تصاویر و ContactInfo در یک ردیف */}
         <div className="mt-6 grid grid-cols-1 lg:grid-cols-5 gap-4 px-0">
           {/* Contact Info */}
@@ -49,8 +110,10 @@ function SingleHouse() {
               {/* عکس بزرگ سمت راست */}
               <div className="group aspect-w-2 aspect-h-1 overflow-hidden rounded-lg sm:row-span-2">
                 <img
-                  src="https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-03-featured-category.jpg"
-                  alt=""
+                  src={
+                    house?.photos?.[0] || "https://via.placeholder.com/500x300"
+                  }
+                  alt="photo-1"
                   className="object-cover object-center w-full h-full group-hover:opacity-75"
                 />
                 <div
@@ -62,8 +125,10 @@ function SingleHouse() {
               {/* عکس دوم */}
               <div className="group aspect-w-2 aspect-h-1 overflow-hidden rounded-lg sm:relative sm:h-full">
                 <img
-                  src="https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-03-category-01.jpg"
-                  alt=""
+                  src={
+                    house?.photos?.[1] || "https://via.placeholder.com/500x300"
+                  }
+                  alt="photo-2"
                   className="object-cover object-center w-full h-full group-hover:opacity-75 sm:absolute sm:inset-0"
                 />
                 <div className="bg-gradient-to-b from-transparent to-black opacity-50 sm:absolute sm:inset-0" />
@@ -83,8 +148,10 @@ function SingleHouse() {
               {/* عکس سوم */}
               <div className="group aspect-w-2 aspect-h-1 overflow-hidden rounded-lg sm:relative sm:h-full">
                 <img
-                  src="https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-03-category-02.jpg"
-                  alt=""
+                  src={
+                    house?.photos?.[2] || "https://via.placeholder.com/500x300"
+                  }
+                  alt="photo-3"
                   className="object-cover object-center w-full h-full group-hover:opacity-75 sm:absolute sm:inset-0"
                 />
                 <div className="bg-gradient-to-b from-transparent to-black opacity-50 sm:absolute sm:inset-0" />
@@ -108,7 +175,7 @@ function SingleHouse() {
           {/* لایک و اشتراک‌گذاری */}
           <div className="flex items-center gap-3">
             <button className="text-gray-500 hover:text-red-500 transition">
-              ❤️ <span className="ml-1">12</span>
+              ❤️ <span className="ml-1">{house?.likes || 12}</span>
             </button>
             <button className="text-gray-500 hover:text-blue-500 transition">
               🔗 اشتراک‌گذاری
@@ -117,25 +184,29 @@ function SingleHouse() {
 
           {/* تگ‌ها */}
           <div className="flex flex-wrap gap-2">
-            <span className="bg-gray-200 text-gray-700 px-2 py-1 rounded-full text-xs">
-              #فوری
-            </span>
-            <span className="bg-gray-200 text-gray-700 px-2 py-1 rounded-full text-xs">
-              #آپارتمانی
-            </span>
-            <span className="bg-gray-200 text-gray-700 px-2 py-1 rounded-full text-xs">
-              #فروش
-            </span>
+            {(house?.tags || ["فوری", "آپارتمانی", "فروش"]).map(
+              (tag: string, index: number) => (
+                <span
+                  key={index}
+                  className="bg-gray-200 text-gray-700 px-2 py-1 rounded-full text-xs"
+                >
+                  #{tag}
+                </span>
+              )
+            )}
           </div>
         </div>
+
         <div className="text-right text-white leading-20">
-          <h2>فروش آپارتمان 262 متر در شهرک غرب</h2>
+          <h2>{house?.title || "فروش آپارتمان 262 متر در شهرک غرب"}</h2>
         </div>
+
         <div className="flex pt-3.5 flex-wrap gap-2 justify-end w-full">
-          {/* آدرس */}
           <div className="flex items-center gap-1">
             <HiOutlineLocationMarker className="text-lg text-green-500" />
-            <span className="text-white">گیلان، رشت، جاده دریا</span>
+            <span className="text-white">
+              {house?.address || "گیلان، رشت، جاده دریا"}
+            </span>
           </div>
         </div>
 
@@ -151,6 +222,7 @@ function SingleHouse() {
       </div>
 
       <SettingsTabs tabs={tabs} defaultTab="about" />
+
       <div className="flex justify-between items-center bg-[#393939] px-5 mx-5 rounded-lg">
         <p className="text-white leading-10">مشاهده همه</p>
         <p className="text-white leading-10">آگهی های مشابه</p>

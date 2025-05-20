@@ -1,0 +1,18 @@
+// lib/api/commentApi.ts
+
+import axiosInstance from "../../interceptor/axiosInstance";
+
+export const getHouseComments = async ({
+  houseId,
+  page = 1,
+  limit = 10,
+}: {
+  houseId: string | number;
+  page?: number;
+  limit?: number;
+}) => {
+  const response = await axiosInstance.get(`/houses/${houseId}/comments`, {
+    params: { page, limit },
+  });
+  return response.data;
+};
