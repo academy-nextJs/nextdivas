@@ -48,11 +48,8 @@ export interface CardBodyType {
 }
 
 export interface commentType {
-  id: number;
-  image: string;
-  name: string;
-  date: string;
-  text: string;
+  id: string;
+  userFullName: string; // یا user: { fullName: string }
+  message: string;
+  createdAt: string; // اگر API به شکل created_at ارسال می‌کنه، با Zod یا map تغییرش بده
 }
-
-
