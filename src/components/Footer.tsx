@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { FaInstagram, FaTelegram, FaTwitter } from "react-icons/fa";
 import myPhoto2 from "../assets/image/login.png";
+import { usePathname } from "next/navigation";
 
 const navigation = {
   company: [
@@ -25,6 +26,12 @@ const navigation = {
 };
 
 export default function Footer() {
+  const pathname = usePathname();
+
+  if (pathname.startsWith("/dashboard")) {
+    return null;
+  }
+
   return (
     <div className="relative p-14 w-full" aria-labelledby="footer-heading">
       <div className="relative py-14 w-full dark:bg-dark overflow-hidden">

@@ -8,6 +8,8 @@
   font-style: normal;
 }
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --swiper-pagination-bullet-size: 15px;
   --swiper-pagination-bullet-inactive-color: #ffffff;
