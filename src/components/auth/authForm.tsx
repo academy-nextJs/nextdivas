@@ -6,11 +6,11 @@ import { useForm } from "react-hook-form";
 import { motion, AnimatePresence } from "framer-motion";
 import searchIcon from "@/assets/image/search.png";
 import { Stepper } from "@/components/auth/stepper";
-import { ModeToggle } from "@/components/auth/modeToggle";
-import { SocialButton } from "@/components/auth/socialButton";
+import { SocialButton } from "@/components/common/socialButton";
 import FullPageSkeleton from "@/components/skeletons/LoginSkeleton";
 import { loginAction } from "@/app/actions/login-action";
 import { registerAction } from "@/app/actions/register-action";
+import { Toggle } from "../common/Toggle";
 
 export default function AuthForm() {
   const [mode, setMode] = useState<"login" | "register">("login");
@@ -90,12 +90,16 @@ export default function AuthForm() {
 
       {/* سوییچ بین ورود و ثبت‌نام */}
       <div className="mt-6">
-        <ModeToggle
-          mode={mode}
-          onChange={(m) => {
-            setMode(m);
-            setStep(1);
-          }}
+        <Toggle
+          value={mode}
+          onChange={setMode}
+          options={[
+            { value: "login", label: "ورود به حساب کاربری" },
+            { value: "register", label: "ساخت حساب کاربری" },
+          ]}
+          containerClassName="flex bg-gray-800 rounded-xl p-1"
+          activeClassName="bg-green-500 text-white"
+          inactiveClassName="text-white hover:bg-green-500/40"
         />
       </div>
 

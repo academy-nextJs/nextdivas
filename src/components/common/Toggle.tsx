@@ -1,31 +1,56 @@
-import React from "react";
+// components/ui/Toggle.tsx
+"use client";
+
 import { motion } from "framer-motion";
 
-interface ToggleType {
-  mode: string[];
-  onChange: (mode: string[]) => void;
-}
-
-const Toggle = ({ mode, onChange }: ToggleType) => {
-  return (
-    <motion.div
-      className="flex justify-center rounded-xl bg-gray p-1.5  gap-2 text-sm"
-      layout
-    >
-      {/* <h4 className="py-2 px-3 opacity-80" > </h4>
-      <h4 className="py-1.5 px-3 bg-primary text-black rounded-xl">
-       
-      </h4> */}
-      {mode.map((item, i) => (
-        <motion.button 
-        key={i}
-        className={`
-            ${mode[0] ? "": ""}
-            `}
-        > {item} </motion.button>
-      ))}
-    </motion.div>
-  );
+type ToggleOption<T> = {
+  value: T;
+  label: string;
 };
 
-export default Toggle;
+interface ToggleProps<T extends string> {
+  options: ToggleOption<T>[];
+  value: T;
+  onChange: (value: T) => void;
+  containerClassName?: string;
+  activeClassName?: string;
+  inactiveClassName?: string;
+}
+
+export function Toggle<T extends string>({
+  options,
+  value,
+  onChange,
+  containerClassName,
+  activeClassName,
+  inactiveClassName,
+}: ToggleProps<T>) {
+  return (
+    <motion.div
+      className={
+        containerClassName ||
+        "flex bg-[#303030] rounded-2xl py-1.5 transition-all"
+      }
+      layout
+    >
+      {options.map((opt) => {
+        const isActive = value === opt.value;
+
+        return (
+          <motion.button
+            key={opt.value}
+            onClick={() => onChange(opt.value)}
+            className={`flex-1 px-3 py-1.5 text-xs font-medium rounded-xl transition-colors ${
+              isActive
+                ? activeClassName || "text-white bg-[#8CFF45]"
+                : inactiveClassName || "text-white hover:bg-[#8CFF45]/40"
+            }`}
+            whileTap={{ scale: 0.95 }}
+          >
+            {opt.label}
+          </motion.button>
+        );
+      })}
+    </motion.div>
+  );
+}

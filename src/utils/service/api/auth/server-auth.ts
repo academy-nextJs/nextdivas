@@ -13,6 +13,7 @@ export const serverLogin = (data: LoginPayload): Promise<any> => {
   return customFetch("/auth/login", {
     method: "POST",
     body: JSON.stringify(data),
+    // body: data,
   });
 };
 
