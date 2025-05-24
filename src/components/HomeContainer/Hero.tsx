@@ -20,7 +20,7 @@ const Hero = () => {
         />
       </div>
 
-      <div className=" mt-[400px] max-xl:mt-[300px] max-lg:mt-[280px] max-sm:mt-[180px]">
+      <div className=" mt-[370px] max-xl:mt-[300px] max-lg:mt-[280px] max-sm:mt-[180px]">
         <div className="grid grid-cols-2 max-sm:grid-cols-1 max-sm:justify-items-center">
           {/* left  */}
           <div className="text-white ml-20 max-lg:ml-4  w-1/2 max-lg:w-2/3 text-right">

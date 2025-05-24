@@ -10,6 +10,7 @@ interface FormInputProps extends HTMLMotionProps<"div"> {
   register: UseFormRegister<any>;
   errors?: FieldErrors<any>;
   className?: string; // برای اضافه کردن کلاس دلخواه
+  options?: { value: string; label: string }[]; // برای نوع select
 }
 
 export const FormInput: React.FC<FormInputProps> = ({
@@ -19,6 +20,7 @@ export const FormInput: React.FC<FormInputProps> = ({
   register,
   errors,
   className = "",
+  options,
   ...motionProps
 }) => (
   <motion.div className={`relative peer ${className}`} {...motionProps}>
@@ -31,6 +33,21 @@ export const FormInput: React.FC<FormInputProps> = ({
     <label className="absolute right-3 -top-2.5 bg-[#232323] px-1 text-xs text-gray-500">
       {label}
     </label>
+    {type === "select" && (
+      <select
+        {...register(name, { required: true })}
+        className="peer block w-full rounded-md border border-gray-300 px-3 pt-5 pb-2 text-sm placeholder-transparent shadow-sm"
+      >
+        <option value="" disabled>
+          {label}
+        </option>
+        {options?.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+    )}
     {errors?.[name] && (
       <p className="text-red-500 text-xs mt-1">وارد کردن {label} الزامی است</p>
     )}

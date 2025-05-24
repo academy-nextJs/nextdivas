@@ -3,11 +3,11 @@ import CardWrapper from "@/components/mortgage/CardWrapper";
 import React, { useState, useEffect } from "react";
 import { getHousesWithFilters } from "@/utils/service/api/MortgageAndHouseRent";
 import { ClipLoader } from "react-spinners";
-import SearchIcon from "../../../../public/icons/search.png"
-import CoinIcon from "../../../../public/icons/usd-circle 1.png"
-import HouseIcon from "../../../../public/icons/house-building 1.png"
-import FilterIcon from "../../../../public/icons/bars-filter (1) 1.png"
-import LocationIcon from "../../../../public/icons/marker 1.png"
+import SearchIcon from "../../../../public/icons/search.png";
+import CoinIcon from "../../../../public/icons/usd-circle 1.png";
+import HouseIcon from "../../../../public/icons/house-building 1.png";
+import FilterIcon from "../../../../public/icons/bars-filter (1) 1.png";
+import LocationIcon from "../../../../public/icons/marker 1.png";
 import Image from "next/image";
 
 export default function MortgageAndHouseRent() {
@@ -62,7 +62,7 @@ export default function MortgageAndHouseRent() {
   const currentCards = cardsData.slice(startIndex, startIndex + itemsPerPage);
 
   // مدیریت تغییرات فیلترها
-  const handleFilterChange = (e : any) => {
+  const handleFilterChange = (e: any) => {
     const { name, value } = e.target;
     setFilters((prev) => ({ ...prev, [name]: value }));
     setCurrentPage(1); // بازگشت به صفحه اول با تغییر فیلتر
@@ -137,10 +137,22 @@ export default function MortgageAndHouseRent() {
                     <option value="" disabled hidden>
                       انتخاب کنید...
                     </option>
-                    <option defaultChecked value="mortgage" className="text-right">رهن</option>
-                    <option value="rental" className="text-right">اجاره</option>
-                    <option value="reservation" className="text-right">رزرو</option>
-                    <option value="direct_purchase" className="text-right">خرید مستقیم</option>
+                    <option
+                      defaultChecked
+                      value="mortgage"
+                      className="text-right"
+                    >
+                      رهن
+                    </option>
+                    <option value="rental" className="text-right">
+                      اجاره
+                    </option>
+                    <option value="reservation" className="text-right">
+                      رزرو
+                    </option>
+                    <option value="direct_purchase" className="text-right">
+                      خرید مستقیم
+                    </option>
                   </select>
                   <Image className="mt-1" src={CoinIcon} alt="CoinIcon" />
                   <label className="absolute right-3 -top-2.5 bg-[#303030] px-1 text-xs text-white">
@@ -170,14 +182,20 @@ export default function MortgageAndHouseRent() {
                     name="propertyType"
                     value={filters.propertyType}
                     onChange={handleFilterChange}
-                     className="peer block w-[85%] outline-none h-[52px] px-3 pt-5 pb-2 text-sm text-right shadow-sm bg-transparent text-gray-400 appearance-none"
+                    className="peer block w-[85%] outline-none h-[52px] px-3 pt-5 pb-2 text-sm text-right shadow-sm bg-transparent text-gray-400 appearance-none"
                   >
                     <option value="" disabled hidden>
                       انتخاب کنید...
                     </option>
-                    <option value="hotel" className="text-right">هتل</option>
-                    <option value="apartment" className="text-right">آپارتمان</option>
-                    <option value="villa" className="text-right">ویلا</option>
+                    <option value="hotel" className="text-right">
+                      هتل
+                    </option>
+                    <option value="apartment" className="text-right">
+                      آپارتمان
+                    </option>
+                    <option value="villa" className="text-right">
+                      ویلا
+                    </option>
                   </select>
                   <Image className="mt-1" src={HouseIcon} alt="CoinIcon" />
                   <label className="absolute right-3 -top-2.5 bg-[#303030] px-1 text-xs text-white">
@@ -207,14 +225,20 @@ export default function MortgageAndHouseRent() {
                     name="sortBy"
                     value={filters.sortBy}
                     onChange={handleFilterChange}
-                     className="peer block w-[85%] outline-none h-[52px] px-3 pt-5 pb-2 text-sm text-right shadow-sm bg-transparent text-gray-400 appearance-none "
+                    className="peer block w-[85%] outline-none h-[52px] px-3 pt-5 pb-2 text-sm text-right shadow-sm bg-transparent text-gray-400 appearance-none "
                   >
                     <option value="" disabled hidden>
                       انتخاب کنید...
                     </option>
-                    <option value="price-asc" className="text-right">قیمت (صعودی)</option>
-                    <option value="price-desc" className="text-right">قیمت (نزولی)</option>
-                    <option value="date" className="text-right">تاریخ</option>
+                    <option value="price-asc" className="text-right">
+                      قیمت (صعودی)
+                    </option>
+                    <option value="price-desc" className="text-right">
+                      قیمت (نزولی)
+                    </option>
+                    <option value="date" className="text-right">
+                      تاریخ
+                    </option>
                   </select>
                   <Image className="mt-1" src={FilterIcon} alt="CoinIcon" />
                   <label className="absolute right-3 -top-2.5 bg-[#303030] px-1 text-xs text-white">
@@ -249,10 +273,18 @@ export default function MortgageAndHouseRent() {
                     <option value="" disabled hidden>
                       انتخاب کنید...
                     </option>
-                    <option value="گیلان" className="text-right">گیلان</option>
-                    <option value="تهران" className="text-right">تهران</option>
-                    <option value="مشهد" className="text-right">مشهد</option>
-                    <option value="اصفهان" className="text-right">اصفهان</option>
+                    <option value="گیلان" className="text-right">
+                      گیلان
+                    </option>
+                    <option value="تهران" className="text-right">
+                      تهران
+                    </option>
+                    <option value="مشهد" className="text-right">
+                      مشهد
+                    </option>
+                    <option value="اصفهان" className="text-right">
+                      اصفهان
+                    </option>
                   </select>
                   <Image className="mt-1" src={LocationIcon} alt="CoinIcon" />
                   <label className="absolute right-3 -top-2.5 bg-[#303030] px-1 text-xs text-white">
@@ -293,87 +325,87 @@ export default function MortgageAndHouseRent() {
 
             {/* بخش فیلترهای عددی (زیر کادر اصلی) */}
             <div className="w-full mt-6 h-auto rounded-3xl p-3 flex flex-wrap md:flex-nowrap justify-end gap-4 items-center">
-  <div className="relative w-full md:w-[156px]">
-    <input
-      type="number"
-      name="minArea"
-      placeholder=" "
-      value={filters.minArea}
-      onChange={handleFilterChange}
-      className="peer block w-full h-[52px] rounded-2xl border border-gray-300 px-3 pt-5 pb-2 text-sm text-right shadow-sm bg-transparent text-white placeholder-transparent"
-    />
-    <label className="absolute right-3 -top-2.5 bg-[#232323] px-1 text-xs text-white">
-      : حداقل متراژ
-    </label>
-  </div>
-  <div className="relative w-full md:w-[156px]">
-    <input
-      type="number"
-      name="maxArea"
-      placeholder=" "
-      value={filters.maxArea}
-      onChange={handleFilterChange}
-      className="peer block w-full h-[52px] rounded-2xl border border-gray-300 px-3 pt-5 pb-2 text-sm text-right shadow-sm bg-transparent text-white placeholder-transparent"
-    />
-    <label className="absolute right-3 -top-2.5 bg-[#232323] px-1 text-xs text-white">
-      : حداکثر متراژ
-    </label>
-  </div>
-  <span className="hidden md:inline">|</span>
-  <div className="relative w-full md:w-[156px]">
-    <input
-      type="number"
-      name="minRooms"
-      placeholder=" "
-      value={filters.minRooms}
-      onChange={handleFilterChange}
-      className="peer block w-full h-[52px] rounded-2xl border border-gray-300 px-3 pt-5 pb-2 text-sm text-right shadow-sm bg-transparent text-white placeholder-transparent"
-    />
-    <label className="absolute right-3 -top-2.5 bg-[#232323] px-1 text-xs text-white">
-      : حداقل اتاق‌ها
-    </label>
-  </div>
-  <div className="relative w-full md:w-[156px]">
-    <input
-      type="number"
-      name="maxRooms"
-      placeholder=" "
-      value={filters.maxRooms}
-      onChange={handleFilterChange}
-      className="peer block w-full h-[52px] rounded-2xl border border-gray-300 px-3 pt-5 pb-2 text-sm text-right shadow-sm bg-transparent text-white placeholder-transparent"
-    />
-    <label className="absolute right-3 -top-2.5 bg-[#232323] px-1 text-xs text-white">
-      : حداکثر اتاق‌ها
-    </label>
-  </div>
-  <span className="hidden md:inline">|</span>
-  <div className="relative w-full md:w-[156px]">
-    <input
-      type="number"
-      name="minMortgage"
-      placeholder=" "
-      value={filters.minMortgage}
-      onChange={handleFilterChange}
-      className="peer block w-full h-[52px] rounded-2xl border border-gray-300 px-3 pt-5 pb-2 text-sm text-right shadow-sm bg-transparent text-white placeholder-transparent"
-    />
-    <label className="absolute right-3 -top-2.5 bg-[#232323] px-1 text-xs text-white">
-      : حداقل رهن
-    </label>
-  </div>
-  <div className="relative w-full md:w-[156px]">
-    <input
-      type="number"
-      name="maxPrice"
-      placeholder=" "
-      value={filters.maxPrice}
-      onChange={handleFilterChange}
-      className="peer block w-full h-[52px] rounded-2xl border border-gray-300 px-3 pt-5 pb-2 text-sm text-right shadow-sm bg-transparent text-white placeholder-transparent"
-    />
-    <label className="absolute right-3 -top-2.5 bg-[#232323] px-1 text-xs text-white">
-      : حداکثر قیمت
-    </label>
-  </div>
-</div>
+              <div className="relative w-full md:w-[156px]">
+                <input
+                  type="number"
+                  name="minArea"
+                  placeholder=" "
+                  value={filters.minArea}
+                  onChange={handleFilterChange}
+                  className="peer block w-full h-[52px] rounded-2xl border border-gray-300 px-3 pt-5 pb-2 text-sm text-right shadow-sm bg-transparent text-white placeholder-transparent"
+                />
+                <label className="absolute right-3 -top-2.5 bg-[#232323] px-1 text-xs text-white">
+                  : حداقل متراژ
+                </label>
+              </div>
+              <div className="relative w-full md:w-[156px]">
+                <input
+                  type="number"
+                  name="maxArea"
+                  placeholder=" "
+                  value={filters.maxArea}
+                  onChange={handleFilterChange}
+                  className="peer block w-full h-[52px] rounded-2xl border border-gray-300 px-3 pt-5 pb-2 text-sm text-right shadow-sm bg-transparent text-white placeholder-transparent"
+                />
+                <label className="absolute right-3 -top-2.5 bg-[#232323] px-1 text-xs text-white">
+                  : حداکثر متراژ
+                </label>
+              </div>
+              <span className="hidden md:inline">|</span>
+              <div className="relative w-full md:w-[156px]">
+                <input
+                  type="number"
+                  name="minRooms"
+                  placeholder=" "
+                  value={filters.minRooms}
+                  onChange={handleFilterChange}
+                  className="peer block w-full h-[52px] rounded-2xl border border-gray-300 px-3 pt-5 pb-2 text-sm text-right shadow-sm bg-transparent text-white placeholder-transparent"
+                />
+                <label className="absolute right-3 -top-2.5 bg-[#232323] px-1 text-xs text-white">
+                  : حداقل اتاق‌ها
+                </label>
+              </div>
+              <div className="relative w-full md:w-[156px]">
+                <input
+                  type="number"
+                  name="maxRooms"
+                  placeholder=" "
+                  value={filters.maxRooms}
+                  onChange={handleFilterChange}
+                  className="peer block w-full h-[52px] rounded-2xl border border-gray-300 px-3 pt-5 pb-2 text-sm text-right shadow-sm bg-transparent text-white placeholder-transparent"
+                />
+                <label className="absolute right-3 -top-2.5 bg-[#232323] px-1 text-xs text-white">
+                  : حداکثر اتاق‌ها
+                </label>
+              </div>
+              <span className="hidden md:inline">|</span>
+              <div className="relative w-full md:w-[156px]">
+                <input
+                  type="number"
+                  name="minMortgage"
+                  placeholder=" "
+                  value={filters.minMortgage}
+                  onChange={handleFilterChange}
+                  className="peer block w-full h-[52px] rounded-2xl border border-gray-300 px-3 pt-5 pb-2 text-sm text-right shadow-sm bg-transparent text-white placeholder-transparent"
+                />
+                <label className="absolute right-3 -top-2.5 bg-[#232323] px-1 text-xs text-white">
+                  : حداقل رهن
+                </label>
+              </div>
+              <div className="relative w-full md:w-[156px]">
+                <input
+                  type="number"
+                  name="maxPrice"
+                  placeholder=" "
+                  value={filters.maxPrice}
+                  onChange={handleFilterChange}
+                  className="peer block w-full h-[52px] rounded-2xl border border-gray-300 px-3 pt-5 pb-2 text-sm text-right shadow-sm bg-transparent text-white placeholder-transparent"
+                />
+                <label className="absolute right-3 -top-2.5 bg-[#232323] px-1 text-xs text-white">
+                  : حداکثر قیمت
+                </label>
+              </div>
+            </div>
 
             <span className="mt-6 w-full h-[0.2px] border border-[#4E4E4E]"></span>
 
@@ -387,7 +419,9 @@ export default function MortgageAndHouseRent() {
               {cardsData.length > 0 && (
                 <div className="flex justify-center items-center mt-8 gap-4">
                   <button
-                    onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                    onClick={() =>
+                      setCurrentPage((prev) => Math.max(prev - 1, 1))
+                    }
                     disabled={currentPage === 1}
                     className="px-4 py-2 bg-[#303030] text-white rounded-lg disabled:opacity-50"
                   >
@@ -411,7 +445,9 @@ export default function MortgageAndHouseRent() {
               {/* بخش اطلاعات اضافی */}
               <div className="mt-8 text-center text-gray-400 text-sm">
                 <p>کل آگهی‌ها: {advertisementCount}</p>
-                <p>نمایش {currentCards.length} از {cardsData.length} آگهی</p>
+                <p>
+                  نمایش {currentCards.length} از {cardsData.length} آگهی
+                </p>
               </div>
             </div>
           </div>
