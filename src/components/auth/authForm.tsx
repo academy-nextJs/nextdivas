@@ -1,4 +1,3 @@
-// components/auth/AuthForm.tsx
 "use client";
 
 import { useState, useTransition, useEffect } from "react";
@@ -33,11 +32,6 @@ export default function AuthForm() {
 
   const onSubmit = (data: any) => {
     setError("");
-    // console.log(data)
-    // const formData = new FormData();
-    // formData.append("email", data.loginEmail);
-    // formData.append("password", data.loginPassword);
-
     startTransition(async () => {
       try {
         const result = await loginAction(data.loginEmail, data.loginPassword);
@@ -55,6 +49,7 @@ export default function AuthForm() {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5 }}
+        className="pl-6 pr-2"
       >
         <FullPageSkeleton />
       </motion.div>
@@ -62,7 +57,7 @@ export default function AuthForm() {
   }
 
   return (
-    <>
+    <div className="pl-6 pr-2">
       <motion.div
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -135,7 +130,7 @@ export default function AuthForm() {
       <AnimatePresence mode="wait">
         <motion.form
           key={`${mode}-${step}`}
-          className="space-y-6 mt-6"
+          className="space-y-6 mt-6 pr-2"
           onSubmit={handleSubmit(onSubmit)}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -164,6 +159,6 @@ export default function AuthForm() {
           </motion.button>
         </motion.form>
       </AnimatePresence>
-    </>
+    </div>
   );
 }
