@@ -4,24 +4,29 @@ import { serverLogin } from "@/utils/service/api/auth/server-auth";
 import { loginSchema } from "@/validations/auth.validation";
 import { LoginPayload } from "@/types/auth.types";
 
-export async function loginAction(formData: LoginPayload) {
-  try {
-    const values = await loginSchema.validate(formData);
+export async function loginAction(email: string, password: string) {
+  // const email = formData.get("email")
+  // const password = formData.get("password")
 
-    const response = await serverLogin(values);
+  // const email = "preator102@gmail.com"
+  // const password = "123456789"
 
-    if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.message || "Login failed.");
+  const response = await fetch(
+    "https://delta-project.liara.run/api/auth/login",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
     }
+  );
 
-    const data = await response.json();
-    return { success: true, data };
-  } catch (err: any) {
-    const isYupError = err.name === "ValidationError";
-    return {
-      success: false,
-      message: isYupError ? err.errors?.[0] || "Invalid input" : err.message,
-    };
+  if (!response.ok) {
+    throw new Error("Login failed");
   }
+
+  const data = await response.json();
+  console.log(data);
+  return data;
 }

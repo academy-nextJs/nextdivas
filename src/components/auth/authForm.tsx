@@ -33,27 +33,17 @@ export default function AuthForm() {
 
   const onSubmit = (data: any) => {
     setError("");
+    // console.log(data)
+    // const formData = new FormData();
+    // formData.append("email", data.loginEmail);
+    // formData.append("password", data.loginPassword);
 
     startTransition(async () => {
       try {
-        if (mode === "login") {
-          const res = await loginAction({
-            email: data.loginEmail,
-            password: data.loginPassword,
-          });
-          if (!res.success) throw new Error(res.message);
-        } else {
-          const result = await registerAction(step, {
-            ...data,
-            email: getValues("regEmail"), // حفظ ایمیل در step3
-          });
-
-          if (!result.success) throw new Error(result.message);
-
-          if (step < 3) setStep((prev) => prev + 1);
-        }
-      } catch (err: any) {
-        setError(err.message || "خطا در عملیات");
+        const result = await loginAction(data.loginEmail, data.loginPassword);
+        console.log("Login result:", result);
+      } catch {
+        console.log("Login failed");
       }
     });
   };
