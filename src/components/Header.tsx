@@ -8,6 +8,7 @@ import microphon from "../../public/icons/microphon.svg";
 import log from "../../public/icons/login.svg";
 import ButtonComponent from "./common/button";
 import { CgMenuHotdog } from "react-icons/cg";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
   const list = [
@@ -18,8 +19,12 @@ const Header = () => {
     { title: "رزرو سریع", link: "house-reserve" },
   ];
 
+  const pathname = usePathname();
   const [menu, setMenu] = useState(false);
 
+  if (pathname.startsWith("/dashboard")) {
+    return null;
+  }
   return (
     <div className="relative grid justify-items-center">
       <div

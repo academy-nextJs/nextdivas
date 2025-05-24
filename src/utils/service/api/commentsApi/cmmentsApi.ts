@@ -1,5 +1,3 @@
-// lib/api/commentApi.ts
-
 import axiosInstance from "../../interceptor/axiosInstance";
 
 export const getHouseComments = async ({

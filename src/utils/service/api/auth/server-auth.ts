@@ -9,12 +9,13 @@ import {
 import { customFetch } from "../../interceptor/server-interceptor";
 
 // لاگین
-export const serverLogin = (data: LoginPayload): Promise<any> => {
-  return customFetch("/auth/login", {
-    method: "POST",
-    body: JSON.stringify(data),
-  });
-};
+// export const serverLogin = (data: LoginPayload): Promise<any> => {
+//   return customFetch("/auth/login", {
+//     method: "POST",
+//     body: JSON.stringify(data),
+//     // body: data,
+//   });
+// };
 
 // مرحله اول ثبت‌نام: ارسال ایمیل
 export const serverStartRegistration = (

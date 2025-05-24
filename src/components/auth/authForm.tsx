@@ -1,4 +1,3 @@
-// components/auth/AuthForm.tsx
 "use client";
 
 import { useState, useTransition, useEffect } from "react";
@@ -6,11 +5,11 @@ import { useForm } from "react-hook-form";
 import { motion, AnimatePresence } from "framer-motion";
 import searchIcon from "@/assets/image/search.png";
 import { Stepper } from "@/components/auth/stepper";
-import { ModeToggle } from "@/components/auth/modeToggle";
-import { SocialButton } from "@/components/auth/socialButton";
+import { SocialButton } from "@/components/common/socialButton";
 import FullPageSkeleton from "@/components/skeletons/LoginSkeleton";
 import { loginAction } from "@/app/actions/login-action";
 import { registerAction } from "@/app/actions/register-action";
+import { Toggle } from "../common/Toggle";
 
 export default function AuthForm() {
   const [mode, setMode] = useState<"login" | "register">("login");
@@ -33,27 +32,12 @@ export default function AuthForm() {
 
   const onSubmit = (data: any) => {
     setError("");
-
     startTransition(async () => {
       try {
-        if (mode === "login") {
-          const res = await loginAction({
-            email: data.loginEmail,
-            password: data.loginPassword,
-          });
-          if (!res.success) throw new Error(res.message);
-        } else {
-          const result = await registerAction(step, {
-            ...data,
-            email: getValues("regEmail"), // حفظ ایمیل در step3
-          });
-
-          if (!result.success) throw new Error(result.message);
-
-          if (step < 3) setStep((prev) => prev + 1);
-        }
-      } catch (err: any) {
-        setError(err.message || "خطا در عملیات");
+        const result = await loginAction(data.loginEmail, data.loginPassword);
+        console.log("Login result:", result);
+      } catch {
+        console.log("Login failed");
       }
     });
   };
@@ -65,6 +49,7 @@ export default function AuthForm() {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5 }}
+        className="pl-6 pr-2"
       >
         <FullPageSkeleton />
       </motion.div>
@@ -72,7 +57,7 @@ export default function AuthForm() {
   }
 
   return (
-    <>
+    <div className="pl-6 pr-2">
       <motion.div
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -90,12 +75,16 @@ export default function AuthForm() {
 
       {/* سوییچ بین ورود و ثبت‌نام */}
       <div className="mt-6">
-        <ModeToggle
-          mode={mode}
-          onChange={(m) => {
-            setMode(m);
-            setStep(1);
-          }}
+        <Toggle
+          value={mode}
+          onChange={setMode}
+          options={[
+            { value: "login", label: "ورود به حساب کاربری" },
+            { value: "register", label: "ساخت حساب کاربری" },
+          ]}
+          containerClassName="flex bg-gray-800 rounded-xl p-1"
+          activeClassName="bg-green-500 text-white"
+          inactiveClassName="text-white hover:bg-green-500/40"
         />
       </div>
 
@@ -141,7 +130,7 @@ export default function AuthForm() {
       <AnimatePresence mode="wait">
         <motion.form
           key={`${mode}-${step}`}
-          className="space-y-6 mt-6"
+          className="space-y-6 mt-6 pr-2"
           onSubmit={handleSubmit(onSubmit)}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -170,6 +159,6 @@ export default function AuthForm() {
           </motion.button>
         </motion.form>
       </AnimatePresence>
-    </>
+    </div>
   );
 }

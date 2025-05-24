@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { FaInstagram, FaTelegram, FaTwitter } from "react-icons/fa";
 import myPhoto2 from "../assets/image/login.png";
+import { usePathname } from "next/navigation";
 
 const navigation = {
   company: [
@@ -25,6 +26,12 @@ const navigation = {
 };
 
 export default function Footer() {
+  const pathname = usePathname();
+
+  if (pathname.startsWith("/dashboard")) {
+    return null;
+  }
+
   return (
     <div className="relative p-14 w-full" aria-labelledby="footer-heading">
       <div className="relative py-14 w-full dark:bg-dark overflow-hidden">
@@ -54,7 +61,7 @@ export default function Footer() {
         >
           <div className="flex flex-col-reverse items-center gap-8 lg:grid lg:grid-cols-2 lg:items-start lg:gap-6 lg:px-8">
             <div
-              className="flex justify-center lg:justify-end mt-8 lg:mt-32"
+              className="flex justify-center ml-7 lg:justify-end mt-8 lg:mt-32"
               dir="rtl"
             >
               <img
@@ -143,7 +150,7 @@ export default function Footer() {
         </motion.div>
 
         <motion.div
-          className="bg-[#303030] relative z-20 shadow-md rounded-2xl mx-auto max-w-5xl px-6 pb-4 sm:pt-24 lg:px-8"
+          className="bg-[#303030] relative z-20 shadow-md rounded-2xl mx-auto max-w-6xl px-6 pb-4 sm:pt-24 lg:px-8"
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}

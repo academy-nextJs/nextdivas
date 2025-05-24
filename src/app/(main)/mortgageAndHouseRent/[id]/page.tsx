@@ -13,8 +13,9 @@ import SettingsTabs from "@/components/SinglePagesComponents/tab";
 import { BiBuildingHouse } from "react-icons/bi";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { getHouseById } from "@/utils/service/api/single-house/houseService";
-import Comment from "@/components/common/comments/Comment";
 import { commentType } from "@/types/landing.types";
+import { getHouseComments } from "@/utils/service/api/commentsApi/cmmentsApi";
+import { Comment } from "@/components/common/comments/Comment";
 
 export interface type {
   comment: commentType[];
@@ -24,44 +25,11 @@ export interface type {
 
 function SingleHouse() {
   const [house, setHouse] = useState<any>(null);
-  const comment = [
-    {
-      id: 1,
-      image: "234",
-      name: " محمد رضا ساداتی",
-      date: "1/2/3 شنبه ",
-      text: "” لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ وه از طراحان گرافیک است. چاپگر ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی موردرها و متون بلکه روز استفادمه و مجدلهناز و کاربا نرد.... “ ",
-    },
-    {
-      id: 2,
-      image: "234",
-      name: " محمد رضا ساداتی",
-      date: "1/2/3 شنبه ",
-      text: "” لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ وه از طراحان گرافیک است. چاپگر ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی موردرها و متون بلکه روز استفادمه و مجدلهناز و کاربا نرد.... “ ",
-    },
-    {
-      id: 3,
-      image: "234",
-      name: " محمد رضا ساداتی",
-      date: "1/2/3 شنبه ",
-      text: "” لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ وه از طراحان گرافیک است. چاپگر ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی موردرها و متون بلکه روز استفادمه و مجدلهناز و کاربا نرد.... “ ",
-    },
-    {
-      id: 4,
-      image: "234",
-      name: " محمد رضا ساداتی",
-      date: "1/2/3 شنبه ",
-      text: "” لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ وه از طراحان گرافیک است. چاپگر ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی موردرها و متون بلکه روز استفادمه و مجدلهناز و کاربا نرد.... “ ",
-    },
-    {
-      id: 5,
-      image: "234",
-      name: " محمد رضا ساداتی",
-      date: "1/2/3 شنبه ",
-      text: "” لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ وه از طراحان گرافیک است. چاپگر ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی موردرها و متون بلکه روز استفادمه و مجدلهناز و کاربا نرد.... “ ",
-    },
-  ];
+  const [comments, setComments] = useState<commentType[]>([]);
+  const [isLoadingComments, setIsLoadingComments] = useState(false);
+  const [errorComments, setErrorComments] = useState<string | null>(null);
 
+  // گرفتن اطلاعات خانه
   useEffect(() => {
     const fetchHouse = async () => {
       try {
@@ -75,6 +43,24 @@ function SingleHouse() {
     fetchHouse();
   }, []);
 
+  // گرفتن کامنت‌ها
+  useEffect(() => {
+    const fetchComments = async () => {
+      setIsLoadingComments(true);
+      try {
+        const data = await getHouseComments({ houseId: "3" });
+        setComments(data?.comments || []);
+      } catch (error) {
+        console.error("Error fetching comments:", error);
+        setErrorComments("خطا در دریافت نظرات");
+      } finally {
+        setIsLoadingComments(false);
+      }
+    };
+
+    fetchComments();
+  }, []);
+
   const tabs = [
     { name: "درباره ی ملک", value: "about", content: <AboutHouse /> },
     {
@@ -85,7 +71,13 @@ function SingleHouse() {
     {
       name: "نظرات کاربران",
       value: "comments",
-      content: <Comment comment={comment} />,
+      content: (
+        <Comment
+          comment={comments}
+          loading={isLoadingComments}
+          error={errorComments}
+        />
+      ),
     },
     {
       name: "موقعیت ملک",
@@ -171,8 +163,8 @@ function SingleHouse() {
           </div>
         </div>
 
+        {/* لایک، اشتراک‌گذاری و تگ‌ها */}
         <div className="flex items-center justify-between mt-4 text-sm text-gray-600">
-          {/* لایک و اشتراک‌گذاری */}
           <div className="flex items-center gap-3">
             <button className="text-gray-500 hover:text-red-500 transition">
               ❤️ <span className="ml-1">{house?.likes || 12}</span>
@@ -182,7 +174,6 @@ function SingleHouse() {
             </button>
           </div>
 
-          {/* تگ‌ها */}
           <div className="flex flex-wrap gap-2">
             {(house?.tags || ["فوری", "آپارتمانی", "فروش"]).map(
               (tag: string, index: number) => (
@@ -197,6 +188,7 @@ function SingleHouse() {
           </div>
         </div>
 
+        {/* عنوان و آدرس */}
         <div className="text-right text-white leading-20">
           <h2>{house?.title || "فروش آپارتمان 262 متر در شهرک غرب"}</h2>
         </div>
