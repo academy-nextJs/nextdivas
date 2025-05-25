@@ -1,13 +1,18 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BiBuildingHouse } from "react-icons/bi";
 import { TbCalendarPlus } from "react-icons/tb";
 import { PiInvoiceLight } from "react-icons/pi";
 import InputField from "../common/InputField";
 import SubmitButton from "../common/SubmitButton";
 import { FiSearch } from "react-icons/fi";
+import { useForm } from "react-hook-form";
 
 const HeroFillter = ({}) => {
+  const {
+    register,
+    formState: { errors },
+  } = useForm();
   const [searchIN, setSearchIN] = useState("| رزرو ملک");
 
   const fillter = [
@@ -72,8 +77,10 @@ const HeroFillter = ({}) => {
 
         <InputField
           type="text"
-          name="search"
+          name="count"
           label=": انتخاب نفرات  "
+          register={register}
+          errors={errors}
           placeholderText="... وارد کنید "
           inputStyle="w-[300px] rounded-2xl text-white text-right text-[14px] font-semibold p-4"
           lableStyle="absolute bg-gray text-white "
@@ -81,8 +88,10 @@ const HeroFillter = ({}) => {
 
         <InputField
           type="date"
-          name="search"
+          name="entryDate"
           label=": تاریخ خروج "
+          register={register}
+          errors={errors}
           placeholderText="... وارد کنید "
           inputStyle="w-[300px] rounded-2xl text-white text-right text-[14px] font-semibold p-4"
           lableStyle="absolute bg-gray text-white "
@@ -90,8 +99,10 @@ const HeroFillter = ({}) => {
 
         <InputField
           type="date"
-          name="search"
+          name="exitDate"
           label=": تاریخ ورود "
+          register={register}
+          errors={errors}
           placeholderText="... وارد کنید "
           inputStyle="w-[300px] rounded-2xl text-white text-right text-[14px] font-semibold appearance-none bg-transparent p-4"
           lableStyle="absolute bg-gray text-white "
@@ -99,15 +110,20 @@ const HeroFillter = ({}) => {
 
         <InputField
           type="select"
-          name="search"
+          name="choose"
           label=": انتخاب ملک"
+          register={register}
+          errors={errors}
           inputStyle="w-[300px] rounded-2xl text-[14px] font-semibold text-white flex flex-row-reverse text-right p-4"
           lableStyle="absolute bg-gray text-white "
           options={[
             { value: "holder", label: "... استان و اقامتگاه و سفر " },
-            { value: "cars", label: "خودرو" },
-            { value: "electronics", label: "کالای دیجیتال" },
-            { value: "real_estate", label: "املاک" },
+            { value: "gilan", label: "گیلان" },
+            { value: "mazandaran", label: "مازندران" },
+            { value: "tehran", label: "تهران" },
+            { value: "karaj", label: "کرج" },
+            { value: "isfahan", label: "اصفهان" },
+            { value: "shiraz", label: "شیراز" },
           ]}
         />
       </form>
