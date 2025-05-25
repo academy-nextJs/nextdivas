@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { BiSolidRightArrow } from "react-icons/bi";
 import vectors from "../../../../public/icons/whiteflash.png";
 import CardComponent from "@/components/common/CardComponent";
-import Toggle from "@/components/common/Toggle";
+import {Toggle} from "@/components/common/Toggle";
 
 import { House } from "@/types/landing.types";
 import { getHouseRent, getMortgage } from "@/utils/service/api/landing/landing";
@@ -21,8 +21,7 @@ import "swiper/swiper-bundle.css";
 SwiperCore.use([Navigation, Pagination]);
 
 const HouseRent = () => {
-  const togle = ["رهن خونه ", " اجاره ملک"];
-  const [togleButton, setTogleButton] = useState(" اجاره ملک");
+  const [togleButton, setTogleButton] = useState("اجاره ملک");
 
   // اجاره رو گذاشتیم و رهن مونده
   const [deltaHouseRent, setdeltaHouseRent] = useState<House[]>([]);
@@ -54,12 +53,13 @@ const HouseRent = () => {
 
       {/* title-part */}
       <div className="grid justify-items-end z-10 gap-4 text-white">
-        <div className="text-primary flex gap-1 items-center justify-center ">
+        <div className="text-primary flex gap-1 items-center justify-center">
           <BiSolidRightArrow className="text-[9px] max-sm:mx-text-[5px] opacity-50" />
           <BiSolidRightArrow className="text-[11px] max-sm:mx-text-[7px] opacity-80" />
           <BiSolidRightArrow className="text-sm max-sm:mx-text-xs" />
           <h1 className="mx-2 max-sm:mx-1"> با هر مبلغی خونه دار شو</h1>
         </div>
+
         <div className="grid grid-cols-2 w-full  max-md:grid-cols-1 max-md:justify-items-center">
           <ButtonComponent
             linke="mortgageAndHouseRent"
@@ -74,15 +74,24 @@ const HouseRent = () => {
               </span>
               رهن و اجاره ملک در دلتا
             </h1>
-            {/* <Toggle
-              mode={togle}
-              onChange={(mode) => setTogleButton(mode[0] ? mode[1] : mode[0])}
-            /> */}
+
+            <Toggle
+              options={[
+                { value: "اجاره ملک", label: "اجاره ملک" },
+                { value: "رهن خونه ", label: "رهن خونه " },
+              ]}
+              value={togleButton}
+              onChange={(value) => setTogleButton(value)}
+              containerClassName="bg-gray rounded-2xl transition-all w-fit p-[4px]"
+              activeClassName="text-black bg-primary m-1 h-9"
+              inactiveClassName="text-white/60 hover:bg-primary/30 m-1 h-9"
+            />
           </div>
         </div>
       </div>
 
       {/* cart  */}
+
       <Swiper
         pagination={{ clickable: true }}
         className="mySwiper grid text-white w-[98%] my-8"

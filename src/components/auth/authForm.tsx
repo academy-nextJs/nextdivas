@@ -10,6 +10,7 @@ import FullPageSkeleton from "@/components/skeletons/LoginSkeleton";
 import { loginAction } from "@/app/actions/login-action";
 import { registerAction } from "@/app/actions/register-action";
 import { Toggle } from "../common/Toggle";
+import { BiSolidRightArrow } from "react-icons/bi";
 
 export default function AuthForm() {
   const [mode, setMode] = useState<"login" | "register">("login");
@@ -57,15 +58,22 @@ export default function AuthForm() {
   }
 
   return (
-    <div className="pl-6 pr-2">
+    <div className="pl-6 pr-2 border border-red-500">
       <motion.div
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.4 }}
         className="mt-8 space-y-4"
       >
-        <p className="text-sm text-right font-medium text-white">
-          به خانواده دلتا خوش اومدی
+        <div className="font-semibold text-primary flex gap-1 items-center justify-end">
+          <BiSolidRightArrow className="text-[10px] opacity-50 max-sm:hidden" />
+          <BiSolidRightArrow className="text-xs opacity-90" />
+          <BiSolidRightArrow />
+          <p className="mx-2 text-sm">! خوش برگشتی </p>
+        </div>
+        <p className="text-lg text-right text-white">
+          <span className="text-bold text-xl mx-1">! خوش برگشتی </span>به خانواده دلتا
+          
         </p>
         <p className="text-sm text-right font-light text-lime-100">
           با وارد کردن اطلاعات خود به راحتی وارد پنل خودتون بشید و از

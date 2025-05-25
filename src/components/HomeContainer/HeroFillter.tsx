@@ -6,6 +6,7 @@ import { PiInvoiceLight } from "react-icons/pi";
 import InputField from "../common/InputField";
 import SubmitButton from "../common/SubmitButton";
 import { FiSearch } from "react-icons/fi";
+import { IoIosArrowDown } from "react-icons/io";
 import { useForm } from "react-hook-form";
 
 const HeroFillter = ({}) => {
@@ -52,7 +53,7 @@ const HeroFillter = ({}) => {
   ];
 
   return (
-    <div className=" mx-auto pt-3 w-[70%] max-sm:w-[85%] text-lg max-md:text-sm max-sm:text-xs">
+    <div className=" mx-auto pt-3 w-[70%] max-2xl:w-[80%] max-xl:w-[95%] max-sm:w-[85%] text-lg max-md:text-sm max-sm:text-xs">
       <div className="flex justify-end items-center gap-4 max-sm:gap-2 mt-10 ">
         {fillter.map((item) => (
           <div
@@ -68,7 +69,7 @@ const HeroFillter = ({}) => {
         ))}
       </div>
 
-      <form className="flex justify-end gap-4 items-center inset-shadow-sm inset-shadow-neutral-600 bg-gray rounded-[36px] p-8">
+      <form className="flex max-lg:flex-wrap-reverse justify-end gap-4 max-xl:gap-2 items-center inset-shadow-sm inset-shadow-neutral-600 bg-gray rounded-[36px] p-8 max-xl:p-6">
         <SubmitButton
           text=" جستجو کن "
           style="bg-primary text-gray p-4 text-[14px] font-semibold leading-5"
@@ -82,7 +83,7 @@ const HeroFillter = ({}) => {
           register={register}
           errors={errors}
           placeholderText="... وارد کنید "
-          inputStyle="w-[300px] rounded-2xl text-white text-right text-[14px] font-semibold p-4"
+          inputStyle="rounded-2xl text-white text-right text-[14px] font-semibold p-4"
           lableStyle="absolute bg-gray text-white "
         />
 
@@ -93,7 +94,7 @@ const HeroFillter = ({}) => {
           register={register}
           errors={errors}
           placeholderText="... وارد کنید "
-          inputStyle="w-[300px] rounded-2xl text-white text-right text-[14px] font-semibold p-4"
+          inputStyle="rounded-2xl text-white text-right text-[14px] font-semibold p-4"
           lableStyle="absolute bg-gray text-white "
         />
 
@@ -104,17 +105,18 @@ const HeroFillter = ({}) => {
           register={register}
           errors={errors}
           placeholderText="... وارد کنید "
-          inputStyle="w-[300px] rounded-2xl text-white text-right text-[14px] font-semibold appearance-none bg-transparent p-4"
+          inputStyle=" rounded-2xl text-white text-right text-[14px] font-semibold appearance-none bg-transparent p-4"
           lableStyle="absolute bg-gray text-white "
         />
 
         <InputField
+          icon={<IoIosArrowDown className="text-white" />}
           type="select"
           name="choose"
           label=": انتخاب ملک"
           register={register}
           errors={errors}
-          inputStyle="w-[300px] rounded-2xl text-[14px] font-semibold text-white flex flex-row-reverse text-right p-4"
+          inputStyle="rounded-2xl text-[14px] font-semibold text-white flex flex-row-reverse text-right p-4"
           lableStyle="absolute bg-gray text-white "
           options={[
             { value: "holder", label: "... استان و اقامتگاه و سفر " },
