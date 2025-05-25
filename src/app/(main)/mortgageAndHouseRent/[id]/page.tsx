@@ -1,21 +1,21 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import CardComponent from "@/components/common/CardComponent";
+// import CardComponent from "@/components/common/CardComponent";
 import CardList from "@/components/common/cardList";
-import UserComments from "@/components/HomeContainer/UserComments";
+// import UserComments from "@/components/HomeContainer/UserComments";
 import AboutHouse from "@/components/SinglePagesComponents/aboutHouse";
 import ContactInfo from "@/components/SinglePagesComponents/ContactInfo";
 import AccommodationFacilities from "@/components/SinglePagesComponents/facilities";
-import LocationMap from "@/components/SinglePagesComponents/location";
+// import LocationMap from "@/components/SinglePagesComponents/location";
 import LocationTabContent from "@/components/SinglePagesComponents/locationTabContent";
 import SettingsTabs from "@/components/SinglePagesComponents/tab";
-import { BiBuildingHouse } from "react-icons/bi";
+// import { BiBuildingHouse } from "react-icons/bi";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { getHouseById } from "@/utils/service/api/single-house/houseService";
 import { commentType } from "@/types/landing.types";
 import { getHouseComments } from "@/utils/service/api/commentsApi/cmmentsApi";
-import { Comment } from "@/components/common/comments/Comment";
+import Comment from "@/components/common/comments/Comment";
 
 export interface type {
   comment: commentType[];
