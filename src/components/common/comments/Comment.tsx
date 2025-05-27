@@ -23,7 +23,7 @@ type Props = {
   button?: React.ReactNode;
 };
 
-const Comment = ({ comment, loading, error ,reply ,button}: Props) => {
+const Comment = ({ comment, loading, error, reply, button }: Props) => {
   if (loading) {
     return (
       <div className="space-y-4">
@@ -42,20 +42,25 @@ const Comment = ({ comment, loading, error ,reply ,button}: Props) => {
   }
 
   if (!comment?.length) {
-    return <FileContainer
-              background="#393939"
-              radius="sm"
-              size="md"
-              labelHeight="25px"
-              labelWidth="100px"
-              tagHeight="30px"
-              width="95%"
-              classNames={{
-                base: "group h-[70px] mx-2 my-10 p-4 pt-[32px] hover:!bg-primary hover:shadow-[0px_8px_24px_rgba(140,255,69,0.12)]",
-                innerLabel: "!p-3 flex justify-center items-center",
-                wrapperLabel: "group-hover:!bg-primary",
-                coverHollow: "group-hover:!text-primary",
-              }}>کامنتی ثبت نشده است.</FileContainer>;
+    return (
+      <FileContainer
+        background="#393939"
+        radius="sm"
+        size="md"
+        labelHeight="25px"
+        labelWidth="100px"
+        tagHeight="30px"
+        width="95%"
+        classNames={{
+          base: "group h-[70px] mx-2 my-10 p-4 pt-[32px] hover:!bg-primary hover:shadow-[0px_8px_24px_rgba(140,255,69,0.12)]",
+          innerLabel: "!p-3 flex justify-center items-center",
+          wrapperLabel: "group-hover:!bg-primary",
+          coverHollow: "group-hover:!text-primary",
+        }}
+      >
+        کامنتی ثبت نشده است.
+      </FileContainer>
+    );
   }
 
   return (

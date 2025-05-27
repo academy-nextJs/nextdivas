@@ -17,6 +17,7 @@ const Hero = () => {
           src={hero}
           alt="hero"
           className="absolute top-0 -z-10 w-[100%] h-[850px] max-xl:h-[650px] max-lg:h-[640px] max-sm:h-[390px] "
+          loading="eager"
         />
       </div>
 
