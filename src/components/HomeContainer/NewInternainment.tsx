@@ -18,10 +18,12 @@ import { Pagination, Navigation } from "swiper/modules";
 import SwiperCore from "swiper";
 import "swiper/swiper-bundle.css";
 import FileContainer from "../common/FileContainer";
+import CardsSkeleton from "../skeletons/CardsSkeleton";
 SwiperCore.use([Navigation, Pagination]);
 
 const NewInternainment = () => {
   const [deltaInternainment, setdeltaInternainment] = useState<House[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,6 +32,8 @@ const NewInternainment = () => {
         setdeltaInternainment(data);
       } catch (err) {
         console.log(" errore : ", err);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -44,7 +48,6 @@ const NewInternainment = () => {
         labelHeight="35px"
         labelWidth="185px"
         tagHeight="30px"
-       
         classNames={{
           base: " w-[90%] max-xl:w-[98%] max-xl:mx-0 my-10 px-2 max-sm:p-2 z-0 mx-auto",
           innerLabel: "!p-3 flex justify-center items-center z-0",
@@ -72,37 +75,49 @@ const NewInternainment = () => {
 
         {/* card-part */}
         <div className="grid justify-items-center gap-5 mt-8 z-10 px-4">
-          <Swiper
-            pagination={{ clickable: true }}
-            className="mySwiper grid text-white w-[98%] "
-            modules={[Pagination]}
-            breakpoints={{
-              500: { slidesPerView: 1, spaceBetween: 10 },
-              711: { slidesPerView: 2, spaceBetween: 30 },
-              1024: { slidesPerView: 3, spaceBetween: 15 },
-              1395: { slidesPerView: 4, spaceBetween: 30 },
-            }}
-            spaceBetween={30}
-          >
-            {deltaInternainment.map((item: House) => (
-              <SwiperSlide key={item.id} className="mb-12 text-right py-2">
-                <div className="group grid justify-items-center justify-self-center text-white cursor-pointer ">
-                  <CardComponent
-                    detailLink="single-reserve"
-                    rate={item.rate}
-                    photos={item.photos}
-                  />
-                  <div className="flex justify-end items-center p-2 gap-2 w-full max-w-[300px] max-sm:max-w-[200px]">
-                    <p className="text-neutral-500 "> ({item.capacity}مورد)</p>
-                    <h3 className="text-left text-lg font-bold ">
-                      {" "}
-                      {item.title}{" "}
-                    </h3>
+          {isLoading ? (
+            <div className="flex justify-center gap-10 ">
+              <CardsSkeleton stly=" max-2xl:hidden" />
+              <CardsSkeleton stly=" max-lg:hidden" />
+              <CardsSkeleton stly=" max-sm:hidden" />
+              <CardsSkeleton />
+            </div>
+          ) : (
+            <Swiper
+              pagination={{ clickable: true }}
+              className="mySwiper grid text-white w-[98%] "
+              modules={[Pagination]}
+              breakpoints={{
+                500: { slidesPerView: 1, spaceBetween: 10 },
+                711: { slidesPerView: 2, spaceBetween: 30 },
+                1024: { slidesPerView: 3, spaceBetween: 15 },
+                1395: { slidesPerView: 4, spaceBetween: 30 },
+              }}
+              spaceBetween={30}
+            >
+              {deltaInternainment.map((item: House) => (
+                <SwiperSlide key={item.id} className="mb-12 text-right py-2">
+                  <div className="group grid justify-items-center justify-self-center text-white cursor-pointer ">
+                    <CardComponent
+                      detailLink="single-reserve"
+                      rate={item.rate}
+                      photos={item.photos}
+                    />
+                    <div className="flex justify-end items-center p-2 gap-2 w-full max-w-[300px] max-sm:max-w-[200px]">
+                      <p className="text-neutral-500 ">
+                        {" "}
+                        ({item.capacity}مورد)
+                      </p>
+                      <h3 className="text-left text-lg font-bold ">
+                        {" "}
+                        {item.title}{" "}
+                      </h3>
+                    </div>
                   </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          )}
         </div>
       </FileContainer>
     </>

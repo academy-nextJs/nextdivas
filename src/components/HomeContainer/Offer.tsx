@@ -10,8 +10,6 @@ import { getOffers } from "@/utils/service/api/landing/landing";
 import FileContainer from "../common/FileContainer";
 import CardBody from "../common/CardBody";
 
-
-
 import { BiBuildingHouse, BiSolidRightArrow } from "react-icons/bi";
 import { LuClock8 } from "react-icons/lu";
 import vectors from "../../../public/icons/whiteflash.png";
@@ -24,10 +22,12 @@ import "swiper/css/pagination";
 import { Pagination, Navigation } from "swiper/modules";
 import SwiperCore from "swiper";
 import "swiper/swiper-bundle.css";
+import CardsSkeleton from "../skeletons/CardsSkeleton";
 SwiperCore.use([Navigation, Pagination]);
 
 const Offer = () => {
   const [deltaOffers, setdeltaOffers] = useState<House[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,6 +36,8 @@ const Offer = () => {
         setdeltaOffers(data);
       } catch (err) {
         console.log(" errore : ", err);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -45,14 +47,9 @@ const Offer = () => {
   return (
     <div className="relative flex mx-auto py-6 pb-28">
       {/* background ui */}
-      <div
-        className="absolute right-0 w-40 h-60 blur-3xl opacity-20 rounded-l-full
-        bg-secondary 
-      "
-      >
+      <div className="absolute right-0 w-40 h-60 blur-3xl opacity-20 rounded-l-full bg-secondary ">
         {" "}
       </div>
-
       <FileContainer
         background="#2D2D2D"
         radius="lg"
@@ -64,7 +61,6 @@ const Offer = () => {
         classNames={{
           base: "mx-10 max-xl:mx-2 my-10 px-7 max-sm:p-2 z-0 ",
           innerLabel: "!p-3 flex justify-center items-center z-0",
-         
         }}
       >
         {/* title-part */}
@@ -83,7 +79,6 @@ const Offer = () => {
             <h1 className="mx-2"> بهترین تخفیف</h1>
           </div>
           <div className="grid grid-cols-2 max-sm:grid-cols-1 w-full">
-            
             <ButtonComponent
               linke="mortgageAndHouseRent"
               icon={vectors}
@@ -98,41 +93,50 @@ const Offer = () => {
 
         {/* card-part */}
         <div className="grid justify-items-center gap-5 mt-10 z-10 ">
-          <Swiper
-            pagination={{ clickable: true }}
-            className="mySwiper grid text-white w-[98%]"
-            modules={[Pagination]}
-            breakpoints={{
-              500: { slidesPerView: 1, spaceBetween: 10},
-              711: { slidesPerView: 2 ,spaceBetween: 30 },
-              1024: { slidesPerView: 3 ,spaceBetween: 15 },
-              1395: { slidesPerView: 4 ,spaceBetween: 30 },
-            }}
-          >
-            {deltaOffers.map((item: House) => (
-              <SwiperSlide key={item.id} className="mb-12 text-right">
-                <div className="group text-white cursor-pointer py-2">
-                  <CardComponent
-                    detailLink={"single-reserve"}
-                    rate={item.rate}
-                    photos={item.photos}
-                  />
-                  <CardBody
-                    icon1={
-                      <BiBuildingHouse className="mt-1.5 w-4 h-4 ml-1.5" />
-                    }
-                    title={`${item.title}`}
-                    address={`${item.address}`}
-                    rooms={`${item.rooms} ,`}
-                    parking={`${item.parking} ,`}
-                    bathrooms={`${item.bathrooms} ,`}
-                    yard_type={`${item.yard_type}`}
-                    price={`${item.price}`}
-                  />
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+          {isLoading ? (
+            <div className="flex justify-center gap-10 ">
+              <CardsSkeleton stly=" max-2xl:hidden" />
+              <CardsSkeleton stly=" max-lg:hidden"/>
+              <CardsSkeleton stly=" max-sm:hidden"/>
+              <CardsSkeleton />
+            </div>
+          ) : (
+            <Swiper
+              pagination={{ clickable: true }}
+              className="mySwiper grid text-white w-[98%]"
+              modules={[Pagination]}
+              breakpoints={{
+                500: { slidesPerView: 1, spaceBetween: 10 },
+                711: { slidesPerView: 2, spaceBetween: 30 },
+                1024: { slidesPerView: 3, spaceBetween: 15 },
+                1395: { slidesPerView: 4, spaceBetween: 30 },
+              }}
+            >
+              {deltaOffers.map((item: House) => (
+                <SwiperSlide key={item.id} className="mb-12 text-right">
+                  <div className="group text-white cursor-pointer py-2">
+                    <CardComponent
+                      detailLink={"single-reserve"}
+                      rate={item.rate}
+                      photos={item.photos}
+                    />
+                    <CardBody
+                      icon1={
+                        <BiBuildingHouse className="mt-1.5 w-4 h-4 ml-1.5" />
+                      }
+                      title={`${item.title}`}
+                      address={`${item.address}`}
+                      rooms={`${item.rooms} ,`}
+                      parking={`${item.parking} ,`}
+                      bathrooms={`${item.bathrooms} ,`}
+                      yard_type={`${item.yard_type}`}
+                      price={`${item.price}`}
+                    />
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          )}
         </div>
       </FileContainer>
     </div>

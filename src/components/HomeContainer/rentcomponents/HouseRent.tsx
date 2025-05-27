@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { BiSolidRightArrow } from "react-icons/bi";
 import vectors from "../../../../public/icons/whiteflash.png";
 import CardComponent from "@/components/common/CardComponent";
-import {Toggle} from "@/components/common/Toggle";
+import { Toggle } from "@/components/common/Toggle";
 
 import { House } from "@/types/landing.types";
 import { getHouseRent, getMortgage } from "@/utils/service/api/landing/landing";
@@ -18,10 +18,12 @@ import "swiper/css/pagination";
 import { Pagination, Navigation } from "swiper/modules";
 import SwiperCore from "swiper";
 import "swiper/swiper-bundle.css";
+import CardsSkeleton from "@/components/skeletons/CardsSkeleton";
 SwiperCore.use([Navigation, Pagination]);
 
 const HouseRent = () => {
   const [togleButton, setTogleButton] = useState("اجاره ملک");
+  const [isLoading, setIsLoading] = useState(true);
 
   // اجاره رو گذاشتیم و رهن مونده
   const [deltaHouseRent, setdeltaHouseRent] = useState<House[]>([]);
@@ -36,6 +38,8 @@ const HouseRent = () => {
         setdeltaHouseMortgage(mortgage);
       } catch (err) {
         console.log(" errore : ", err);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -91,60 +95,68 @@ const HouseRent = () => {
       </div>
 
       {/* cart  */}
-
-      <Swiper
-        pagination={{ clickable: true }}
-        className="mySwiper grid text-white w-[98%] my-8"
-        modules={[Pagination]}
-        breakpoints={{
-          500: { slidesPerView: 1, spaceBetween: 10 },
-          711: { slidesPerView: 2, spaceBetween: 30 },
-          1024: { slidesPerView: 3, spaceBetween: 15 },
-          1395: { slidesPerView: 4, spaceBetween: 30 },
-        }}
-      >
-        {togleButton == "رهن خونه "
-          ? deltaHouseRent.map((item) => (
-              <SwiperSlide key={item.id}>
-                <div className="group text-white cursor-pointer py-2">
-                  <CardComponent
-                    detailLink="single-house"
-                    rate={item.rate}
-                    photos={item.photos}
-                  />
-                  <CardBody
-                    title={`${item.title}`}
-                    address={`${item.address}`}
-                    rooms={`${item.rooms} |`}
-                    parking={`${item.parking} |`}
-                    bathrooms={`${item.bathrooms} |`}
-                    yard_type={`${item.yard_type} |`}
-                    price={`${item.price} |`}
-                  />
-                </div>
-              </SwiperSlide>
-            ))
-          : deltaHouseMortgage.map((item) => (
-              <SwiperSlide key={item.id}>
-                <div className="group text-white cursor-pointer py-2">
-                  <CardComponent
-                    detailLink="single-house"
-                    rate={item.rate}
-                    photos={item.photos}
-                  />
-                  <CardBody
-                    title={`${item.title}`}
-                    address={`${item.address}`}
-                    rooms={`${item.rooms} |`}
-                    parking={`${item.parking} |`}
-                    bathrooms={`${item.bathrooms} |`}
-                    yard_type={`${item.yard_type} |`}
-                    price={`${item.price} |`}
-                  />
-                </div>
-              </SwiperSlide>
-            ))}
-      </Swiper>
+      {isLoading ? (
+        <div className="flex justify-center gap-10 ">
+          <CardsSkeleton stly=" max-2xl:hidden" />
+          <CardsSkeleton stly=" max-lg:hidden" />
+          <CardsSkeleton stly=" max-sm:hidden" />
+          <CardsSkeleton />
+        </div>
+      ) : (
+        <Swiper
+          pagination={{ clickable: true }}
+          className="mySwiper grid text-white w-[98%] my-8"
+          modules={[Pagination]}
+          breakpoints={{
+            500: { slidesPerView: 1, spaceBetween: 10 },
+            711: { slidesPerView: 2, spaceBetween: 30 },
+            1024: { slidesPerView: 3, spaceBetween: 15 },
+            1395: { slidesPerView: 4, spaceBetween: 30 },
+          }}
+        >
+          {togleButton == "رهن خونه "
+            ? deltaHouseRent.map((item) => (
+                <SwiperSlide key={item.id}>
+                  <div className="group text-white cursor-pointer py-2">
+                    <CardComponent
+                      detailLink="single-house"
+                      rate={item.rate}
+                      photos={item.photos}
+                    />
+                    <CardBody
+                      title={`${item.title}`}
+                      address={`${item.address}`}
+                      rooms={`${item.rooms} |`}
+                      parking={`${item.parking} |`}
+                      bathrooms={`${item.bathrooms} |`}
+                      yard_type={`${item.yard_type} |`}
+                      price={`${item.price} |`}
+                    />
+                  </div>
+                </SwiperSlide>
+              ))
+            : deltaHouseMortgage.map((item) => (
+                <SwiperSlide key={item.id}>
+                  <div className="group text-white cursor-pointer py-2">
+                    <CardComponent
+                      detailLink="single-house"
+                      rate={item.rate}
+                      photos={item.photos}
+                    />
+                    <CardBody
+                      title={`${item.title}`}
+                      address={`${item.address}`}
+                      rooms={`${item.rooms} |`}
+                      parking={`${item.parking} |`}
+                      bathrooms={`${item.bathrooms} |`}
+                      yard_type={`${item.yard_type} |`}
+                      price={`${item.price} |`}
+                    />
+                  </div>
+                </SwiperSlide>
+              ))}
+        </Swiper>
+      )}
     </div>
   );
 };

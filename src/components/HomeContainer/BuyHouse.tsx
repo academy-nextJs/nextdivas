@@ -16,10 +16,12 @@ import "swiper/css/pagination";
 import { Pagination, Navigation } from "swiper/modules";
 import SwiperCore from "swiper";
 import "swiper/swiper-bundle.css";
+import CardsSkeleton from "../skeletons/CardsSkeleton";
 SwiperCore.use([Navigation, Pagination]);
 
 const BuyHouse = () => {
   const [deltaBuyHouse, setDeltaBuyHouse] = useState<House[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,6 +30,8 @@ const BuyHouse = () => {
         setDeltaBuyHouse(data);
       } catch (err) {
         console.log(" errore : ", err);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -58,7 +62,14 @@ const BuyHouse = () => {
       </div>
 
       {/* cart  */}
-
+          {isLoading ? (
+            <div className="flex justify-center gap-10 ">
+              <CardsSkeleton stly=" max-2xl:hidden" />
+              <CardsSkeleton stly=" max-lg:hidden"/>
+              <CardsSkeleton stly=" max-sm:hidden"/>
+              <CardsSkeleton />
+            </div>
+          ) : (
        <Swiper
         pagination={{ clickable: true }}
         className="mySwiper grid text-white w-[98%] my-8"
@@ -88,7 +99,7 @@ const BuyHouse = () => {
           
         ))}
       </Swiper>
-    
+      )}
     </div>
   );
 };
