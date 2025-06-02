@@ -72,8 +72,8 @@ export default function AuthForm() {
           <p className="mx-2 text-sm">! خوش برگشتی </p>
         </div>
         <p className="text-lg text-right text-white">
-          <span className="text-bold text-xl mx-1">! خوش برگشتی </span>به خانواده دلتا
-          
+          <span className="text-bold text-xl mx-1">! خوش برگشتی </span>به
+          خانواده دلتا
         </p>
         <p className="text-sm text-right font-light text-lime-100">
           با وارد کردن اطلاعات خود به راحتی وارد پنل خودتون بشید و از
@@ -98,7 +98,7 @@ export default function AuthForm() {
 
       {/* ورود با شبکه اجتماعی */}
       <motion.div
-        className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4"
+        className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3, duration: 0.4 }}

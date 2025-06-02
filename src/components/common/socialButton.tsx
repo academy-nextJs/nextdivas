@@ -11,7 +11,7 @@ export function SocialButton({ icon, children, onClick }: SocialButtonProps) {
   return (
     <motion.button
       onClick={onClick}
-      className="inline-flex w-full justify-center items-center gap-2 rounded-2xl border bg-white py-2 px-4 text-sm font-medium shadow-sm transition"
+      className="inline-flex w-full justify-center items-center gap-2 rounded-lg border bg-white py-2 px-4 text-sm font-medium shadow-sm transition"
       whileHover={{ scale: 1.03 }}
       whileTap={{ scale: 0.97 }}
     >

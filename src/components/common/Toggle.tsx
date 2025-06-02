@@ -29,7 +29,7 @@ export function Toggle<T extends string>({
     <motion.div
       className={
         containerClassName ||
-        "flex bg-[#303030] rounded-2xl py-1.5 transition-all"
+        "flex bg-[#303030] rounded-lg py-1.5 transition-all"
       }
       layout
     >
@@ -40,7 +40,7 @@ export function Toggle<T extends string>({
           <motion.button
             key={opt.value}
             onClick={() => onChange(opt.value)}
-            className={`flex-1 px-3 py-1.5 text-xs font-medium rounded-xl transition-colors ${
+            className={`flex-1 px-3 py-1.5 text-xs font-medium rounded-lg transition-colors ${
               isActive
                 ? activeClassName || "text-white bg-[#8CFF45]"
                 : inactiveClassName || "text-white hover:bg-[#8CFF45]/40"
