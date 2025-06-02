@@ -56,6 +56,7 @@ const InputField: React.FC<InputFieldProps> = ({
       ) : (
         <>
           <input
+            
             {...(register ? register(name, { required: true }) : {})}
             type={type}
             placeholder={placeholderText}
@@ -63,7 +64,7 @@ const InputField: React.FC<InputFieldProps> = ({
           />
 
           <label
-            className={`"absolute right-3 -top-2.5 px-1 text-xs text-gray-500" ${lableStyle}`}
+            className={`absolute right-3 -top-2.5 px-1 text-xs text-gray-500 ${lableStyle}`}
           >
             {label}
           </label>

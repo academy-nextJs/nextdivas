@@ -1,4 +1,9 @@
+"use client";
 import Image, { StaticImageData } from "next/image";
+import { motion } from "framer-motion";
+
+const MotionImage = motion(Image);
+
 import React from "react";
 
 interface aboutUsTypes {
@@ -29,14 +34,22 @@ const AboutCards = ({ image, icone, title, detail, styl }: aboutUsTypes) => {
         />
       </svg>
       <div className="absolute w-[90%] top-12 max-sm:top-16 px-8 left-[13px] text-white grid justify-items-end">
-        <Image
+        <MotionImage
+          animate={{
+            y: [0, -10, 0],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
           src={image}
           alt="image"
           className={`absolute max-sm:hidden top-0 left-0 w-24 h-24 ${styl}`}
         />
 
         <div className=" p-2 rounded-lg bg-white mb-3">
-          <Image src={icone} alt="icone" />
+          <MotionImage src={icone} alt="icone" />
         </div>
         <h3 className="font-bold text-xl max-md:text-sm mb-3"> {title} </h3>
         <p className="opacity-70 max-md:text-xs"> {detail} </p>
