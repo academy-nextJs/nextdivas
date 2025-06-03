@@ -5,7 +5,7 @@ import AuthForm from "@/components/auth/authForm";
 
 export default function LoginPage() {
   return (
-    <div className="flex justify-center gap-16 border border-red-600 pt-36">
+    <div className="flex justify-center gap-16 border border-red-600 pt-36 pb-14">
       {/* تصویر سمت راست */}
       <Image src={myPhoto2} alt="عکس من" className="w-xl" />
 
