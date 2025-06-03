@@ -4,6 +4,7 @@ import Card from "./Card";
 
 // تعریف رابط برای تایپ داده‌های کارت
 interface CardData {
+  id?:string,
   rate?: string | number;
   title?: string;
   address?: string;
