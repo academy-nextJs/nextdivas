@@ -16,6 +16,7 @@ import { getHouseById } from "@/utils/service/api/single-house/houseService";
 import { commentType } from "@/types/landing.types";
 import { getHouseComments } from "@/utils/service/api/commentsApi/cmmentsApi";
 import Comment from "@/components/common/comments/Comment";
+import { useParams } from "next/navigation";
 
 export interface type {
   comment: commentType[];
@@ -23,17 +24,20 @@ export interface type {
   reply?: React.ReactElement;
 }
 
+
 function SingleHouse() {
   const [house, setHouse] = useState<any>(null);
   const [comments, setComments] = useState<commentType[]>([]);
   const [isLoadingComments, setIsLoadingComments] = useState(false);
   const [errorComments, setErrorComments] = useState<string | null>(null);
+  const {useid} = useParams();
+  const id = useid?.toString()
 
   // گرفتن اطلاعات خانه
   useEffect(() => {
     const fetchHouse = async () => {
       try {
-        const data = await getHouseById("3");
+        const data = await getHouseById(id);
         setHouse(data);
       } catch (error) {
         console.error("Error fetching house:", error);
@@ -48,7 +52,7 @@ function SingleHouse() {
     const fetchComments = async () => {
       setIsLoadingComments(true);
       try {
-        const data = await getHouseComments({ houseId: "3" });
+        const data = await getHouseComments({ houseId: id });
         setComments(data?.comments || []);
       } catch (error) {
         console.error("Error fetching comments:", error);

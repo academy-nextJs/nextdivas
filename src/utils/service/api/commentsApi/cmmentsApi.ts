@@ -5,7 +5,7 @@ export const getHouseComments = async ({
   page = 1,
   limit = 10,
 }: {
-  houseId: string | number;
+  houseId: string | undefined;
   page?: number;
   limit?: number;
 }) => {
