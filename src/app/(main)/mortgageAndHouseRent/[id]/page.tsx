@@ -1,22 +1,18 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-// import CardComponent from "@/components/common/CardComponent";
 import CardList from "@/components/common/cardList";
-// import UserComments from "@/components/HomeContainer/UserComments";
 import AboutHouse from "@/components/SinglePagesComponents/aboutHouse";
 import ContactInfo from "@/components/SinglePagesComponents/ContactInfo";
 import AccommodationFacilities from "@/components/SinglePagesComponents/facilities";
-// import LocationMap from "@/components/SinglePagesComponents/location";
 import LocationTabContent from "@/components/SinglePagesComponents/locationTabContent";
-import SettingsTabs from "@/components/SinglePagesComponents/tab";
-// import { BiBuildingHouse } from "react-icons/bi";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { getHouseById } from "@/utils/service/api/single-house/houseService";
 import { commentType } from "@/types/landing.types";
 import { getHouseComments } from "@/utils/service/api/commentsApi/cmmentsApi";
 import Comment from "@/components/common/comments/Comment";
 import { useParams } from "next/navigation";
+import MortgageTab from "@/components/SinglePagesComponents/MortgageTab";
 
 export interface type {
   comment: commentType[];
@@ -24,14 +20,13 @@ export interface type {
   reply?: React.ReactElement;
 }
 
-
 function SingleHouse() {
   const [house, setHouse] = useState<any>(null);
   const [comments, setComments] = useState<commentType[]>([]);
   const [isLoadingComments, setIsLoadingComments] = useState(false);
   const [errorComments, setErrorComments] = useState<string | null>(null);
-  const {useid} = useParams();
-  const id = useid?.toString()
+  const { useid } = useParams();
+  const id = useid?.toString();
 
   // گرفتن اطلاعات خانه
   useEffect(() => {
@@ -66,15 +61,14 @@ function SingleHouse() {
   }, []);
 
   const tabs = [
-    { name: "  توضیحات ملک", value: "about", content: <AboutHouse /> },
+    { name: "توضیحات ملک", content: <AboutHouse /> },
     {
-      name: "امکانات اقامتگاه",
-      value: "facility",
+      name: "امکانت اقامتگاه",
+
       content: <AccommodationFacilities />,
     },
     {
       name: "نظرات کاربران",
-      value: "comments",
       content: (
         <Comment
           comment={comments}
@@ -222,7 +216,7 @@ function SingleHouse() {
         </div>
       </div>
 
-      <SettingsTabs tabs={tabs} defaultTab="about" />
+      <MortgageTab tabs={tabs} />
 
       <div className="flex justify-between items-center bg-[#393939] px-5 mx-5 rounded-lg">
         <p className="text-white leading-10">مشاهده همه</p>
