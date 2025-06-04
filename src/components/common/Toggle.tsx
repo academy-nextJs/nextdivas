@@ -2,10 +2,12 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ReactNode } from "react";
 
 type ToggleOption<T> = {
   value: T;
   label: string;
+  icone?: ReactNode;
 };
 
 interface ToggleProps<T extends string> {
@@ -48,6 +50,7 @@ export function Toggle<T extends string>({
             whileTap={{ scale: 0.95 }}
           >
             {opt.label}
+            {opt.icone}
           </motion.button>
         );
       })}

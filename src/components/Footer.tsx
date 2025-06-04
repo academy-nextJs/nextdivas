@@ -159,7 +159,7 @@ export default function Footer() {
             </div>
             {/* right part */}
             <motion.div
-              className="relative mt-10 w-2/3 max-xl:w-[80%] max-md:w-[95%] px-4 max-md:px-0"
+              className="relative mt-10 max-xl:w-[80%] max-md:w-[95%] px-4 max-md:px-0 grid"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -182,7 +182,7 @@ export default function Footer() {
 
               {/* footer form */}
 
-              <form className="relative my-5 space-y-5">
+              <form className="relative my-5 space-y-5 w-2/3 justify-self-end">
                 <div className=" flex flex-col gap-5 justify-end sm:flex-row">
                   <InputField
                     type="text"
@@ -210,7 +210,7 @@ export default function Footer() {
                   id="area"
                   {...register("textarea", { required: true })}
                   placeholder="...."
-                  className="placeholder-gray text-[#232323] w-full rounded-2xl h-60 text-right text-[14px] font-semibold p-4 appearance-none bg-transparent peer border-2 border-gray-500 focus:outline-0 focus:border-white shadow-sm"
+                  className="placeholder-gray text-[#232323] w-full rounded-2xl h-40 text-right text-[14px] font-semibold p-4 appearance-none bg-transparent peer border-2 border-gray-500 focus:outline-0 focus:border-white shadow-sm"
                 />
                 <label
                   htmlFor="area"

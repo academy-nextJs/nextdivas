@@ -9,6 +9,7 @@ import ButtonComponent from "../common/button";
 
 // تعریف رابط برای تایپ data
 interface CardData {
+  id?:string,
   rate?: string | number;
   title?: string;
   address?: string;
@@ -98,7 +99,7 @@ const Card: React.FC<CardProps> = ({ data }) => {
         </span>
 
         <ButtonComponent
-          linke={`mortgageAndHouseRent/3`}
+          linke={`mortgageAndHouseRent/${data.id}`}
           text="مشاهده ملک"
           style="hover:bg-primary border-2 border-primary text-primary hover:text-black text-xs md:text-sm font-bold w-full md:w-40 h-10 md:h-11 hover:brightness-110"
         />
