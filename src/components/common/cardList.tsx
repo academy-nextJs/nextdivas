@@ -7,7 +7,7 @@ function CardList() {
   return (
     <div>
       {" "}
-      <div className="grid grid-cols-4 gap-5 mt-12 z-10 max-md:grid-cols-1">
+      <div className="grid grid-cols-4 gap-5 mt-12 z-10 max-md:grid-cols-1 mb-16">
         {[...Array(4)].map((_, idx) => (
           <div key={idx} className="group text-white cursor-pointer">
             <CardComponent />
