@@ -6,7 +6,7 @@ import myPhoto2 from "../../assets/image/login2.png";
 import { FiPhoneCall } from "react-icons/fi";
 import { CiLock } from "react-icons/ci";
 
-import AAA from "../../../public/icons/AAA.png";
+import cup from "../../../public/cup.png";
 import vectors from "../../../public/landing/vector.png";
 
 const LoginPicture = () => {
@@ -16,8 +16,16 @@ const LoginPicture = () => {
     <div className="relative w-1/2">
       <Toggle
         options={[
-          { value: "ورود با پسورد", label: "ورود با پسورد", icone: <CiLock className="m-1 w-4 h-4"/> },
-          { value: "ورود با شماره", label: "ورود با شماره", icone: <FiPhoneCall className="m-1 w-4 h-4" />},
+          {
+            value: "ورود با پسورد",
+            label: "ورود با پسورد",
+            icone: <CiLock className="m-1 w-4 h-4" />,
+          },
+          {
+            value: "ورود با شماره",
+            label: "ورود با شماره",
+            icone: <FiPhoneCall className="m-1 w-4 h-4" />,
+          },
         ]}
         value={togleButton}
         onChange={(value) => setTogleButton(value)}
@@ -31,16 +39,13 @@ const LoginPicture = () => {
         className="w-full border-2 border-amber-700"
       />
 
-      <div>
-        <Image
-        src={AAA}
-        alt="عکس من"
-        className="border-2 border-amber-700"
-      />
-      <div>
-
-      </div>
-       <Image src={vectors} alt="vectors" />
+      <div className="flex gap-4 absolute bottom-10 text-white text-right border border-neutral-500 bg-blend-color bg-gray rounded-4xl ">
+        <Image src={cup} alt="عکس من" className=" w-40 h-40" />
+        <div >
+          <p> + بیش از 5600</p>
+          <p>مشتریانی لذت سفرشان را با ما تجربه کردند !</p>
+        </div>
+        <Image src={vectors} alt="vectors" />
       </div>
     </div>
   );
