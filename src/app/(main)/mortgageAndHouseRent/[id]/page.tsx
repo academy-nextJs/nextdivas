@@ -62,7 +62,7 @@ function SingleHouse() {
   }, []);
 
   const tabs = [
-    { name: "درباره ی ملک", value: "about", content: <AboutHouse /> },
+    { name: "  توضیحات ملک", value: "about", content: <AboutHouse /> },
     {
       name: "امکانات اقامتگاه",
       value: "facility",
@@ -97,10 +97,10 @@ function SingleHouse() {
           </div>
 
           {/* Photos */}
-          <div className="lg:col-span-4 space-y-4 pr-0">
-            <div className="grid grid-cols-1 sm:grid-cols-2 sm:grid-rows-2 gap-4">
+          <div className="lg:col-span-4  border-2 pr-0">
+            <div className="grid grid-cols-2 grid-rows-2 gap-4" dir="ltr">
               {/* عکس بزرگ سمت راست */}
-              <div className="group aspect-w-2 aspect-h-1 overflow-hidden rounded-lg sm:row-span-2">
+              <div className="group col-start-2 row-span-2 aspect-w-2 aspect-h-1 overflow-hidden rounded-lg">
                 <img
                   src={
                     house?.photos?.[0] || "https://via.placeholder.com/500x300"
@@ -173,18 +173,23 @@ function SingleHouse() {
               🔗 اشتراک‌گذاری
             </button>
           </div>
+          <div className="flex">
+            <span className="text-white text-sm bg-secondary rounded-lg px-3 py-1 mr-1  ">
+              پنج ستاره
+            </span>
 
-          <div className="flex flex-wrap gap-2">
-            {(house?.tags || ["فوری", "آپارتمانی", "فروش"]).map(
-              (tag: string, index: number) => (
-                <span
-                  key={index}
-                  className="bg-gray-200 text-gray-700 px-2 py-1 rounded-full text-xs"
-                >
-                  #{tag}
-                </span>
-              )
-            )}
+            <div className="flex items-center gap-4 px-5 border-l-2 border-l-zinc-50 flex-wrap">
+              {(house?.tags || ["فوری", "آپارتمانی", "فروش"]).map(
+                (tag: string, index: number) => (
+                  <span
+                    key={index}
+                    className="bg-gray-700 text-gray-50 px-2 py-1 rounded-lg text-xs"
+                  >
+                    #{tag}
+                  </span>
+                )
+              )}
+            </div>
           </div>
         </div>
 

@@ -23,7 +23,9 @@ function LocationTabContent() {
         رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات
         پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
       </p>
-      <LocationMap lat={house.location.lat} lng={house.location.lng} />
+      <div className="w-1/2">
+        <LocationMap lat={house.location.lat} lng={house.location.lng} />
+      </div>
     </div>
   );
 }

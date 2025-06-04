@@ -9,13 +9,17 @@ import UserComments from "@/components/HomeContainer/UserComments";
 
 export default function SingleReserve() {
   const tabs = [
-    { name: "درباره ی ملک", value: "about", content: <AboutHouse /> },
+    { name: "  توضیحات ملک", value: "about", content: <AboutHouse /> },
     {
       name: "امکانات اقامتگاه",
       value: "facility",
       content: <AccommodationFacilities />,
     },
-    { name: "نظرات کاربران", value: "comments", content: <UserComments /> },
+    {
+      name: "نظرات کاربران",
+      value: "comments",
+      content: <UserComments />,
+    },
   ];
 
   return (
