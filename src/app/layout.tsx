@@ -5,6 +5,8 @@ import { Providers } from "./providers";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "leaflet/dist/leaflet.css";
+import SpeechBot from "@/components/SpeechBot";
+import { ChatBot } from "@/components/ChatBot";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,6 +36,8 @@ export default function RootLayout({
         <Providers>
           <Header />
           {children}
+          <SpeechBot />
+          <ChatBot />
           <Footer />
         </Providers>
       </body>

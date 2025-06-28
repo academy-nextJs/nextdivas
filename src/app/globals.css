@@ -44,3 +44,7 @@
   padding: 0.5px;
   transition: all 0.3s;
 }
+
+::selection {
+  background-color: transparent
+}
